@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { User, Calendar, X, Menu, ChevronDown, BookOpen, Scissors, Heart, Sparkles, ArrowRight } from 'lucide-react';
 
 /* ─── Nav Config ──────────────────────────────────────────── */
@@ -146,9 +147,14 @@ export default function Header() {
 
             {/* ─ Left: Logo ─ */}
             <Link href="/" className="flex items-center group shrink-0 z-10">
-              <span className="font-cinzel text-lg lg:text-xl tracking-[0.25em] font-semibold text-noir group-hover:text-zari-gold transition-colors duration-500">
-                SHRINGARIKA
-              </span>
+              <Image
+                src="/images/logo.png"
+                alt="Shringarika — Official Logo"
+                width={120}
+                height={48}
+                className="h-9 lg:h-11 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
+                priority
+              />
             </Link>
 
             {/* ─ Center: Primary Nav ─ */}
@@ -388,7 +394,13 @@ export default function Header() {
             >
               {/* Panel Header */}
               <div className="flex items-center justify-between px-7 h-16 border-b border-ivory/5">
-                <span className="font-cinzel text-sm tracking-[0.25em] text-zari-gold">SHRINGARIKA</span>
+                <Image
+                src="/images/logo.png"
+                alt="Shringarika"
+                width={100}
+                height={40}
+                className="h-8 w-auto object-contain"
+              />
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="p-2 text-ivory/60 hover:text-ivory transition-colors"

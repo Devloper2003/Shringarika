@@ -2,6 +2,7 @@
 
 import { useState, useEffect, ReactNode, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -9,7 +10,7 @@ import {
   ShoppingBag,
   Mail,
   Calendar,
-  Image,
+  Image as ImageIcon,
   Users,
   Settings,
   ArrowLeft,
@@ -32,7 +33,7 @@ const navItems = [
   { href: '/admin/products', label: 'Products', icon: ShoppingBag },
   { href: '/admin/inquiries', label: 'Inquiries', icon: Mail },
   { href: '/admin/appointments', label: 'Appointments', icon: Calendar },
-  { href: '/admin/gallery', label: 'Gallery', icon: Image },
+  { href: '/admin/gallery', label: 'Gallery', icon: ImageIcon },
   { href: '/admin/users', label: 'Users', icon: Users },
   { href: '/admin/permissions', label: 'Permissions', icon: ShieldCheck },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
@@ -73,8 +74,15 @@ function Sidebar({
       {/* Logo */}
       <div className="p-6 pb-4">
         <Link href="/admin" className="block">
-          <h1 className="font-cinzel text-zari-gold text-lg tracking-[0.2em]">SHRINGARIKA</h1>
-          <p className="font-dm-sans text-ivory/40 text-[10px] tracking-[0.3em] mt-1">
+          <Image
+            src="/images/logo.png"
+            alt="Shringarika Admin"
+            width={160}
+            height={48}
+            className="h-10 w-auto object-contain"
+            priority
+          />
+          <p className="font-dm-sans text-ivory/40 text-[10px] tracking-[0.3em] mt-2">
             Admin Panel
           </p>
         </Link>
@@ -177,8 +185,14 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-noir z-40 flex items-center justify-between px-4">
-        <Link href="/admin">
-          <h1 className="font-cinzel text-zari-gold text-sm tracking-[0.2em]">SHRINGARIKA</h1>
+        <Link href="/admin" className="flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Shringarika"
+            width={100}
+            height={32}
+            className="h-7 w-auto object-contain"
+          />
         </Link>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

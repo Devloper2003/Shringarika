@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -11,7 +12,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand Column */}
           <div className="md:col-span-1">
-            <h3 className="font-cinzel text-xl tracking-[0.2em] text-ivory mb-4">SHRINGARIKA</h3>
+            <Image
+              src="/images/logo.png"
+              alt="Shringarika — Official Logo"
+              width={160}
+              height={50}
+              className="h-10 w-auto object-contain mb-4"
+              priority
+            />
             <p className="font-dm-sans text-xs text-ivory/30 leading-relaxed mb-6">
               House of Shringarika — where every woman becomes the story. 
               Luxury bridal wear, bespoke couture & ready-to-wear collections from Jaipur.
