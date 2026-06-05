@@ -48,7 +48,7 @@ export default function InstagramSection() {
               className="group relative aspect-square overflow-hidden bg-blush cursor-pointer"
             >
               {/* Gradient placeholder for Instagram posts */}
-              <div className="w-full h-full bg-gradient-to-br from-champagne via-blush to-sandalwood group-hover:scale-110 transition-transform duration-700 flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-champagne/30 via-blush/30 to-sandalwood/30 group-hover:scale-110 transition-transform duration-700 flex items-center justify-center">
                 <span className="font-cormorant text-noir/10 text-2xl italic">S</span>
               </div>
               {/* Hover overlay */}

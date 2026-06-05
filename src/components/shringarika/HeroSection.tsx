@@ -163,29 +163,29 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        {/* Dark cinematic overlay gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-noir/90 via-noir/70 to-noir/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/30 to-noir/60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-noir/40 via-transparent to-noir" />
+        {/* Dark cinematic overlay gradients — softer for natural light feel */}
+        <div className="absolute inset-0 bg-gradient-to-r from-noir/80 via-noir/50 to-noir/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-noir/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-noir/30 via-transparent to-noir" />
 
         {/* Cinematic vignette */}
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(20,20,18,0.7) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 50%, rgba(20,20,18,0.5) 100%)',
         }} />
 
-        {/* Warm golden glow from bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#c9a84c]/5 via-[#c9a84c]/2 to-transparent" />
+        {/* Warm golden glow from bottom — enhanced for natural warmth */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#b89840]/8 via-[#b89840]/3 to-transparent" />
 
         {/* Side light streaks */}
         <motion.div
-          animate={{ opacity: [0.03, 0.08, 0.03] }}
+          animate={{ opacity: [0.04, 0.1, 0.04] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-0 left-[10%] w-[1px] h-full bg-gradient-to-b from-transparent via-zari-gold/20 to-transparent"
+          className="absolute top-0 left-[10%] w-[1px] h-full bg-gradient-to-b from-transparent via-zari-gold/25 to-transparent"
         />
         <motion.div
-          animate={{ opacity: [0.05, 0.1, 0.05] }}
+          animate={{ opacity: [0.06, 0.12, 0.06] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute top-0 right-[15%] w-[1px] h-full bg-gradient-to-b from-transparent via-zari-gold/15 to-transparent"
+          className="absolute top-0 right-[15%] w-[1px] h-full bg-gradient-to-b from-transparent via-zari-gold/20 to-transparent"
         />
       </motion.div>
 
@@ -300,8 +300,8 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* ── Bottom cinematic fade ── */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ivory to-transparent z-[2]" />
+      {/* ── Bottom cinematic fade — softer blend into content */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ivory/90 to-transparent z-[2]" />
     </section>
   );
 }

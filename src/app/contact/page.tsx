@@ -317,7 +317,7 @@ export default function ContactPage() {
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
-              <div className="aspect-[4/3] bg-gradient-to-br from-champagne via-blush to-sandalwood rounded-sm overflow-hidden">
+              <div className="aspect-[4/3] bg-gradient-to-br from-champagne/30 via-blush/30 to-sandalwood/30 rounded-sm overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
                     <span className="font-cormorant text-noir/10 text-9xl italic block">A</span>

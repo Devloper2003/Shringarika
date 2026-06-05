@@ -42,7 +42,7 @@ const blogPostData: Record<string, {
     authorTitle: 'Founder & Creative Director',
     date: 'February 15, 2025',
     readTime: '12 min read',
-    gradient: 'from-rose-gold-light/30 via-blush to-champagne',
+    gradient: 'from-rose-gold-light/15 via-blush/40 to-champagne/40',
     letter: 'U',
     toc: [
       { id: 'choosing-silhouette', label: 'Choosing the Right Silhouette' },
@@ -98,7 +98,7 @@ const defaultPost = {
   authorTitle: 'Founder & Creative Director',
   date: 'January 15, 2025',
   readTime: '8 min read',
-  gradient: 'from-champagne via-sandalwood to-blush',
+  gradient: 'from-champagne/40 via-sandalwood/40 to-blush/40',
   letter: 'A',
   toc: [
     { id: 'heritage', label: 'Our Heritage' },
@@ -124,8 +124,8 @@ const defaultPost = {
 };
 
 const relatedPosts = [
-  { slug: 'zardozi-embroidery-history', title: 'The Art of Zardozi: A 3,000-Year-Old Craft', category: 'Behind the Craft', readTime: '8 min read', gradient: 'from-champagne via-sandalwood to-blush', letter: 'Z' },
-  { slug: 'saree-draping-styles-2025', title: '7 Saree Draping Styles Redefining 2025', category: 'Lehenga & Saree', readTime: '7 min read', gradient: 'from-blush via-rose-gold-light/20 to-champagne', letter: 'S' },
+  { slug: 'zardozi-embroidery-history', title: 'The Art of Zardozi: A 3,000-Year-Old Craft', category: 'Behind the Craft', readTime: '8 min read', gradient: 'from-champagne/40 via-sandalwood/40 to-blush/40', letter: 'Z' },
+  { slug: 'saree-draping-styles-2025', title: '7 Saree Draping Styles Redefining 2025', category: 'Lehenga & Saree', readTime: '7 min read', gradient: 'from-blush/40 via-rose-gold-light/15 to-champagne/40', letter: 'S' },
   { slug: 'wedding-trends-2025', title: 'Wedding Fashion Trends 2025: What\'s In & Out', category: 'Wedding Trends', readTime: '10 min read', gradient: 'from-ivory-dark via-champagne to-blush', letter: 'W' },
 ];
 
@@ -180,7 +180,7 @@ export default function BlogPostPage() {
             transition={{ duration: 0.8, delay: 1 }}
             className="flex items-center gap-4"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-champagne to-blush flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-champagne/40 to-blush/40 flex items-center justify-center">
               <span className="font-cormorant text-noir/30 text-sm">P</span>
             </div>
             <div>
@@ -350,7 +350,7 @@ export default function BlogPostPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="flex items-start gap-6">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-champagne to-blush flex items-center justify-center shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-champagne/40 to-blush/40 flex items-center justify-center shrink-0">
                 <span className="font-cormorant text-noir/30 text-2xl">P</span>
               </div>
               <div>

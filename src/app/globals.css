@@ -44,59 +44,59 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Shringarika Luxury Colors */
-  --color-ivory: #FAF8F5;
-  --color-ivory-dark: #F0ECE6;
-  --color-rose-gold: #B76E79;
-  --color-rose-gold-light: #D4A0A7;
-  --color-champagne: #F7E7CE;
+  /* Shringarika Luxury Colors — Natural Studio Lighting */
+  --color-ivory: #F2EDE8;
+  --color-ivory-dark: #E8E1D9;
+  --color-rose-gold: #A8656F;
+  --color-rose-gold-light: #C8939B;
+  --color-champagne: #E8D9C0;
   --color-noir: #1A1A1A;
   --color-noir-soft: #2D2D2D;
-  --color-mauve: #9C8A9B;
-  --color-mauve-dusty: #B8A9C9;
-  --color-blush: #F5E6E0;
-  --color-blush-warm: #ECD5CC;
-  --color-zari-gold: #C9A84C;
-  --color-zari-gold-light: #E2CB7B;
-  --color-ruby: #9B1B30;
-  --color-emerald: #04630C;
-  --color-silver: #C0C0C0;
-  --color-sandalwood: #E8D5B7;
+  --color-mauve: #8E7D8D;
+  --color-mauve-dusty: #A899B8;
+  --color-blush: #E5D5CE;
+  --color-blush-warm: #D9C4BA;
+  --color-zari-gold: #B89840;
+  --color-zari-gold-light: #D4B86A;
+  --color-ruby: #8B1528;
+  --color-emerald: #03550A;
+  --color-silver: #A8A8A8;
+  --color-sandalwood: #D4C2A5;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: #FAF8F5;
+  --background: #F2EDE8;
   --foreground: #1A1A1A;
-  --card: #FFFFFF;
+  --card: #F7F3EF;
   --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
+  --popover: #F7F3EF;
   --popover-foreground: #1A1A1A;
-  --primary: #B76E79;
-  --primary-foreground: #FAF8F5;
-  --secondary: #F7E7CE;
+  --primary: #A8656F;
+  --primary-foreground: #F2EDE8;
+  --secondary: #E8D9C0;
   --secondary-foreground: #1A1A1A;
-  --muted: #F0ECE6;
-  --muted-foreground: #6B6B6B;
-  --accent: #F5E6E0;
+  --muted: #E8E1D9;
+  --muted-foreground: #5A5A5A;
+  --accent: #E5D5CE;
   --accent-foreground: #1A1A1A;
-  --destructive: #9B1B30;
-  --border: #E8D5B7;
-  --input: #E8D5B7;
-  --ring: #B76E79;
-  --chart-1: #B76E79;
-  --chart-2: #C9A84C;
-  --chart-3: #9C8A9B;
-  --chart-4: #F7E7CE;
-  --chart-5: #E8D5B7;
-  --sidebar: #FAF8F5;
+  --destructive: #8B1528;
+  --border: #D4C2A5;
+  --input: #D4C2A5;
+  --ring: #A8656F;
+  --chart-1: #A8656F;
+  --chart-2: #B89840;
+  --chart-3: #8E7D8D;
+  --chart-4: #E8D9C0;
+  --chart-5: #D4C2A5;
+  --sidebar: #F2EDE8;
   --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #B76E79;
-  --sidebar-primary-foreground: #FAF8F5;
-  --sidebar-accent: #F5E6E0;
+  --sidebar-primary: #A8656F;
+  --sidebar-primary-foreground: #F2EDE8;
+  --sidebar-accent: #E5D5CE;
   --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #E8D5B7;
-  --sidebar-ring: #B76E79;
+  --sidebar-border: #D4C2A5;
+  --sidebar-ring: #A8656F;
 }
 
 @layer base {
@@ -116,14 +116,14 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF8F5;
+  background: #F2EDE8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C9A84C;
+  background: #B89840;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B76E79;
+  background: #A8656F;
 }
 
 /* Gold particle canvas */
@@ -137,16 +137,16 @@
   z-index: 1;
 }
 
-/* Cinematic text gradient */
+/* Cinematic text gradient — warmer, more muted */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #C9A84C 0%, #E2CB7B 50%, #C9A84C 100%);
+  background: linear-gradient(135deg, #B89840 0%, #D4B86A 50%, #B89840 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-rose {
-  background: linear-gradient(135deg, #B76E79 0%, #D4A0A7 50%, #B76E79 100%);
+  background: linear-gradient(135deg, #A8656F 0%, #C8939B 50%, #A8656F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -182,9 +182,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(201, 168, 76, 0.1) 25%,
-    rgba(201, 168, 76, 0.3) 50%,
-    rgba(201, 168, 76, 0.1) 75%,
+    rgba(184, 152, 64, 0.08) 25%,
+    rgba(184, 152, 64, 0.2) 50%,
+    rgba(184, 152, 64, 0.08) 75%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -249,8 +249,8 @@
 .embroidery-border {
   border-image: repeating-linear-gradient(
     90deg,
-    #C9A84C 0px,
-    #C9A84C 8px,
+    #B89840 0px,
+    #B89840 8px,
     transparent 8px,
     transparent 16px
   ) 1;
@@ -271,7 +271,7 @@
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(201, 168, 76, 0.15) 0%,
+    rgba(184, 152, 64, 0.12) 0%,
     transparent 50%
   );
   opacity: 0;
@@ -284,12 +284,12 @@
 
 /* Vignette overlay */
 .vignette {
-  box-shadow: inset 0 0 150px rgba(26, 26, 26, 0.3);
+  box-shadow: inset 0 0 150px rgba(26, 26, 26, 0.35);
 }
 
 /* Warm candlelight glow */
 .candlelight {
-  box-shadow: 0 0 60px rgba(201, 168, 76, 0.15), 0 0 120px rgba(183, 110, 121, 0.08);
+  box-shadow: 0 0 60px rgba(184, 152, 64, 0.12), 0 0 120px rgba(168, 101, 111, 0.06);
 }
 
 /* Zari shimmer hover */
@@ -298,7 +298,7 @@
 }
 
 .zari-hover:hover {
-  box-shadow: 0 0 30px rgba(201, 168, 76, 0.25), 0 0 60px rgba(201, 168, 76, 0.1);
+  box-shadow: 0 0 30px rgba(184, 152, 64, 0.2), 0 0 60px rgba(184, 152, 64, 0.08);
 }
 
 /* Smooth reveal on scroll */
@@ -374,7 +374,7 @@
 /* Luxury divider */
 .luxury-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  background: linear-gradient(90deg, transparent, #B89840, transparent);
 }
 
 /* Section padding for luxury spacing */

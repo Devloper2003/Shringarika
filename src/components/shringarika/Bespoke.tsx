@@ -113,7 +113,7 @@ export default function Bespoke() {
             transition={{ duration: 1, delay: 0.8 }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] overflow-hidden candlelight bg-gradient-to-br from-champagne via-blush to-sandalwood">
+            <div className="relative aspect-[4/5] overflow-hidden candlelight bg-gradient-to-br from-champagne/40 via-blush/40 to-sandalwood/40">
               <div className="w-full h-full flex items-center justify-center">
                 <span className="font-cormorant text-noir/10 text-8xl italic">B</span>
               </div>

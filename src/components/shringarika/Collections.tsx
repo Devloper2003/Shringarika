@@ -9,7 +9,7 @@ const collections = [
     subtitle: 'Lehengas & Bridal Sarees',
     description: 'Where dreams are woven into silk and adorned with heritage zari — each bridal creation is a masterpiece of devotion.',
     category: 'bridal',
-    gradient: 'from-rose-gold-light/40 via-blush to-champagne',
+    gradient: 'from-rose-gold-light/20 via-blush/50 to-champagne/40',
     letter: 'B',
   },
   {
@@ -17,7 +17,7 @@ const collections = [
     subtitle: 'Sherwanis & Bandhgalas',
     description: 'Regal elegance for the modern groom — handcrafted sherwanis and bandhgalas that command the occasion with quiet power.',
     category: 'sherwanis',
-    gradient: 'from-noir-soft/40 via-sandalwood to-champagne',
+    gradient: 'from-noir-soft/30 via-sandalwood/50 to-champagne/40',
     letter: 'G',
   },
   {
@@ -25,7 +25,7 @@ const collections = [
     subtitle: 'Sarees & Anarkalis',
     description: 'Celebrate every moment in couture that captures the joy and splendor of India\'s most beautiful occasions.',
     category: 'festive',
-    gradient: 'from-champagne via-sandalwood to-blush',
+    gradient: 'from-champagne/50 via-sandalwood/40 to-blush/40',
     letter: 'F',
   },
   {
@@ -33,7 +33,7 @@ const collections = [
     subtitle: 'Contemporary Elegance',
     description: 'Where traditional artistry meets modern silhouettes — for the woman who moves between worlds with grace.',
     category: 'fusion',
-    gradient: 'from-ivory-dark via-champagne to-blush',
+    gradient: 'from-ivory-dark/60 via-champagne/40 to-blush/40',
     letter: 'W',
   },
   {
@@ -41,7 +41,7 @@ const collections = [
     subtitle: 'Refined Tradition',
     description: 'From intimate pujas to grand celebrations — impeccably tailored kurta sets that honor tradition with a modern edge.',
     category: 'men-kurta',
-    gradient: 'from-champagne/60 via-sandalwood/30 to-blush-warm',
+    gradient: 'from-champagne/30 via-sandalwood/20 to-blush-warm/40',
     letter: 'K',
   },
   {
@@ -49,7 +49,7 @@ const collections = [
     subtitle: 'Curated Luxury',
     description: 'Effortlessly elegant pieces designed for the modern woman — refined, versatile, and unmistakably Shringarika.',
     category: 'rtw',
-    gradient: 'from-blush-warm via-champagne to-sandalwood',
+    gradient: 'from-blush-warm/40 via-champagne/40 to-sandalwood/40',
     letter: 'R',
   },
 ];

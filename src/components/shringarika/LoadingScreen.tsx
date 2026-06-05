@@ -42,14 +42,14 @@ function WireframeLogoCanvas({ onComplete }: { onComplete: () => void }) {
 
       if (isGold || isBright) {
         // Make it look like wireframe - gold lines
-        output.data[i] = 201;     // zari-gold R
-        output.data[i + 1] = 168; // zari-gold G
-        output.data[i + 2] = 76;  // zari-gold B
+        output.data[i] = 184;     // zari-gold R (muted)
+        output.data[i + 1] = 152; // zari-gold G
+        output.data[i + 2] = 64;  // zari-gold B
         output.data[i + 3] = Math.min(a * 1.2, 255);
       } else if (!isDark && a > 20) {
         // Subtle outline pixels
-        output.data[i] = 201;
-        output.data[i + 1] = 168;
+        output.data[i] = 184;
+        output.data[i + 1] = 152;
         output.data[i + 2] = 76;
         output.data[i + 3] = Math.floor(a * 0.4);
       }

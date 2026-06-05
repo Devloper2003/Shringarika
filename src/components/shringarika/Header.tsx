@@ -88,7 +88,7 @@ export default function Header() {
   const logoScale = useTransform(scrollY, [0, 250], [1, 0.9]);
 
   // Transform into full CSS string motion values (so framer-motion can animate them reactively)
-  const bgColor = useTransform(bgOpacity, (v) => `rgba(245,242,236,${v})`);
+  const bgColor = useTransform(bgOpacity, (v) => `rgba(242,237,232,${v})`);
   const backdropBlur = useTransform(blurPx, (v) => `blur(${v}px)`);
   const borderStyle = useTransform(borderAlpha, (v) => `1px solid rgba(201,168,76,${v})`);
   const shadowStyle = useTransform(shadowAlpha, (v) => `0 1px 40px rgba(181,148,82,${v})`);

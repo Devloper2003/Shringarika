@@ -25,27 +25,27 @@ const categories = ['All', 'Women', 'Men', 'Bridal Lehengas', 'Designer Sarees',
 
 const products = [
   // Women's Collection
-  { id: 1, name: 'Maharani Bridal Lehenga', category: 'Bridal Lehengas', gender: 'Women', price: 'Inquire for Price', gradient: 'from-rose-gold-light via-blush to-champagne', letter: 'M' },
-  { id: 2, name: 'Varanasi Silk Saree', category: 'Designer Sarees', gender: 'Women', price: '₹85,000', gradient: 'from-champagne via-sandalwood to-blush', letter: 'V' },
-  { id: 3, name: 'Padmini Festive Gown', category: 'Festive Wear', gender: 'Women', price: '₹1,20,000', gradient: 'from-blush via-rose-gold-light/30 to-champagne', letter: 'P' },
-  { id: 4, name: 'Noor Fusion Drape Set', category: 'Western Fusion', gender: 'Women', price: '₹68,000', gradient: 'from-sandalwood via-champagne to-ivory-dark', letter: 'N' },
-  { id: 5, name: 'Rajputana Bridal Lehenga', category: 'Bridal Lehengas', gender: 'Women', price: 'Inquire for Price', gradient: 'from-rose-gold-light/50 via-blush-warm to-champagne', letter: 'R' },
-  { id: 6, name: 'Chanderi Elegance Saree', category: 'Designer Sarees', gender: 'Women', price: '₹55,000', gradient: 'from-champagne/60 via-blush to-sandalwood', letter: 'C' },
-  { id: 7, name: 'Mehfil Anarkali Set', category: 'Festive Wear', gender: 'Women', price: '₹78,000', gradient: 'from-blush-warm via-champagne to-rose-gold-light/20', letter: 'M' },
-  { id: 8, name: 'Sakhi RTW Kurta Set', category: 'Ready-to-Wear', gender: 'Women', price: '₹28,000', gradient: 'from-ivory-dark via-champagne to-blush', letter: 'S' },
+  { id: 1, name: 'Maharani Bridal Lehenga', category: 'Bridal Lehengas', gender: 'Women', price: 'Inquire for Price', gradient: 'from-rose-gold-light/20 via-blush/50 to-champagne/40', letter: 'M' },
+  { id: 2, name: 'Varanasi Silk Saree', category: 'Designer Sarees', gender: 'Women', price: '₹85,000', gradient: 'from-champagne/40 via-sandalwood/40 to-blush/40', letter: 'V' },
+  { id: 3, name: 'Padmini Festive Gown', category: 'Festive Wear', gender: 'Women', price: '₹1,20,000', gradient: 'from-blush/40 via-rose-gold-light/20 to-champagne/40', letter: 'P' },
+  { id: 4, name: 'Noor Fusion Drape Set', category: 'Western Fusion', gender: 'Women', price: '₹68,000', gradient: 'from-sandalwood/40 via-champagne/40 to-ivory-dark/50', letter: 'N' },
+  { id: 5, name: 'Rajputana Bridal Lehenga', category: 'Bridal Lehengas', gender: 'Women', price: 'Inquire for Price', gradient: 'from-rose-gold-light/30 via-blush-warm/40 to-champagne/40', letter: 'R' },
+  { id: 6, name: 'Chanderi Elegance Saree', category: 'Designer Sarees', gender: 'Women', price: '₹55,000', gradient: 'from-champagne/30 via-blush/40 to-sandalwood/40', letter: 'C' },
+  { id: 7, name: 'Mehfil Anarkali Set', category: 'Festive Wear', gender: 'Women', price: '₹78,000', gradient: 'from-blush-warm/40 via-champagne/40 to-rose-gold-light/15', letter: 'M' },
+  { id: 8, name: 'Sakhi RTW Kurta Set', category: 'Ready-to-Wear', gender: 'Women', price: '₹28,000', gradient: 'from-ivory-dark/50 via-champagne/40 to-blush/40', letter: 'S' },
   // Men's Collection
-  { id: 9, name: 'Maharaja Sherwani', category: 'Sherwanis', gender: 'Men', price: 'Inquire for Price', gradient: 'from-noir-soft/40 via-sandalwood to-champagne', letter: 'M' },
-  { id: 10, name: 'Royal Bandhgala Suit', category: 'Bandhgalas', gender: 'Men', price: '₹1,45,000', gradient: 'from-champagne/60 via-sandalwood/30 to-blush-warm', letter: 'R' },
-  { id: 11, name: 'Heritage Silk Kurta Set', category: 'Kurta Sets', gender: 'Men', price: '₹42,000', gradient: 'from-sandalwood via-champagne to-ivory-dark', letter: 'H' },
-  { id: 12, name: 'Jodhpuri Achkan', category: 'Bandhgalas', gender: 'Men', price: '₹1,10,000', gradient: 'from-champagne via-rose-gold-light/30 to-sandalwood', letter: 'J' },
-  { id: 13, name: 'Padmini Zardozi Lehenga', category: 'Bridal Lehengas', gender: 'Women', price: 'Inquire for Price', gradient: 'from-champagne via-rose-gold-light/40 to-blush-warm', letter: 'P' },
-  { id: 14, name: 'Gota Patti Festive Saree', category: 'Designer Sarees', gender: 'Women', price: '₹92,000', gradient: 'from-blush via-sandalwood to-champagne', letter: 'G' },
-  { id: 15, name: 'Indowestern Jacket Set', category: 'Western Fusion', gender: 'Women', price: '₹72,000', gradient: 'from-sandalwood/80 via-champagne to-blush', letter: 'I' },
-  { id: 16, name: 'Everyday Luxe Co-ord', category: 'Ready-to-Wear', gender: 'Women', price: '₹22,000', gradient: 'from-ivory-dark via-blush to-champagne', letter: 'E' },
-  { id: 17, name: 'Utsav Embroidered Kurta', category: 'Kurta Sets', gender: 'Men', price: '₹35,000', gradient: 'from-champagne via-blush-warm to-sandalwood', letter: 'U' },
-  { id: 18, name: 'Regal Wedding Sherwani', category: 'Sherwanis', gender: 'Men', price: 'Inquire for Price', gradient: 'from-rose-gold-light/30 via-champagne to-sandalwood', letter: 'R' },
-  { id: 19, name: 'Evening Bandhgala', category: 'Bandhgalas', gender: 'Men', price: '₹95,000', gradient: 'from-noir-soft/30 via-champagne to-blush', letter: 'E' },
-  { id: 20, name: 'Festive Men\'s Kurta', category: 'Kurta Sets', gender: 'Men', price: '₹28,000', gradient: 'from-blush-warm via-champagne/60 to-sandalwood', letter: 'F' },
+  { id: 9, name: 'Maharaja Sherwani', category: 'Sherwanis', gender: 'Men', price: 'Inquire for Price', gradient: 'from-noir-soft/25 via-sandalwood/40 to-champagne/40', letter: 'M' },
+  { id: 10, name: 'Royal Bandhgala Suit', category: 'Bandhgalas', gender: 'Men', price: '₹1,45,000', gradient: 'from-champagne/30 via-sandalwood/20 to-blush-warm/30', letter: 'R' },
+  { id: 11, name: 'Heritage Silk Kurta Set', category: 'Kurta Sets', gender: 'Men', price: '₹42,000', gradient: 'from-sandalwood/40 via-champagne/40 to-ivory-dark/40', letter: 'H' },
+  { id: 12, name: 'Jodhpuri Achkan', category: 'Bandhgalas', gender: 'Men', price: '₹1,10,000', gradient: 'from-champagne/40 via-rose-gold-light/20 to-sandalwood/40', letter: 'J' },
+  { id: 13, name: 'Padmini Zardozi Lehenga', category: 'Bridal Lehengas', gender: 'Women', price: 'Inquire for Price', gradient: 'from-champagne/40 via-rose-gold-light/25 to-blush-warm/40', letter: 'P' },
+  { id: 14, name: 'Gota Patti Festive Saree', category: 'Designer Sarees', gender: 'Women', price: '₹92,000', gradient: 'from-blush/40 via-sandalwood/40 to-champagne/40', letter: 'G' },
+  { id: 15, name: 'Indowestern Jacket Set', category: 'Western Fusion', gender: 'Women', price: '₹72,000', gradient: 'from-sandalwood/50 via-champagne/40 to-blush/40', letter: 'I' },
+  { id: 16, name: 'Everyday Luxe Co-ord', category: 'Ready-to-Wear', gender: 'Women', price: '₹22,000', gradient: 'from-ivory-dark/40 via-blush/40 to-champagne/40', letter: 'E' },
+  { id: 17, name: 'Utsav Embroidered Kurta', category: 'Kurta Sets', gender: 'Men', price: '₹35,000', gradient: 'from-champagne/40 via-blush-warm/30 to-sandalwood/40', letter: 'U' },
+  { id: 18, name: 'Regal Wedding Sherwani', category: 'Sherwanis', gender: 'Men', price: 'Inquire for Price', gradient: 'from-rose-gold-light/20 via-champagne/40 to-sandalwood/40', letter: 'R' },
+  { id: 19, name: 'Evening Bandhgala', category: 'Bandhgalas', gender: 'Men', price: '₹95,000', gradient: 'from-noir-soft/20 via-champagne/40 to-blush/40', letter: 'E' },
+  { id: 20, name: 'Festive Men\'s Kurta', category: 'Kurta Sets', gender: 'Men', price: '₹28,000', gradient: 'from-blush-warm/30 via-champagne/30 to-sandalwood/40', letter: 'F' },
 ];
 
 const sortOptions = ['Featured', 'Newest', 'Price: Low to High', 'Price: High to Low'];
@@ -69,7 +69,7 @@ export default function CollectionsPage() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-champagne/60 via-blush/40 to-sandalwood/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-champagne/30 via-blush/20 to-sandalwood/15" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ivory" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p

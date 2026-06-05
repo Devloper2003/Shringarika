@@ -61,7 +61,7 @@ export default function AboutPage() {
 
       {/* Hero Banner */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-champagne via-blush to-sandalwood" />
+        <div className="absolute inset-0 bg-gradient-to-br from-champagne/30 via-blush/30 to-sandalwood/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ivory" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p

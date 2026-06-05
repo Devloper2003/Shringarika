@@ -168,7 +168,7 @@ export default function TestimonialsAndJournal() {
               className="group cursor-pointer"
             >
               <div className="aspect-[16/10] bg-blush-warm mb-4 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-champagne to-blush group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-champagne/30 to-blush/30 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
                   <span className="font-cormorant text-noir/20 text-4xl italic">S</span>
                 </div>
               </div>

@@ -30,7 +30,7 @@ const featuredPost = {
   category: 'Bridal Style',
   readTime: '12 min read',
   date: 'February 15, 2025',
-  gradient: 'from-rose-gold-light/30 via-blush to-champagne',
+  gradient: 'from-rose-gold-light/15 via-blush/40 to-champagne/40',
   letter: 'U',
 };
 
@@ -42,7 +42,7 @@ const blogPosts = [
     category: 'Behind the Craft',
     readTime: '8 min read',
     date: 'January 28, 2025',
-    gradient: 'from-champagne via-sandalwood to-blush',
+    gradient: 'from-champagne/40 via-sandalwood/40 to-blush/40',
     letter: 'Z',
   },
   {
@@ -52,7 +52,7 @@ const blogPosts = [
     category: 'Styling Tips',
     readTime: '6 min read',
     date: 'January 12, 2025',
-    gradient: 'from-blush via-rose-gold-light/20 to-champagne',
+    gradient: 'from-blush/40 via-rose-gold-light/15 to-champagne/40',
     letter: 'J',
   },
   {
@@ -62,7 +62,7 @@ const blogPosts = [
     category: 'Lehenga & Saree',
     readTime: '7 min read',
     date: 'December 30, 2024',
-    gradient: 'from-sandalwood via-champagne to-ivory-dark',
+    gradient: 'from-sandalwood/40 via-champagne/40 to-ivory-dark/50',
     letter: 'S',
   },
   {
@@ -92,7 +92,7 @@ const blogPosts = [
     category: 'Celebrity',
     readTime: '7 min read',
     date: 'November 10, 2024',
-    gradient: 'from-champagne/60 via-blush to-sandalwood',
+    gradient: 'from-champagne/30 via-blush/40 to-sandalwood/40',
     letter: 'C',
   },
 ];

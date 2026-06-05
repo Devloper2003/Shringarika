@@ -79,7 +79,7 @@ export default function AppointmentsPage() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-champagne/60 via-blush/40 to-sandalwood/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-champagne/30 via-blush/20 to-sandalwood/15" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ivory" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p
