@@ -3,9 +3,7 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import Header from '@/components/shringarika/Header';
-import Footer from '@/components/shringarika/Footer';
-import WhatsAppButton from '@/components/shringarika/WhatsAppButton';
+import SiteLayout from '@/components/shringarika/SiteLayout';
 
 function FadeInSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -112,8 +110,8 @@ export default function BlogPage() {
   });
 
   return (
-    <main className="relative min-h-screen flex flex-col bg-ivory">
-      <Header />
+    <SiteLayout>
+      <main className="bg-ivory">
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
@@ -336,11 +334,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <div className="mt-auto">
-        <Footer />
-      </div>
-      <WhatsAppButton />
-    </main>
+      </main>
+    </SiteLayout>
   );
 }
