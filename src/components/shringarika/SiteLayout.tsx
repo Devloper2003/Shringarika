@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Header from '@/components/shringarika/Header';
 import Footer from '@/components/shringarika/Footer';
@@ -14,11 +15,44 @@ const FashionCursor = dynamic(() => import('@/components/cursor/FashionCursor'),
 });
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
+  const [showParticles, setShowParticles] = useState(true);
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    function checkAttributes() {
+      const root = document.documentElement;
+      setShowParticles(root.getAttribute('data-disable-particles') !== 'true');
+      setShowCursor(root.getAttribute('data-disable-cursor') !== 'true');
+    }
+
+    // Check initial state
+    checkAttributes();
+
+    // Observe attribute changes on <html> (ThemeProvider may set them after mount)
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'attributes') {
+          const attr = mutation.attributeName;
+          if (attr === 'data-disable-particles' || attr === 'data-disable-cursor') {
+            checkAttributes();
+          }
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-disable-particles', 'data-disable-cursor'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative min-h-screen flex flex-col">
       {/* Global Effects */}
-      <GoldParticles />
-      <FashionCursor />
+      {showParticles && <GoldParticles />}
+      {showCursor && <FashionCursor />}
 
       {/* Navigation */}
       <Header />

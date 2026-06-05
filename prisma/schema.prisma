@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -204,6 +204,92 @@ model StaffPermission {
   canManageSettings     Boolean @default(false)  // super admin only
   canChangePassword     Boolean @default(true)   // can change own password
 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ━━━ PAGE CONTENT MANAGEMENT ━━━
+model PageContent {
+  id        String   @id @default(cuid())
+  page      String   // home, about, collections, bespoke, lookbook, blog, contact, appointments
+  section   String   // hero, brand_story, collections_preview, bespoke_cta, lookbook_preview, testimonials, instagram, cta, etc.
+  title     String?
+  subtitle  String?
+  content   String?  // JSON for complex content (buttons, links, etc.)
+  imageUrl  String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([page, section])
+}
+
+// ━━━ MEDIA UPLOADS ━━━
+model MediaUpload {
+  id          String   @id @default(cuid())
+  title       String?
+  description String?
+  category    String?  // hero, gallery, product, blog, lookbook, campaign, banner
+  imageUrl    String
+  publicId    String?  // For cloud storage reference
+  altText     String?
+  tags        String?  // JSON array of tags
+  uploadedBy  String?  // User ID
+  featured    Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ━━━ THEME CONFIGURATION ━━━
+model ThemeConfig {
+  id              String   @id @default(cuid())
+  name            String   @unique  // e.g., "default", "dark", "bridal"
+  label           String   // Display name
+  primaryColor    String   @default("#B76E79")
+  secondaryColor  String   @default("#E8D9C0")
+  accentColor     String   @default("#B89840")
+  backgroundColor String   @default("#F2EDE8")
+  textColor       String   @default("#1A1A1A")
+  cardColor       String   @default("#F7F3EF")
+  borderColor     String   @default("#D4C2A5")
+  fontFamily      String   @default("Cormorant Garamond")
+  headingFont     String   @default("Playfair Display")
+  bodyFont        String   @default("DM Sans")
+  customCss       String?  // Additional custom CSS
+  showParticles   Boolean  @default(true)
+  showCursorEffect Boolean @default(true)
+  active          Boolean  @default(false)  // Only one theme can be active
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// ━━━ SOCIAL MEDIA LINKS ━━━
+model SocialLink {
+  id          String   @id @default(cuid())
+  platform    String   @unique  // instagram, facebook, pinterest, youtube, twitter, linkedin, whatsapp
+  url         String
+  username    String?
+  icon        String?  // Icon name or SVG
+  showInFooter Boolean @default(true)
+  showInHeader Boolean @default(false)
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ━━━ AI REPORTS ━━━
+model AIReport {
+  id          String   @id @default(cuid())
+  title       String
+  type        String   // analytics, seo, content, social, performance, custom
+  prompt      String   // The original prompt/request
+  content     String   // The generated report content (markdown)
+  metadata    String?  // JSON: additional data like charts, metrics
+  generatedBy String   @default("AI Assistant")
+  isBookmarked Boolean @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

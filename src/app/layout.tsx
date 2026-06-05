@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Cinzel, Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/shringarika/ThemeProvider";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -73,8 +74,10 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${cinzel.variable} ${playfair.variable} ${dmSans.variable} antialiased bg-ivory text-noir font-sans cursor-gold`}
       >
-        {children}
-        <Toaster position="top-center" richColors />
+        <ThemeProvider>
+          {children}
+          <Toaster position="top-center" richColors />
+        </ThemeProvider>
       </body>
     </html>
   );

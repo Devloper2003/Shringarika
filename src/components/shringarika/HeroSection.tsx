@@ -300,7 +300,9 @@ export default function HeroSection() {
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
 
   useEffect(() => {
-    setMounted(true);
+    // Using requestAnimationFrame to avoid synchronous setState in effect
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   /* Canvas animation for floating particles */

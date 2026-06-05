@@ -114,8 +114,12 @@ export default function Header() {
 
   /* Close mobile menu on route change */
   useEffect(() => {
-    setMenuOpen(false);
-    setMegaOpen(false);
+    // Using requestAnimationFrame to avoid synchronous setState in effect
+    const raf = requestAnimationFrame(() => {
+      setMenuOpen(false);
+      setMegaOpen(false);
+    });
+    return () => cancelAnimationFrame(raf);
   }, [pathname]);
 
   /* Close mega menu on outside click */
