@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -70,18 +70,35 @@ const secondaryLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const megaRef = useRef<HTMLDivElement>(null);
   const megaTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* Scroll listener */
+  /* ── Smooth scroll-driven blend ── */
+  const { scrollY } = useScroll();
+
+  // Raw numeric motion values (0 → 1 range for blend progress)
+  const bgOpacity = useTransform(scrollY, [0, 80, 250], [0, 0.55, 0.97]);
+  const blurPx = useTransform(scrollY, [0, 80, 250], [0, 10, 24]);
+  const borderAlpha = useTransform(scrollY, [0, 150, 300], [0, 0.06, 0.12]);
+  const shadowAlpha = useTransform(scrollY, [0, 250], [0, 0.1]);
+  const announceHeight = useTransform(scrollY, [0, 60], [36, 0]);
+  const announceOpacity = useTransform(scrollY, [0, 40], [1, 0]);
+  const logoScale = useTransform(scrollY, [0, 250], [1, 0.9]);
+
+  // Transform into full CSS string motion values (so framer-motion can animate them reactively)
+  const bgColor = useTransform(bgOpacity, (v) => `rgba(245,242,236,${v})`);
+  const backdropBlur = useTransform(blurPx, (v) => `blur(${v}px)`);
+  const borderStyle = useTransform(borderAlpha, (v) => `1px solid rgba(201,168,76,${v})`);
+  const shadowStyle = useTransform(shadowAlpha, (v) => `0 1px 40px rgba(181,148,82,${v})`);
+
+  // Derived boolean for conditional rendering (announcement bar, etc.)
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const unsub = scrollY.on('change', (v) => setScrolled(v > 60));
+    return unsub;
+  }, [scrollY]);
 
   /* Close mobile menu on resize */
   useEffect(() => {
@@ -134,14 +151,20 @@ export default function Header() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          scrolled
-            ? 'bg-ivory/[0.97] backdrop-blur-xl shadow-[0_1px_30px_rgba(181,148,82,0.08)] border-b border-zari-gold/10'
-            : 'bg-ivory/60 backdrop-blur-sm'
-        }`}
+        style={{
+          backgroundColor: bgColor,
+          backdropFilter: backdropBlur,
+          WebkitBackdropFilter: backdropBlur,
+          borderBottom: borderStyle,
+          boxShadow: shadowStyle,
+        }}
+        className="fixed top-0 left-0 right-0 z-50"
       >
-        {/* Top Announcement Bar */}
-        <div className={`transition-all duration-500 overflow-hidden ${scrolled ? 'h-0 opacity-0' : 'h-9 opacity-100'}`}>
+        {/* Top Announcement Bar — collapses smoothly on scroll */}
+        <motion.div
+          style={{ height: announceHeight, opacity: announceOpacity }}
+          className="overflow-hidden"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
             <p className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-noir/40">
               <Sparkles size={10} className="inline mr-1.5 text-zari-gold/60" />
@@ -149,22 +172,24 @@ export default function Header() {
               <ArrowRight size={10} className="inline ml-1.5 text-zari-gold/60" />
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Main Nav Row */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 lg:h-[84px]">
 
-            {/* ─ Left: Logo ─ */}
+            {/* ─ Left: Logo (shrinks subtly on scroll) ─ */}
             <Link href="/" className="flex items-center group shrink-0 z-10">
-              <Image
-                src="/images/logo.png"
-                alt="Shringarika — Official Logo"
-                width={200}
-                height={70}
-                className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
-                priority
-              />
+              <motion.div style={{ scale: logoScale }} className="origin-left">
+                <Image
+                  src="/images/logo.png"
+                  alt="Shringarika — Official Logo"
+                  width={200}
+                  height={70}
+                  className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
+                  priority
+                />
+              </motion.div>
             </Link>
 
             {/* ─ Center: Primary Nav ─ */}
