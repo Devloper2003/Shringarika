@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const galleryImages = [
-  { alt: 'Bridal Lehenga Closeup — Gold Zari Embroidery', category: 'Bridal', gradient: 'from-rose-gold-light/20 via-blush/40 to-champagne/40', letter: 'B' },
+  { alt: 'Bridal Lehenga Closeup — Gold Zari Embroidery', category: 'Bridal', gradient: 'from-rose-blue-light/20 via-blush/40 to-champagne/40', letter: 'B' },
   { alt: 'Festive Designer Saree — Champagne & Gold', category: 'Festive', gradient: 'from-champagne/40 via-sandalwood/40 to-blush/40', letter: 'F' },
   { alt: 'Western Fusion — Contemporary Elegance', category: 'Fusion', gradient: 'from-ivory-dark via-champagne to-blush', letter: 'W' },
   { alt: 'Shringarika Bridal Lookbook — Draped in Dreams', category: 'Bridal', gradient: 'from-blush-warm/40 via-champagne/40 to-sandalwood/40', letter: 'S' },

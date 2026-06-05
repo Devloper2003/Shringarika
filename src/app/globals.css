@@ -44,21 +44,24 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Shringarika Luxury Colors — Natural Studio Lighting */
+  /* Shringarika Luxury Colors — Rose Blue & Gold */
   --color-ivory: #F2EDE8;
   --color-ivory-dark: #E8E1D9;
-  --color-rose-gold: #A8656F;
-  --color-rose-gold-light: #C8939B;
+  --color-rose-blue: #6A7FA8;
+  --color-rose-blue-light: #8C9EC4;
+  --color-rose-blue-dark: #526A94;
+  --color-rose-gold: #6A7FA8;
+  --color-rose-gold-light: #8C9EC4;
   --color-champagne: #E8D9C0;
   --color-noir: #1A1A1A;
   --color-noir-soft: #2D2D2D;
-  --color-mauve: #8E7D8D;
-  --color-mauve-dusty: #A899B8;
-  --color-blush: #E5D5CE;
-  --color-blush-warm: #D9C4BA;
+  --color-mauve: #7E86A0;
+  --color-mauve-dusty: #9AA3BE;
+  --color-blush: #D8DDE8;
+  --color-blush-warm: #C5CCDA;
   --color-zari-gold: #B89840;
   --color-zari-gold-light: #D4B86A;
-  --color-ruby: #8B1528;
+  --color-ruby: #5A6A90;
   --color-emerald: #03550A;
   --color-silver: #A8A8A8;
   --color-sandalwood: #D4C2A5;
@@ -72,7 +75,7 @@
   --card-foreground: #1A1A1A;
   --popover: #F7F3EF;
   --popover-foreground: #1A1A1A;
-  --primary: #A8656F;
+  --primary: #6A7FA8;
   --primary-foreground: #F2EDE8;
   --secondary: #E8D9C0;
   --secondary-foreground: #1A1A1A;
@@ -83,20 +86,20 @@
   --destructive: #8B1528;
   --border: #D4C2A5;
   --input: #D4C2A5;
-  --ring: #A8656F;
-  --chart-1: #A8656F;
+  --ring: #6A7FA8;
+  --chart-1: #6A7FA8;
   --chart-2: #B89840;
   --chart-3: #8E7D8D;
   --chart-4: #E8D9C0;
   --chart-5: #D4C2A5;
   --sidebar: #F2EDE8;
   --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #A8656F;
+  --sidebar-primary: #6A7FA8;
   --sidebar-primary-foreground: #F2EDE8;
-  --sidebar-accent: #E5D5CE;
+  --sidebar-accent: #D8DDE8;
   --sidebar-accent-foreground: #1A1A1A;
   --sidebar-border: #D4C2A5;
-  --sidebar-ring: #A8656F;
+  --sidebar-ring: #6A7FA8;
 }
 
 @layer base {
@@ -146,7 +149,14 @@
 }
 
 .text-gradient-rose {
-  background: linear-gradient(135deg, #A8656F 0%, #C8939B 50%, #A8656F 100%);
+  background: linear-gradient(135deg, #6A7FA8 0%, #8C9EC4 50%, #6A7FA8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-rose-blue {
+  background: linear-gradient(135deg, #6A7FA8 0%, #8C9EC4 50%, #526A94 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -161,6 +171,56 @@
     rgba(26, 26, 26, 0.6) 70%,
     rgba(26, 26, 26, 0.85) 100%
   );
+}
+
+/* Flowing silk keyframes */
+@keyframes silk-flow-1 {
+  0%, 100% { d: path('M0,300 C200,250 400,350 600,280 C800,210 1000,320 1200,290 C1400,260 1600,340 1920,300 L1920,1080 L0,1080 Z'); }
+  50% { d: path('M0,320 C200,280 400,310 600,340 C800,280 1000,260 1200,310 C1400,340 1600,280 1920,320 L1920,1080 L0,1080 Z'); }
+}
+
+@keyframes silk-flow-2 {
+  0%, 100% { d: path('M0,400 C150,360 350,420 550,380 C750,340 950,410 1150,370 C1350,330 1550,400 1920,380 L1920,1080 L0,1080 Z'); }
+  50% { d: path('M0,380 C150,420 350,360 550,400 C750,420 950,360 1150,400 C1350,370 1550,410 1920,400 L1920,1080 L0,1080 Z'); }
+}
+
+@keyframes silk-flow-3 {
+  0%, 100% { d: path('M0,500 C200,460 400,520 600,480 C800,440 1000,510 1200,470 C1400,430 1600,500 1920,480 L1920,1080 L0,1080 Z'); }
+  50% { d: path('M0,480 C200,520 400,470 600,510 C800,500 1000,460 1200,500 C1400,490 1600,470 1920,500 L1920,1080 L0,1080 Z'); }
+}
+
+/* Cinematic text letter reveal */
+@keyframes letter-reveal {
+  0% { opacity: 0; transform: translateY(40px) rotateX(-40deg); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0deg); filter: blur(0); }
+}
+
+.animate-letter-reveal {
+  animation: letter-reveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
+/* Fabric wave animation */
+@keyframes fabric-wave {
+  0% { transform: translateX(-5%) scaleY(1); }
+  25% { transform: translateX(0%) scaleY(1.05); }
+  50% { transform: translateX(5%) scaleY(1); }
+  75% { transform: translateX(0%) scaleY(0.95); }
+  100% { transform: translateX(-5%) scaleY(1); }
+}
+
+.animate-fabric-wave {
+  animation: fabric-wave 12s ease-in-out infinite;
+}
+
+.animate-fabric-wave-delayed {
+  animation: fabric-wave 16s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.animate-fabric-wave-slow {
+  animation: fabric-wave 20s ease-in-out infinite;
+  animation-delay: -8s;
 }
 
 .hero-overlay-warm {
@@ -289,7 +349,7 @@
 
 /* Warm candlelight glow */
 .candlelight {
-  box-shadow: 0 0 60px rgba(184, 152, 64, 0.12), 0 0 120px rgba(168, 101, 111, 0.06);
+  box-shadow: 0 0 60px rgba(184, 152, 64, 0.12), 0 0 120px rgba(106, 127, 168, 0.06);
 }
 
 /* Zari shimmer hover */

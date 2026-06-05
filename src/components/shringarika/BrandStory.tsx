@@ -33,7 +33,7 @@ export default function BrandStory() {
           transition={{ duration: 1, delay: 0.2 }}
           className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-noir text-center font-light leading-tight mb-16"
         >
-          Every Thread Tells a <span className="italic text-rose-gold">Story</span>
+          Every Thread Tells a <span className="italic text-rose-blue">Story</span>
         </motion.h2>
 
         {/* Content Grid */}
@@ -93,7 +93,7 @@ export default function BrandStory() {
             <div className="pt-4">
               <a
                 href="#bespoke"
-                className="inline-flex items-center gap-3 font-dm-sans text-xs tracking-[0.2em] uppercase text-rose-gold hover:text-zari-gold transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 font-dm-sans text-xs tracking-[0.2em] uppercase text-rose-blue hover:text-zari-gold transition-colors duration-300 group"
               >
                 Discover Our Craft
                 <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

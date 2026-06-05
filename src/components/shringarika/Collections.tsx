@@ -9,7 +9,7 @@ const collections = [
     subtitle: 'Lehengas & Bridal Sarees',
     description: 'Where dreams are woven into silk and adorned with heritage zari — each bridal creation is a masterpiece of devotion.',
     category: 'bridal',
-    gradient: 'from-rose-gold-light/20 via-blush/50 to-champagne/40',
+    gradient: 'from-rose-blue-light/20 via-blush/50 to-champagne/40',
     letter: 'B',
   },
   {
