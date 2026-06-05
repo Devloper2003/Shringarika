@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { verifyToken } from '@/lib/auth';
+import { decryptUserData } from '@/lib/encryption';
 
 export async function GET(request: NextRequest) {
   try {
@@ -18,6 +19,7 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
+    const decrypt = searchParams.get('decrypt') === 'true';
 
     const where: Record<string, unknown> = {};
     if (search) {
@@ -38,8 +40,29 @@ export async function GET(request: NextRequest) {
         role: true,
         isActive: true,
         createdAt: true,
+        encryptedData: true,
+        dataIv: true,
       },
     });
+
+    // If decrypt=true and requester is super_admin, decrypt sensitive data
+    if (decrypt) {
+      const usersWithDecrypted = users.map((user) => {
+        const { encryptedData, dataIv, ...rest } = user;
+        let decryptedInfo: Record<string, unknown> = {};
+
+        if (encryptedData && dataIv) {
+          decryptedInfo = decryptUserData(encryptedData, dataIv);
+        }
+
+        return {
+          ...rest,
+          decryptedInfo: Object.keys(decryptedInfo).length > 0 ? decryptedInfo : null,
+        };
+      });
+
+      return NextResponse.json({ success: true, users: usersWithDecrypted });
+    }
 
     return NextResponse.json({ success: true, users });
   } catch (error) {

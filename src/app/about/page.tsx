@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import SiteLayout from '@/components/shringarika/SiteLayout';
 
 function FadeInSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -101,10 +102,15 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInSection>
-              <div className="aspect-[4/5] bg-gradient-to-br from-champagne via-blush to-sandalwood rounded-sm overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="font-cormorant text-noir/10 text-8xl italic">S</span>
-                </div>
+              <div className="aspect-[4/5] rounded-sm overflow-hidden relative">
+                <Image
+                  src="/images/atelier-cutting.png"
+                  alt="Designer cutting fabric at the atelier table"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-noir/20 to-transparent" />
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
@@ -207,10 +213,15 @@ export default function AboutPage() {
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
-              <div className="aspect-[3/4] bg-gradient-to-br from-sandalwood via-champagne to-blush rounded-sm overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="font-cormorant text-noir/10 text-9xl italic">P</span>
-                </div>
+              <div className="aspect-[3/4] rounded-sm overflow-hidden relative">
+                <Image
+                  src="/images/designer-portrait.png"
+                  alt="Priya Sharma — Founder & Creative Director"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-noir/20 to-transparent" />
               </div>
             </FadeInSection>
           </div>
@@ -222,13 +233,15 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInSection>
-              <div className="aspect-[4/3] bg-gradient-to-br from-noir-soft via-noir to-mauve-dusty/20 rounded-sm overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <span className="font-cormorant text-ivory/10 text-8xl italic block">A</span>
-                    <span className="font-dm-sans text-ivory/20 text-xs tracking-[0.3em] uppercase">Our Atelier</span>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] rounded-sm overflow-hidden relative">
+                <Image
+                  src="/images/atelier-studio.png"
+                  alt="Inside the Shringarika atelier — where magic meets method"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-noir/40 to-transparent" />
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
@@ -260,8 +273,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Craftsmanship Ethos */}
+      {/* Embroidery Close-Up — Cinematic Section */}
       <section className="section-luxury bg-ivory">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <FadeInSection>
+              <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">The Hand</p>
+              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-8">Where Patience Becomes Art</h2>
+              <div className="space-y-6 font-dm-sans text-sm text-noir/70 leading-relaxed">
+                <p>
+                  In our embroidery workshop, time moves differently. There are no deadlines that compromise
+                  quality, no shortcuts that sacrifice beauty. Each stitch is placed with the kind of focused
+                  intention that transforms craft into devotion — a single kora dabka motif can take an entire
+                  afternoon, and a full lehenga panel may require weeks of sustained, meditative work.
+                </p>
+                <p>
+                  Our artisans carry within their hands the accumulated wisdom of generations — zardozi masters
+                  from Lucknow whose families have worked with gold thread for centuries, mirror-work specialists
+                  from Kutch who understand light and reflection like no one else, and resham embroiderers from
+                  Rajasthan whose needle feels like an extension of their very being.
+                </p>
+                <p>
+                  When you run your fingers across a Shringarika creation, what you are feeling is not merely
+                  embroidery — it is devotion made tangible, patience made visible, and love stitched into every
+                  infinitesimal point where needle meets fabric.
+                </p>
+              </div>
+            </FadeInSection>
+            <FadeInSection delay={0.2}>
+              <div className="aspect-[4/3] rounded-sm overflow-hidden relative">
+                <Image
+                  src="/images/atelier-embroidery.png"
+                  alt="Artisan doing intricate zardozi gold thread embroidery"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-noir/10 to-transparent" />
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Craftsmanship Ethos */}
+      <section className="section-luxury bg-blush/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeInSection>
             <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Our Ethos</p>

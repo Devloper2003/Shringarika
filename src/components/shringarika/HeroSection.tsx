@@ -1,26 +1,205 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
+/* ─── Floating Thread Particles ───────────────────────────── */
+class ThreadParticle {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  opacity: number;
+  rotation: number;
+  rotationSpeed: number;
+  type: 'thread' | 'sparkle' | 'dust';
+
+  constructor(w: number, h: number) {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.size = Math.random() * 3 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = -Math.random() * 0.4 - 0.1;
+    this.opacity = Math.random() * 0.6 + 0.1;
+    this.rotation = Math.random() * 360;
+    this.rotationSpeed = (Math.random() - 0.5) * 0.5;
+    const r = Math.random();
+    this.type = r < 0.4 ? 'thread' : r < 0.7 ? 'sparkle' : 'dust';
+  }
+
+  update(w: number, h: number) {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.rotation += this.rotationSpeed;
+    this.opacity += (Math.random() - 0.5) * 0.02;
+    this.opacity = Math.max(0.05, Math.min(0.7, this.opacity));
+
+    if (this.y < -10) { this.y = h + 10; this.x = Math.random() * w; }
+    if (this.x < -10) this.x = w + 10;
+    if (this.x > w + 10) this.x = -10;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.save();
+    ctx.globalAlpha = this.opacity;
+    ctx.translate(this.x, this.y);
+    ctx.rotate((this.rotation * Math.PI) / 180);
+
+    if (this.type === 'thread') {
+      // Golden thread strand
+      ctx.strokeStyle = '#c9a84c';
+      ctx.lineWidth = this.size * 0.4;
+      ctx.beginPath();
+      ctx.moveTo(-this.size * 3, 0);
+      ctx.quadraticCurveTo(0, this.size * 2, this.size * 3, 0);
+      ctx.stroke();
+    } else if (this.type === 'sparkle') {
+      // Diamond sparkle
+      ctx.fillStyle = '#d4af37';
+      const s = this.size;
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 2);
+      ctx.lineTo(s * 0.5, -s * 0.5);
+      ctx.lineTo(s * 2, 0);
+      ctx.lineTo(s * 0.5, s * 0.5);
+      ctx.lineTo(0, s * 2);
+      ctx.lineTo(-s * 0.5, s * 0.5);
+      ctx.lineTo(-s * 2, 0);
+      ctx.lineTo(-s * 0.5, -s * 0.5);
+      ctx.closePath();
+      ctx.fill();
+    } else {
+      // Soft dust mote
+      ctx.fillStyle = '#c9a84c';
+      ctx.beginPath();
+      ctx.arc(0, 0, this.size * 0.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+}
+
+/* ─── Component ───────────────────────────────────────────── */
 export default function HeroSection() {
-  return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-noir">
-      {/* Background Image with Parallax */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-noir via-noir-soft to-mauve-dusty/30" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-cormorant text-ivory/5 text-[20rem] italic">S</span>
-        </div>
-        {/* Cinematic Overlay */}
-        <div className="hero-overlay absolute inset-0" />
-        {/* Vignette */}
-        <div className="absolute inset-0 vignette" />
-        {/* Warm glow from bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-noir/80 to-transparent" />
-      </div>
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
+
+  /* Canvas animation for floating particles */
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    let particles: ThreadParticle[] = [];
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      if (particles.length === 0) {
+        const count = Math.min(Math.floor(window.innerWidth / 12), 80);
+        particles = Array.from({ length: count }, () =>
+          new ThreadParticle(canvas.width, canvas.height)
+        );
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.update(canvas.width, canvas.height);
+        p.draw(ctx);
+      }
+      animId = requestAnimationFrame(animate);
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
+  return (
+    <section ref={sectionRef} id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-noir">
+      {/* ── Cinematic Background with Motion ── */}
+      <motion.div
+        style={{ y: bgY, scale: bgScale }}
+        className="absolute inset-0 z-0"
+      >
+        {/* Hero Image with Ken Burns slow zoom */}
+        <motion.div
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1.05 }}
+          transition={{ duration: 20, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
+          className="absolute inset-0"
+        >
+          <Image
+            src="/images/hero-motion.png"
+            alt="Shringarika — Luxury Bridal Couture"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+            onLoad={() => setImageLoaded(true)}
+          />
+        </motion.div>
+
+        {/* Dark cinematic overlay gradients */}
+        <div className="absolute inset-0 bg-gradient-to-r from-noir/90 via-noir/70 to-noir/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/30 to-noir/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-noir/40 via-transparent to-noir" />
+
+        {/* Cinematic vignette */}
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(20,20,18,0.7) 100%)',
+        }} />
+
+        {/* Warm golden glow from bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#c9a84c]/5 via-[#c9a84c]/2 to-transparent" />
+
+        {/* Side light streaks */}
+        <motion.div
+          animate={{ opacity: [0.03, 0.08, 0.03] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-0 left-[10%] w-[1px] h-full bg-gradient-to-b from-transparent via-zari-gold/20 to-transparent"
+        />
+        <motion.div
+          animate={{ opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          className="absolute top-0 right-[15%] w-[1px] h-full bg-gradient-to-b from-transparent via-zari-gold/15 to-transparent"
+        />
+      </motion.div>
+
+      {/* ── Particle Canvas ── */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-[1] pointer-events-none"
+      />
+
+      {/* ── Content ── */}
+      <motion.div
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto"
+      >
         {/* Brand Name Reveal */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,26 +211,45 @@ export default function HeroSection() {
           </p>
         </motion.div>
 
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-ivory font-light leading-[1.1] mb-6 sm:mb-8"
-        >
-          Draped in Dreams.
-          <br />
-          <span className="text-gradient-gold font-cormorant italic font-light">Crafted for You.</span>
-        </motion.h1>
+        {/* Decorative line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.2, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="w-24 h-[1px] bg-zari-gold/40 mx-auto mb-8 origin-center"
+        />
+
+        {/* Main Headline — Cinematic Letter-by-Letter Reveal */}
+        <div className="overflow-hidden mb-4">
+          <motion.h1
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-ivory font-light leading-[1.1]"
+          >
+            Draped in Dreams.
+          </motion.h1>
+        </div>
+
+        <div className="overflow-hidden mb-8">
+          <motion.h1
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[1.1] text-gradient-gold italic"
+          >
+            Crafted for You.
+          </motion.h1>
+        </div>
 
         {/* Subheading */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 1.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 1.2, delay: 1.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="font-dm-sans text-ivory/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed tracking-wide"
         >
-          Luxury bridal wear, bespoke couture & ready-to-wear collections — 
+          Luxury bridal wear, bespoke couture & ready-to-wear collections —
           where every woman becomes the story.
         </motion.p>
 
@@ -59,7 +257,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 1, delay: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
           <a
@@ -85,13 +283,13 @@ export default function HeroSection() {
             WhatsApp Us
           </a>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* ── Scroll Indicator ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.5, duration: 1 }}
+        transition={{ delay: 3, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
         <span className="font-dm-sans text-ivory/40 text-[10px] tracking-[0.3em] uppercase">Scroll</span>
@@ -101,6 +299,9 @@ export default function HeroSection() {
           className="w-[1px] h-8 bg-gradient-to-b from-zari-gold/60 to-transparent"
         />
       </motion.div>
+
+      {/* ── Bottom cinematic fade ── */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ivory to-transparent z-[2]" />
     </section>
   );
 }

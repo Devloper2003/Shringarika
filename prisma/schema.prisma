@@ -24,10 +24,16 @@ model User {
   address       String?  // JSON: {street, city, state, pincode, country}
   occasion      String?  // preferred occasion type
   
+  // Encryption & Permissions
+  permissions   String?  // JSON string storing granular permission flags for staff/admin users
+  encryptedData String?  // End-to-end encrypted personal data (phone, address, measurements)
+  dataIv        String?  // Initialization vector for AES encryption
+  
   // Relations
-  wishlist      WishlistItem[]
-  orders        Order[]
-  reviews       Review[]
+  wishlist        WishlistItem[]
+  orders          Order[]
+  reviews         Review[]
+  staffPermission StaffPermission?
   
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -179,4 +185,25 @@ model SiteSetting {
   id    String @id @default(cuid())
   key   String @unique
   value String // JSON string for complex values
+}
+
+// ━━━ STAFF PERMISSIONS ━━━
+model StaffPermission {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Granular permissions
+  canAccessDashboard    Boolean @default(true)
+  canManageBlogs        Boolean @default(false)
+  canManageProducts     Boolean @default(false)
+  canViewInquiries      Boolean @default(false)
+  canManageAppointments Boolean @default(false)
+  canManageGallery      Boolean @default(false)
+  canViewUsers          Boolean @default(false)  // super admin only
+  canManageSettings     Boolean @default(false)  // super admin only
+  canChangePassword     Boolean @default(true)   // can change own password
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

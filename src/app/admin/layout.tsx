@@ -16,6 +16,7 @@ import {
   Menu,
   X,
   Shield,
+  ShieldCheck,
 } from 'lucide-react';
 
 interface AdminUser {
@@ -33,6 +34,7 @@ const navItems = [
   { href: '/admin/appointments', label: 'Appointments', icon: Calendar },
   { href: '/admin/gallery', label: 'Gallery', icon: Image },
   { href: '/admin/users', label: 'Users', icon: Users },
+  { href: '/admin/permissions', label: 'Permissions', icon: ShieldCheck },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 
