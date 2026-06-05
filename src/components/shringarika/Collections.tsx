@@ -2,36 +2,39 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import Image from 'next/image';
 
 const collections = [
   {
     title: 'Bridal Edit',
     subtitle: 'Lehengas & Bridal Sarees',
     description: 'Where dreams are woven into silk and adorned with heritage zari — each bridal creation is a masterpiece of devotion.',
-    image: '/images/collection-bridal.png',
     category: 'bridal',
+    gradient: 'from-rose-gold-light/40 via-blush to-champagne',
+    letter: 'B',
   },
   {
     title: 'Festive Collection',
     subtitle: 'Sarees & Anarkalis',
     description: 'Celebrate every moment in couture that captures the joy and splendor of India\'s most beautiful occasions.',
-    image: '/images/collection-festive.png',
     category: 'festive',
+    gradient: 'from-champagne via-sandalwood to-blush',
+    letter: 'F',
   },
   {
     title: 'Western Fusion',
     subtitle: 'Contemporary Elegance',
     description: 'Where traditional artistry meets modern silhouettes — for the woman who moves between worlds with grace.',
-    image: '/images/collection-fusion.png',
     category: 'fusion',
+    gradient: 'from-ivory-dark via-champagne to-blush',
+    letter: 'W',
   },
   {
     title: 'Ready-to-Wear',
     subtitle: 'Curated Luxury',
     description: 'Effortlessly elegant pieces designed for the modern woman — refined, versatile, and unmistakably Shringarika.',
-    image: '/images/collection-rtw.png',
     category: 'rtw',
+    gradient: 'from-blush-warm via-champagne to-sandalwood',
+    letter: 'R',
   },
 ];
 
@@ -93,15 +96,12 @@ export default function Collections() {
               onMouseLeave={() => setHoveredIndex(null)}
               className="collection-card group relative aspect-[3/4] overflow-hidden cursor-pointer"
             >
-              {/* Image */}
-              <Image
-                src={collection.image}
-                alt={`${collection.title} by Shringarika — ${collection.subtitle}`}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                quality={85}
-              />
+              {/* Placeholder Image */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${collection.gradient} transition-transform duration-[1.2s] ease-out group-hover:scale-110`}>
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="font-cormorant text-noir/10 text-7xl italic">{collection.letter}</span>
+                </div>
+              </div>
 
               {/* Default overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent transition-opacity duration-700" />

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -41,11 +42,20 @@ export default function Footer() {
           <div>
             <h4 className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/40 mb-6">Explore</h4>
             <ul className="space-y-3">
-              {['Home', 'Our Story', 'Collections', 'Bespoke', 'Lookbook', 'Appointments', 'Journal', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase().replace('our ', '').replace(' ', '-')}`} className="font-dm-sans text-sm text-ivory/50 hover:text-zari-gold transition-colors duration-300">
-                    {link}
-                  </a>
+            {[
+                { label: 'Home', href: '/' },
+                { label: 'Our Story', href: '/about' },
+                { label: 'Collections', href: '/collections' },
+                { label: 'Bespoke', href: '/bespoke' },
+                { label: 'Lookbook', href: '/lookbook' },
+                { label: 'Appointments', href: '/appointments' },
+                { label: 'Journal', href: '/blog' },
+                { label: 'Contact', href: '/contact' },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="font-dm-sans text-sm text-ivory/50 hover:text-zari-gold transition-colors duration-300">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -57,9 +67,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {['Bridal Lehengas', 'Designer Sarees', 'Festive Wear', 'Western Fusion', 'Ready-to-Wear', 'Custom Bespoke'].map((item) => (
                 <li key={item}>
-                  <a href="#collections" className="font-dm-sans text-sm text-ivory/50 hover:text-zari-gold transition-colors duration-300">
+                  <Link href="/collections" className="font-dm-sans text-sm text-ivory/50 hover:text-zari-gold transition-colors duration-300">
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

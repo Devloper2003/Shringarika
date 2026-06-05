@@ -1,22 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 export default function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-noir">
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero-bridal.png"
-          alt="Shringarika Luxury Bridal Couture — Draped in Dreams"
-          fill
-          sizes="100vw"
-          className="object-cover object-center scale-105"
-          priority
-          quality={95}
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-noir via-noir-soft to-mauve-dusty/30" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-cormorant text-ivory/5 text-[20rem] italic">S</span>
+        </div>
         {/* Cinematic Overlay */}
         <div className="hero-overlay absolute inset-0" />
         {/* Vignette */}

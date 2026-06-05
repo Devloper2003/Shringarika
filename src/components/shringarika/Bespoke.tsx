@@ -2,7 +2,6 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Image from 'next/image';
 
 const bespokeSteps = [
   {
@@ -114,15 +113,10 @@ export default function Bespoke() {
             transition={{ duration: 1, delay: 0.8 }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] overflow-hidden candlelight">
-              <Image
-                src="/images/bespoke.png"
-                alt="Shringarika Bespoke Consultation — Your Vision, Our Craft"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-                quality={90}
-              />
+            <div className="relative aspect-[4/5] overflow-hidden candlelight bg-gradient-to-br from-champagne via-blush to-sandalwood">
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="font-cormorant text-noir/10 text-8xl italic">B</span>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-noir/20 to-transparent" />
             </div>
             {/* Quote overlay */}

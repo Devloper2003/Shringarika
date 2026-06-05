@@ -19,6 +19,22 @@ const GoldParticles = dynamic(() => import('@/components/shringarika/GoldParticl
   ssr: false,
 });
 
+const FashionCursor = dynamic(() => import('@/components/cursor/FashionCursor'), {
+  ssr: false,
+});
+
+function SectionDivider() {
+  return (
+    <div className="flex items-center justify-center py-4 bg-ivory">
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-[1px] bg-zari-gold/20" />
+        <span className="text-zari-gold/30 text-xs">✦</span>
+        <div className="w-12 h-[1px] bg-zari-gold/20" />
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="relative min-h-screen flex flex-col">
@@ -27,6 +43,9 @@ export default function Home() {
 
       {/* Gold Particles Background */}
       <GoldParticles />
+
+      {/* Fashion Cursor */}
+      <FashionCursor />
 
       {/* Navigation */}
       <Header />
@@ -43,13 +62,21 @@ export default function Home() {
         <div className="w-12 h-[1px] bg-zari-gold/40 mx-auto mt-4" />
       </div>
 
+      <SectionDivider />
       <BrandStory />
+      <SectionDivider />
       <Collections />
+      <SectionDivider />
       <Bespoke />
+      <SectionDivider />
       <Lookbook />
+      <SectionDivider />
       <TestimonialsAndJournal />
+      <SectionDivider />
       <Appointments />
+      <SectionDivider />
       <InstagramSection />
+      <SectionDivider />
       <Contact />
 
       {/* Footer */}
@@ -73,7 +100,7 @@ export default function Home() {
             WhatsApp
           </a>
           <a
-            href="#appointments"
+            href="/appointments"
             className="flex-1 flex items-center justify-center py-2.5 bg-noir text-ivory font-dm-sans text-xs tracking-wider uppercase rounded-sm"
           >
             Book Now

@@ -2,15 +2,14 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Image from 'next/image';
 
 const galleryImages = [
-  { src: '/images/collection-bridal.png', alt: 'Bridal Lehenga Closeup — Gold Zari Embroidery', category: 'Bridal' },
-  { src: '/images/collection-festive.png', alt: 'Festive Designer Saree — Champagne & Gold', category: 'Festive' },
-  { src: '/images/collection-fusion.png', alt: 'Western Fusion — Contemporary Elegance', category: 'Fusion' },
-  { src: '/images/hero-bridal.png', alt: 'Shringarika Bridal Lookbook — Draped in Dreams', category: 'Bridal' },
-  { src: '/images/collection-rtw.png', alt: 'Ready-to-Wear — Curated Luxury', category: 'RTW' },
-  { src: '/images/atelier.png', alt: 'Atelier — Where Every Stitch Holds a Story', category: 'Atelier' },
+  { alt: 'Bridal Lehenga Closeup — Gold Zari Embroidery', category: 'Bridal', gradient: 'from-rose-gold-light/40 via-blush to-champagne', letter: 'B' },
+  { alt: 'Festive Designer Saree — Champagne & Gold', category: 'Festive', gradient: 'from-champagne via-sandalwood to-blush', letter: 'F' },
+  { alt: 'Western Fusion — Contemporary Elegance', category: 'Fusion', gradient: 'from-ivory-dark via-champagne to-blush', letter: 'W' },
+  { alt: 'Shringarika Bridal Lookbook — Draped in Dreams', category: 'Bridal', gradient: 'from-blush-warm via-champagne to-sandalwood', letter: 'S' },
+  { alt: 'Ready-to-Wear — Curated Luxury', category: 'RTW', gradient: 'from-champagne/60 via-blush to-sandalwood', letter: 'R' },
+  { alt: 'Atelier — Where Every Stitch Holds a Story', category: 'Atelier', gradient: 'from-noir-soft via-mauve-dusty/20 to-noir', letter: 'A' },
 ];
 
 export default function Lookbook() {
@@ -63,14 +62,11 @@ export default function Lookbook() {
                 i === 0 || i === 3 ? 'sm:row-span-2 aspect-[3/4]' : 'aspect-[3/4]'
               }`}
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                quality={85}
-              />
+              <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} group-hover:scale-105 transition-transform duration-[1.5s] ease-out`}>
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="font-cormorant text-ivory/15 text-5xl italic">{image.letter}</span>
+                </div>
+              </div>
               {/* Default subtle overlay */}
               <div className="absolute inset-0 bg-noir/20 group-hover:bg-noir/40 transition-colors duration-700" />
               

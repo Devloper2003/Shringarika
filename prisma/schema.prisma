@@ -7,6 +7,74 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ━━━ USER & AUTH ━━━
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  password      String   // hashed
+  phone         String?
+  avatar        String?
+  role          String   @default("user") // user, admin, super_admin
+  isActive      Boolean  @default(true)
+  emailVerified Boolean  @default(false)
+  
+  // User profile
+  measurements  String?  // JSON: {bust, waist, hips, height, shoulder}
+  address       String?  // JSON: {street, city, state, pincode, country}
+  occasion      String?  // preferred occasion type
+  
+  // Relations
+  wishlist      WishlistItem[]
+  orders        Order[]
+  reviews       Review[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, productId])
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  items         String   // JSON array of {productId, name, price, qty, size, customization}
+  total         Float
+  status        String   @default("pending") // pending, confirmed, shipped, delivered, cancelled
+  paymentMethod String?  // razorpay, stripe, cod
+  paymentStatus String   @default("pending") // pending, paid, failed, refunded
+  paymentId     String?  // payment gateway transaction ID
+  shippingAddr  String?  // JSON
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String?
+  rating    Int
+  title     String?
+  content   String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ━━━ INQUIRIES & APPOINTMENTS ━━━
 model Inquiry {
   id        String   @id @default(cuid())
   name      String
@@ -36,38 +104,51 @@ model Appointment {
   updatedAt       DateTime @updatedAt
 }
 
+// ━━━ PRODUCTS ━━━
 model Product {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  description String?
-  category    String   // bridal-lehenga, designer-saree, festive, western-fusion, ready-to-wear, bespoke
-  price       Float?
-  priceType   String   @default("show") // show, inquire, range
-  images      String   @default("[]") // JSON array of image URLs
-  fabric      String?
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  description   String?
+  category      String   // bridal-lehenga, designer-saree, festive, western-fusion, ready-to-wear, bespoke
+  price         Float?
+  priceType     String   @default("show") // show, inquire, range
+  images        String   @default("[]") // JSON array of image URLs
+  fabric        String?
   craftsmanship String?
-  care        String?
-  featured    Boolean  @default(false)
-  active      Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  care          String?
+  sizes         String?  // JSON array of available sizes
+  customization String?  // JSON: available customization options
+  deliveryDays  Int?
+  featured      Boolean  @default(false)
+  active        Boolean  @default(true)
+  
+  wishlist      WishlistItem[]
+  reviews       Review[]
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
+// ━━━ BLOG ━━━
 model BlogPost {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
-  excerpt     String?
-  content     String
-  category    String   // bridal-style, lehenga-saree, wedding-trends, styling-tips, behind-craft, jaipur-fashion, celebrity, how-to-choose
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  excerpt       String?
+  content       String
+  category      String   // bridal-style, lehenga-saree, wedding-trends, styling-tips, behind-craft, jaipur-fashion, celebrity, how-to-choose
   featuredImage String?
-  author      String   @default("House of Shringarika")
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  author        String   @default("House of Shringarika")
+  metaTitle     String?
+  metaDesc      String?
+  tags          String?  // JSON array
+  published     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
+// ━━━ TESTIMONIALS & GALLERY ━━━
 model Testimonial {
   id        String   @id @default(cuid())
   name      String
@@ -91,4 +172,11 @@ model GalleryImage {
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+// ━━━ SITE SETTINGS (Admin) ━━━
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String // JSON string for complex values
 }
