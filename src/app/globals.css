@@ -44,24 +44,25 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Shringarika Luxury Colors — Rose Blue & Gold */
+  /* Shringarika Luxury Colors — Rose Gold & Gold */
   --color-ivory: #F2EDE8;
   --color-ivory-dark: #E8E1D9;
-  --color-rose-blue: #6A7FA8;
-  --color-rose-blue-light: #8C9EC4;
-  --color-rose-blue-dark: #526A94;
-  --color-rose-gold: #6A7FA8;
-  --color-rose-gold-light: #8C9EC4;
+  --color-rose-gold: #B76E79;
+  --color-rose-gold-light: #D4A0A7;
+  --color-rose-gold-dark: #9B5A64;
+  --color-rose-blue: #B76E79;
+  --color-rose-blue-light: #D4A0A7;
+  --color-rose-blue-dark: #9B5A64;
   --color-champagne: #E8D9C0;
   --color-noir: #1A1A1A;
   --color-noir-soft: #2D2D2D;
-  --color-mauve: #7E86A0;
-  --color-mauve-dusty: #9AA3BE;
-  --color-blush: #D8DDE8;
-  --color-blush-warm: #C5CCDA;
+  --color-mauve: #8E7D8D;
+  --color-mauve-dusty: #A8989E;
+  --color-blush: #F5E1E0;
+  --color-blush-warm: #ECD5D3;
   --color-zari-gold: #B89840;
   --color-zari-gold-light: #D4B86A;
-  --color-ruby: #5A6A90;
+  --color-ruby: #9B2335;
   --color-emerald: #03550A;
   --color-silver: #A8A8A8;
   --color-sandalwood: #D4C2A5;
@@ -75,7 +76,7 @@
   --card-foreground: #1A1A1A;
   --popover: #F7F3EF;
   --popover-foreground: #1A1A1A;
-  --primary: #6A7FA8;
+  --primary: #B76E79;
   --primary-foreground: #F2EDE8;
   --secondary: #E8D9C0;
   --secondary-foreground: #1A1A1A;
@@ -86,20 +87,20 @@
   --destructive: #8B1528;
   --border: #D4C2A5;
   --input: #D4C2A5;
-  --ring: #6A7FA8;
-  --chart-1: #6A7FA8;
+  --ring: #B76E79;
+  --chart-1: #B76E79;
   --chart-2: #B89840;
   --chart-3: #8E7D8D;
   --chart-4: #E8D9C0;
   --chart-5: #D4C2A5;
   --sidebar: #F2EDE8;
   --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #6A7FA8;
+  --sidebar-primary: #B76E79;
   --sidebar-primary-foreground: #F2EDE8;
-  --sidebar-accent: #D8DDE8;
+  --sidebar-accent: #F5E1E0;
   --sidebar-accent-foreground: #1A1A1A;
   --sidebar-border: #D4C2A5;
-  --sidebar-ring: #6A7FA8;
+  --sidebar-ring: #B76E79;
 }
 
 @layer base {
@@ -126,7 +127,7 @@
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A8656F;
+  background: #B76E79;
 }
 
 /* Gold particle canvas */
@@ -149,14 +150,7 @@
 }
 
 .text-gradient-rose {
-  background: linear-gradient(135deg, #6A7FA8 0%, #8C9EC4 50%, #6A7FA8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-rose-blue {
-  background: linear-gradient(135deg, #6A7FA8 0%, #8C9EC4 50%, #526A94 100%);
+  background: linear-gradient(135deg, #B76E79 0%, #D4A0A7 50%, #B76E79 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -349,7 +343,7 @@
 
 /* Warm candlelight glow */
 .candlelight {
-  box-shadow: 0 0 60px rgba(184, 152, 64, 0.12), 0 0 120px rgba(106, 127, 168, 0.06);
+  box-shadow: 0 0 60px rgba(184, 152, 64, 0.12), 0 0 120px rgba(183, 110, 121, 0.06);
 }
 
 /* Zari shimmer hover */

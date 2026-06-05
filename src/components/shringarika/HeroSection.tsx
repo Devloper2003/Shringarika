@@ -83,7 +83,7 @@ class ThreadParticle {
       ctx.closePath();
       ctx.fill();
     } else {
-      ctx.fillStyle = '#8c9ec4';
+      ctx.fillStyle = '#d4a0a7';
       ctx.beginPath();
       ctx.arc(0, 0, this.size * 0.6, 0, Math.PI * 2);
       ctx.fill();
@@ -147,9 +147,9 @@ function FlowingSilk() {
             <stop offset="100%" stopColor="#2a2418" stopOpacity="0.5" />
           </linearGradient>
           <linearGradient id="silk-2" x1="0%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stopColor="#6A7FA8" stopOpacity="0.08" />
-            <stop offset="50%" stopColor="#8C9EC4" stopOpacity="0.05" />
-            <stop offset="100%" stopColor="#526A94" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#B76E79" stopOpacity="0.08" />
+            <stop offset="50%" stopColor="#D4A0A7" stopOpacity="0.05" />
+            <stop offset="100%" stopColor="#9B5A64" stopOpacity="0.1" />
           </linearGradient>
         </defs>
         <path
@@ -209,8 +209,8 @@ function FlowingSilk() {
       >
         <defs>
           <linearGradient id="silk-4" x1="50%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6A7FA8" stopOpacity="0.04" />
-            <stop offset="100%" stopColor="#526A94" stopOpacity="0.07" />
+            <stop offset="0%" stopColor="#B76E79" stopOpacity="0.04" />
+            <stop offset="100%" stopColor="#9B5A64" stopOpacity="0.07" />
           </linearGradient>
         </defs>
         <path
@@ -234,7 +234,7 @@ function FlowingSilk() {
       <div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 110%, rgba(184,152,64,0.12) 0%, rgba(106,127,168,0.04) 40%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 110%, rgba(184,152,64,0.12) 0%, rgba(183,110,121,0.04) 40%, transparent 70%)',
         }}
       />
 
@@ -250,7 +250,7 @@ function FlowingSilk() {
       <motion.div
         animate={{ opacity: [0.03, 0.08, 0.03] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-0 left-[8%] w-[1px] h-full bg-gradient-to-b from-transparent via-[#8c9ec4]/20 to-transparent"
+        className="absolute top-0 left-[8%] w-[1px] h-full bg-gradient-to-b from-transparent via-[#d4a0a7]/20 to-transparent"
       />
       <motion.div
         animate={{ opacity: [0.04, 0.1, 0.04] }}
@@ -272,7 +272,7 @@ function FlowingSilk() {
       <motion.div
         animate={{ opacity: [0, 0.4, 0], scale: [0.3, 1, 0.3] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        className="absolute top-[50%] left-[25%] w-0.5 h-0.5 bg-[#8c9ec4] rounded-full"
+        className="absolute top-[50%] left-[25%] w-0.5 h-0.5 bg-[#d4a0a7] rounded-full"
       />
       <motion.div
         animate={{ opacity: [0, 0.5, 0], scale: [0.5, 1, 0.5] }}

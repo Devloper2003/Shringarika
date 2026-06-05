@@ -30,9 +30,9 @@ export default function Appointments() {
   const [selectedType, setSelectedType] = useState(0);
 
   return (
-    <section id="appointments" className="relative bg-[#C5CCDA] section-luxury overflow-hidden">
+    <section id="appointments" className="relative bg-blush-warm section-luxury overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-rose-blue/5 to-transparent" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-rose-gold/5 to-transparent" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-champagne/30 to-transparent" />
 
       <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +43,7 @@ export default function Appointments() {
           transition={{ duration: 0.8 }}
           className="text-center mb-4"
         >
-          <span className="font-dm-sans text-rose-blue text-[10px] tracking-[0.4em] uppercase">
+          <span className="font-dm-sans text-rose-gold text-[10px] tracking-[0.4em] uppercase">
             Appointments
           </span>
         </motion.div>
@@ -54,7 +54,7 @@ export default function Appointments() {
           transition={{ duration: 1, delay: 0.2 }}
           className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-noir text-center font-light leading-tight mb-6"
         >
-          Step into the <span className="italic text-rose-blue">Atelier</span>
+          Step into the <span className="italic text-rose-gold">Atelier</span>
         </motion.h2>
 
         <motion.p
@@ -80,14 +80,14 @@ export default function Appointments() {
               onClick={() => setSelectedType(i)}
               className={`text-left p-6 border transition-all duration-500 ${
                 selectedType === i
-                  ? 'border-rose-blue bg-ivory shadow-sm'
+                  ? 'border-rose-gold bg-ivory shadow-sm'
                   : 'border-noir/10 bg-ivory/50 hover:border-noir/20'
               }`}
             >
-              <span className="text-rose-blue text-xl mb-3 block">{ct.icon}</span>
+              <span className="text-rose-gold text-xl mb-3 block">{ct.icon}</span>
               <h3 className="font-playfair text-lg text-noir mb-2">{ct.type}</h3>
               <p className="font-dm-sans text-xs text-noir/50 leading-relaxed mb-2">{ct.description}</p>
-              <span className="font-dm-sans text-[10px] text-rose-blue/60 tracking-wide">{ct.duration}</span>
+              <span className="font-dm-sans text-[10px] text-rose-gold/60 tracking-wide">{ct.duration}</span>
             </button>
           ))}
         </motion.div>
@@ -113,7 +113,7 @@ export default function Appointments() {
                   <input
                     type="text"
                     placeholder="Full name"
-                    className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                    className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                   />
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export default function Appointments() {
                   <input
                     type="tel"
                     placeholder="+91 98XXX XXXXX"
-                    className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                    className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                   />
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function Appointments() {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                  className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                 />
               </div>
 
@@ -146,14 +146,14 @@ export default function Appointments() {
                   </label>
                   <input
                     type="date"
-                    className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir/60 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                    className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir/60 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                   />
                 </div>
                 <div>
                   <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-noir/60 block mb-2">
                     Preferred Time
                   </label>
-                  <select className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir/60 focus:border-rose-blue focus:outline-none transition-colors duration-300">
+                  <select className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir/60 focus:border-rose-gold focus:outline-none transition-colors duration-300">
                     <option value="">Select time</option>
                     <option>10:00 AM</option>
                     <option>11:00 AM</option>
@@ -173,14 +173,14 @@ export default function Appointments() {
                 <textarea
                   rows={3}
                   placeholder="Tell us about your occasion, style preferences, or any special requirements..."
-                  className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300 resize-none"
+                  className="w-full bg-ivory/80 border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300 resize-none"
                 />
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <button
                   type="submit"
-                  className="px-8 py-3.5 bg-noir text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-rose-blue transition-all duration-500"
+                  className="px-8 py-3.5 bg-noir text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-rose-gold transition-all duration-500"
                 >
                   Request Appointment
                 </button>
@@ -208,21 +208,21 @@ export default function Appointments() {
               <h4 className="font-playfair text-lg text-noir mb-4">Visit Our Atelier</h4>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <svg className="w-4 h-4 text-rose-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  <svg className="w-4 h-4 text-rose-gold mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   <div>
                     <p className="font-dm-sans text-sm text-noir">House of Shringarika</p>
                     <p className="font-dm-sans text-xs text-noir/50">Jaipur, Rajasthan, India</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <svg className="w-4 h-4 text-rose-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <svg className="w-4 h-4 text-rose-gold mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   <div>
                     <p className="font-dm-sans text-sm text-noir">Monday – Saturday</p>
                     <p className="font-dm-sans text-xs text-noir/50">10:00 AM – 7:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <svg className="w-4 h-4 text-rose-blue mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                  <svg className="w-4 h-4 text-rose-gold mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   <div>
                     <p className="font-dm-sans text-sm text-noir">+91 99999 99999</p>
                     <p className="font-dm-sans text-xs text-noir/50">Call or WhatsApp</p>
@@ -234,7 +234,7 @@ export default function Appointments() {
             {/* Map placeholder */}
             <div className="aspect-[4/3] bg-champagne/50 border border-noir/5 flex items-center justify-center">
               <div className="text-center">
-                <svg className="w-8 h-8 text-rose-blue/30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                <svg className="w-8 h-8 text-rose-gold/30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                 <p className="font-dm-sans text-xs text-noir/30">Jaipur, Rajasthan</p>
               </div>
             </div>
@@ -242,17 +242,17 @@ export default function Appointments() {
             {/* Trust element */}
             <div className="flex items-center gap-6 justify-center">
               <div className="text-center">
-                <p className="font-cormorant text-3xl text-rose-blue font-light">500+</p>
+                <p className="font-cormorant text-3xl text-rose-gold font-light">500+</p>
                 <p className="font-dm-sans text-[10px] text-noir/40 tracking-wide uppercase">Happy Brides</p>
               </div>
               <div className="w-px h-12 bg-noir/10" />
               <div className="text-center">
-                <p className="font-cormorant text-3xl text-rose-blue font-light">8+</p>
+                <p className="font-cormorant text-3xl text-rose-gold font-light">8+</p>
                 <p className="font-dm-sans text-[10px] text-noir/40 tracking-wide uppercase">Years of Craft</p>
               </div>
               <div className="w-px h-12 bg-noir/10" />
               <div className="text-center">
-                <p className="font-cormorant text-3xl text-rose-blue font-light">100%</p>
+                <p className="font-cormorant text-3xl text-rose-gold font-light">100%</p>
                 <p className="font-dm-sans text-[10px] text-noir/40 tracking-wide uppercase">Handcrafted</p>
               </div>
             </div>

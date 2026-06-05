@@ -60,7 +60,7 @@ export default function TestimonialsAndJournal() {
           transition={{ duration: 0.8 }}
           className="text-center mb-4"
         >
-          <span className="font-dm-sans text-rose-blue text-[10px] tracking-[0.4em] uppercase">
+          <span className="font-dm-sans text-rose-gold text-[10px] tracking-[0.4em] uppercase">
             Testimonials
           </span>
         </motion.div>
@@ -71,7 +71,7 @@ export default function TestimonialsAndJournal() {
           transition={{ duration: 1, delay: 0.2 }}
           className="font-cormorant text-3xl sm:text-4xl md:text-5xl text-noir text-center font-light leading-tight mb-16"
         >
-          Stories from Our <span className="italic text-rose-blue">Brides</span>
+          Stories from Our <span className="italic text-rose-gold">Brides</span>
         </motion.h2>
 
         {/* Testimonial Carousel */}
@@ -106,7 +106,7 @@ export default function TestimonialsAndJournal() {
               <p className="font-playfair text-lg text-noir">
                 {testimonials[activeTestimonial].name}
               </p>
-              <p className="font-dm-sans text-xs text-rose-blue tracking-[0.15em] uppercase">
+              <p className="font-dm-sans text-xs text-rose-gold tracking-[0.15em] uppercase">
                 {testimonials[activeTestimonial].role}
               </p>
             </motion.div>
@@ -126,7 +126,7 @@ export default function TestimonialsAndJournal() {
                 key={i}
                 onClick={() => setActiveTestimonial(i)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i === activeTestimonial ? 'bg-rose-blue w-8' : 'bg-noir/20 hover:bg-noir/40'
+                  i === activeTestimonial ? 'bg-rose-gold w-8' : 'bg-noir/20 hover:bg-noir/40'
                 }`}
                 aria-label={`View testimonial ${i + 1}`}
               />
@@ -155,7 +155,7 @@ export default function TestimonialsAndJournal() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="font-cormorant text-2xl sm:text-3xl md:text-4xl text-noir text-center font-light mb-12"
         >
-          Stories, Style & <span className="italic text-rose-blue">Inspiration</span>
+          Stories, Style & <span className="italic text-rose-gold">Inspiration</span>
         </motion.h3>
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -172,10 +172,10 @@ export default function TestimonialsAndJournal() {
                   <span className="font-cormorant text-noir/20 text-4xl italic">S</span>
                 </div>
               </div>
-              <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-rose-blue">
+              <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-rose-gold">
                 {post.category}
               </span>
-              <h4 className="font-playfair text-lg text-noir mt-2 mb-2 group-hover:text-rose-blue transition-colors duration-300 leading-snug">
+              <h4 className="font-playfair text-lg text-noir mt-2 mb-2 group-hover:text-rose-gold transition-colors duration-300 leading-snug">
                 {post.title}
               </h4>
               <p className="font-dm-sans text-xs text-noir/50 leading-relaxed mb-3">

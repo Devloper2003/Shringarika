@@ -48,7 +48,7 @@ export default function Bespoke() {
           transition={{ duration: 0.8 }}
           className="text-center mb-4"
         >
-          <span className="font-dm-sans text-rose-blue text-[10px] tracking-[0.4em] uppercase">
+          <span className="font-dm-sans text-rose-gold text-[10px] tracking-[0.4em] uppercase">
             Bespoke Couture
           </span>
         </motion.div>
@@ -59,7 +59,7 @@ export default function Bespoke() {
           transition={{ duration: 1, delay: 0.2 }}
           className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-noir text-center font-light leading-tight mb-6"
         >
-          Made Only for <span className="italic text-rose-blue">You.</span>
+          Made Only for <span className="italic text-rose-gold">You.</span>
         </motion.h2>
 
         <motion.p
@@ -147,7 +147,7 @@ export default function Bespoke() {
                 <input
                   type="text"
                   placeholder="Enter your full name"
-                  className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                  className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export default function Bespoke() {
                   <input
                     type="tel"
                     placeholder="+91 98XXX XXXXX"
-                    className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                   />
                 </div>
                 <div>
@@ -169,7 +169,7 @@ export default function Bespoke() {
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300"
                   />
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function Bespoke() {
                 <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-noir/60 block mb-2">
                   Occasion
                 </label>
-                <select className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir/60 focus:border-rose-blue focus:outline-none transition-colors duration-300">
+                <select className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir/60 focus:border-rose-gold focus:outline-none transition-colors duration-300">
                   <option value="">Select occasion</option>
                   <option value="bridal">Bridal</option>
                   <option value="reception">Wedding Reception</option>
@@ -196,7 +196,7 @@ export default function Bespoke() {
                 <textarea
                   rows={3}
                   placeholder="Tell us about the colors, fabrics, embroidery, and style you envision..."
-                  className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-blue focus:outline-none transition-colors duration-300 resize-none"
+                  className="w-full bg-transparent border-b border-noir/20 px-0 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/30 focus:border-rose-gold focus:outline-none transition-colors duration-300 resize-none"
                 />
               </div>
 
