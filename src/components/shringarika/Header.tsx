@@ -18,13 +18,23 @@ const primaryLinks = [
     mega: true,
     categories: [
       {
-        title: 'By Category',
+        title: 'Women',
         items: [
           { label: 'Bridal Lehengas', href: '/collections?cat=bridal' },
           { label: 'Designer Sarees', href: '/collections?cat=sarees' },
           { label: 'Festive Edit', href: '/collections?cat=festive' },
           { label: 'Western Fusion', href: '/collections?cat=western' },
           { label: 'Ready to Wear', href: '/collections?cat=rtw' },
+        ],
+      },
+      {
+        title: 'Men',
+        items: [
+          { label: 'Sherwanis', href: '/collections?cat=sherwanis' },
+          { label: 'Bandhgalas', href: '/collections?cat=bandhgalas' },
+          { label: 'Kurta Sets', href: '/collections?cat=men-kurta' },
+          { label: 'Achkan & Jodhpuri', href: '/collections?cat=achkan' },
+          { label: 'Men\'s Accessories', href: '/collections?cat=men-accessories' },
         ],
       },
       {
@@ -143,16 +153,16 @@ export default function Header() {
 
         {/* Main Nav Row */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-[72px]">
+          <div className="flex items-center justify-between h-20 lg:h-[84px]">
 
             {/* ─ Left: Logo ─ */}
             <Link href="/" className="flex items-center group shrink-0 z-10">
               <Image
                 src="/images/logo.png"
                 alt="Shringarika — Official Logo"
-                width={120}
-                height={48}
-                className="h-9 lg:h-11 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
+                width={200}
+                height={70}
+                className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
                 priority
               />
             </Link>
@@ -199,12 +209,12 @@ export default function Header() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.98 }}
                           transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[680px]"
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[820px]"
                           onMouseEnter={openMega}
                           onMouseLeave={closeMegaDelayed}
                         >
                           <div className="bg-ivory/[0.98] backdrop-blur-xl border border-zari-gold/10 shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-8">
-                            <div className="grid grid-cols-3 gap-8">
+                            <div className="grid grid-cols-4 gap-6">
                               {link.categories?.map((cat) => (
                                 <div key={cat.title}>
                                   <h4 className="font-cinzel text-[10px] tracking-[0.25em] uppercase text-zari-gold/80 mb-4 pb-2 border-b border-zari-gold/10">
@@ -397,9 +407,9 @@ export default function Header() {
                 <Image
                 src="/images/logo.png"
                 alt="Shringarika"
-                width={100}
-                height={40}
-                className="h-8 w-auto object-contain"
+                width={140}
+                height={56}
+                className="h-11 w-auto object-contain"
               />
                 <button
                   onClick={() => setMenuOpen(false)}

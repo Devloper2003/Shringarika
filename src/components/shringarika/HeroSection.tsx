@@ -249,8 +249,8 @@ export default function HeroSection() {
           transition={{ duration: 1.2, delay: 1.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="font-dm-sans text-ivory/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed tracking-wide"
         >
-          Luxury bridal wear, bespoke couture & ready-to-wear collections —
-          where every woman becomes the story.
+          Luxury bridal wear, groom couture, bespoke fashion & ready-to-wear collections —
+          where every woman and man becomes the story.
         </motion.p>
 
         {/* CTA Buttons */}

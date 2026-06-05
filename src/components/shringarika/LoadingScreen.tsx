@@ -65,8 +65,8 @@ function WireframeLogoCanvas({ onComplete }: { onComplete: () => void }) {
       const canvas = canvasRef.current;
       if (!canvas) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const displayW = 280;
-      const displayH = 140;
+      const displayW = 380;
+      const displayH = 180;
       canvas.width = displayW * dpr;
       canvas.height = displayH * dpr;
       canvas.style.width = `${displayW}px`;
@@ -82,7 +82,7 @@ function WireframeLogoCanvas({ onComplete }: { onComplete: () => void }) {
     <canvas
       ref={canvasRef}
       className="mx-auto"
-      style={{ width: 280, height: 140 }}
+      style={{ width: 380, height: 180 }}
     />
   );
 }
@@ -126,7 +126,7 @@ export default function LoadingScreen() {
             />
 
             {/* Logo with wireframe → fill animation */}
-            <div className="relative w-[280px] h-[140px] mx-auto mb-6">
+            <div className="relative w-[380px] h-[180px] mx-auto mb-6">
               {/* Wireframe layer — visible first, then fades */}
               <motion.div
                 initial={{ opacity: 1 }}
@@ -154,9 +154,9 @@ export default function LoadingScreen() {
                 <Image
                   src="/images/logo.png"
                   alt="Shringarika — Official Logo"
-                  width={260}
-                  height={120}
-                  className="w-auto h-auto max-w-[260px] object-contain"
+                  width={360}
+                  height={160}
+                  className="w-auto h-auto max-w-[360px] object-contain"
                   priority
                 />
               </motion.div>

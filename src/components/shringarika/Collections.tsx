@@ -13,6 +13,14 @@ const collections = [
     letter: 'B',
   },
   {
+    title: 'Groom Edit',
+    subtitle: 'Sherwanis & Bandhgalas',
+    description: 'Regal elegance for the modern groom — handcrafted sherwanis and bandhgalas that command the occasion with quiet power.',
+    category: 'sherwanis',
+    gradient: 'from-noir-soft/40 via-sandalwood to-champagne',
+    letter: 'G',
+  },
+  {
     title: 'Festive Collection',
     subtitle: 'Sarees & Anarkalis',
     description: 'Celebrate every moment in couture that captures the joy and splendor of India\'s most beautiful occasions.',
@@ -27,6 +35,14 @@ const collections = [
     category: 'fusion',
     gradient: 'from-ivory-dark via-champagne to-blush',
     letter: 'W',
+  },
+  {
+    title: 'Men\'s Kurta Sets',
+    subtitle: 'Refined Tradition',
+    description: 'From intimate pujas to grand celebrations — impeccably tailored kurta sets that honor tradition with a modern edge.',
+    category: 'men-kurta',
+    gradient: 'from-champagne/60 via-sandalwood/30 to-blush-warm',
+    letter: 'K',
   },
   {
     title: 'Ready-to-Wear',
@@ -81,11 +97,11 @@ export default function Collections() {
           className="font-dm-sans text-ivory/40 text-sm sm:text-base text-center max-w-xl mx-auto mb-16"
         >
           Each collection is a chapter in the Shringarika story — designed to make 
-          every occasion unforgettable and every woman feel like the protagonist.
+          every occasion unforgettable for both women and men.
         </motion.p>
 
         {/* Collection Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {collections.map((collection, i) => (
             <motion.div
               key={collection.title}

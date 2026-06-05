@@ -34,7 +34,7 @@ export default function Home() {
       <div className="bg-ivory py-8 text-center">
         <p className="font-cormorant text-lg sm:text-xl text-noir/60 italic max-w-2xl mx-auto px-4">
           Not just a fashion brand — but a deeply personal, cinematic couture experience 
-          where every woman walks into her most beautiful story.
+          where every woman and man walks into their most beautiful story.
         </p>
         <div className="w-12 h-[1px] bg-zari-gold/40 mx-auto mt-4" />
       </div>

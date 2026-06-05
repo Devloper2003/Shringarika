@@ -15,14 +15,14 @@ export default function Footer() {
             <Image
               src="/images/logo.png"
               alt="Shringarika — Official Logo"
-              width={160}
-              height={50}
-              className="h-10 w-auto object-contain mb-4"
+              width={180}
+              height={60}
+              className="h-14 w-auto object-contain mb-4"
               priority
             />
             <p className="font-dm-sans text-xs text-ivory/30 leading-relaxed mb-6">
-              House of Shringarika — where every woman becomes the story. 
-              Luxury bridal wear, bespoke couture & ready-to-wear collections from Jaipur.
+              House of Shringarika — where every woman and man becomes the story. 
+              Luxury bridal wear, groom couture, bespoke fashion & ready-to-wear collections from Jaipur.
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -73,7 +73,7 @@ export default function Footer() {
           <div>
             <h4 className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/40 mb-6">Collections</h4>
             <ul className="space-y-3">
-              {['Bridal Lehengas', 'Designer Sarees', 'Festive Wear', 'Western Fusion', 'Ready-to-Wear', 'Custom Bespoke'].map((item) => (
+              {['Bridal Lehengas', 'Designer Sarees', 'Sherwanis', 'Bandhgalas', 'Festive Wear', 'Western Fusion', 'Ready-to-Wear', 'Custom Bespoke'].map((item) => (
                 <li key={item}>
                   <Link href="/collections" className="font-dm-sans text-sm text-ivory/50 hover:text-zari-gold transition-colors duration-300">
                     {item}
