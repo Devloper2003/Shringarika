@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Inquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String?
+  email     String?
+  occasion  String?
+  message   String
+  type      String   @default("general") // general, bespoke, appointment, product
+  source    String?  // website, whatsapp, instagram
+  status    String   @default("new") // new, contacted, converted, archived
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Appointment {
+  id              String   @id @default(cuid())
+  name            String
+  phone           String
+  email           String?
+  appointmentType String   // bridal, styling, custom
+  occasion        String?
+  preferredDate   String?
+  preferredTime   String?
+  message         String?
+  status          String   @default("pending") // pending, confirmed, completed, cancelled
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  category    String   // bridal-lehenga, designer-saree, festive, western-fusion, ready-to-wear, bespoke
+  price       Float?
+  priceType   String   @default("show") // show, inquire, range
+  images      String   @default("[]") // JSON array of image URLs
+  fabric      String?
+  craftsmanship String?
+  care        String?
+  featured    Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String
+  category    String   // bridal-style, lehenga-saree, wedding-trends, styling-tips, behind-craft, jaipur-fashion, celebrity, how-to-choose
+  featuredImage String?
+  author      String   @default("House of Shringarika")
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String?  // Bride, Client etc.
+  content   String
+  rating    Int      @default(5)
+  image     String?
+  featured  Boolean  @default(false)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  title       String?
+  category    String?  // bridal, festive, western, atelier, campaign
+  imageUrl    String
+  collection  String?
+  featured    Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
