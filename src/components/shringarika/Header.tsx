@@ -1,117 +1,330 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { User, Calendar, X, Menu } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { User, Calendar, X, Menu, ChevronDown, BookOpen, Scissors, Heart, Sparkles, ArrowRight } from 'lucide-react';
 
-const navLinks = [
+/* ─── Nav Config ──────────────────────────────────────────── */
+
+const primaryLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Story', href: '/about' },
-  { label: 'Collections', href: '/collections' },
+  { label: 'Our Story', href: '/about' },
+  {
+    label: 'Collections',
+    href: '/collections',
+    mega: true,
+    categories: [
+      {
+        title: 'By Category',
+        items: [
+          { label: 'Bridal Lehengas', href: '/collections?cat=bridal' },
+          { label: 'Designer Sarees', href: '/collections?cat=sarees' },
+          { label: 'Festive Edit', href: '/collections?cat=festive' },
+          { label: 'Western Fusion', href: '/collections?cat=western' },
+          { label: 'Ready to Wear', href: '/collections?cat=rtw' },
+        ],
+      },
+      {
+        title: 'By Occasion',
+        items: [
+          { label: 'Wedding & Reception', href: '/collections?occasion=wedding' },
+          { label: 'Engagement & Mehendi', href: '/collections?occasion=engagement' },
+          { label: 'Cocktail & Sangeet', href: '/collections?occasion=cocktail' },
+          { label: 'Pooja & Havan', href: '/collections?occasion=pooja' },
+        ],
+      },
+      {
+        title: 'Signature Services',
+        items: [
+          { label: 'Custom Bespoke', href: '/bespoke', icon: Scissors },
+          { label: 'Lookbook', href: '/lookbook', icon: BookOpen },
+          { label: 'Bridal Consultation', href: '/appointments', icon: Heart },
+        ],
+      },
+    ],
+  },
   { label: 'Bespoke', href: '/bespoke' },
   { label: 'Lookbook', href: '/lookbook' },
+];
+
+const secondaryLinks = [
   { label: 'Appointments', href: '/appointments' },
   { label: 'Journal', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
 
+/* ─── Component ───────────────────────────────────────────── */
+
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const megaRef = useRef<HTMLDivElement>(null);
+  const megaTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  /* Scroll listener */
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change / resize
+  /* Close mobile menu on resize */
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) setMenuOpen(false);
+      if (window.innerWidth >= 1024) {
+        setMenuOpen(false);
+        setMegaOpen(false);
+      }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  /* Close mobile menu on route change */
+  useEffect(() => {
+    setMenuOpen(false);
+    setMegaOpen(false);
+  }, [pathname]);
+
+  /* Close mega menu on outside click */
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (megaRef.current && !megaRef.current.contains(e.target as Node)) {
+        setMegaOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  /* Mega menu hover helpers with delay */
+  const openMega = () => {
+    if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current);
+    setMegaOpen(true);
+  };
+  const closeMegaDelayed = () => {
+    megaTimeoutRef.current = setTimeout(() => setMegaOpen(false), 250);
+  };
+
+  /* Active link check */
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
   return (
     <>
+      {/* ── Desktop Header ──────────────────────────────── */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           scrolled
-            ? 'bg-ivory/95 backdrop-blur-md shadow-sm border-b border-zari-gold/20'
-            : 'bg-ivory/80 backdrop-blur-sm'
+            ? 'bg-ivory/[0.97] backdrop-blur-xl shadow-[0_1px_30px_rgba(181,148,82,0.08)] border-b border-zari-gold/10'
+            : 'bg-ivory/60 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+        {/* Top Announcement Bar */}
+        <div className={`transition-all duration-500 overflow-hidden ${scrolled ? 'h-0 opacity-0' : 'h-9 opacity-100'}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
+            <p className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-noir/40">
+              <Sparkles size={10} className="inline mr-1.5 text-zari-gold/60" />
+              Complimentary Bridal Consultation — Book Your Private Session
+              <ArrowRight size={10} className="inline ml-1.5 text-zari-gold/60" />
+            </p>
+          </div>
+        </div>
 
-            {/* Logo — Left */}
-            <Link href="/" className="flex items-center group shrink-0">
-              <span className="font-cinzel text-lg md:text-xl tracking-[0.2em] font-semibold text-noir group-hover:text-zari-gold transition-colors duration-500">
+        {/* Main Nav Row */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-[72px]">
+
+            {/* ─ Left: Logo ─ */}
+            <Link href="/" className="flex items-center group shrink-0 z-10">
+              <span className="font-cinzel text-lg lg:text-xl tracking-[0.25em] font-semibold text-noir group-hover:text-zari-gold transition-colors duration-500">
                 SHRINGARIKA
               </span>
             </Link>
 
-            {/* Center Nav — Desktop */}
-            <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
-              {navLinks.map((link) => (
+            {/* ─ Center: Primary Nav ─ */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {primaryLinks.map((link) =>
+                link.mega ? (
+                  /* Collections with Mega Menu */
+                  <div
+                    key={link.href}
+                    ref={megaRef}
+                    className="relative"
+                    onMouseEnter={openMega}
+                    onMouseLeave={closeMegaDelayed}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`relative flex items-center gap-1 px-4 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
+                        isActive(link.href) ? 'text-noir' : 'text-noir/50 hover:text-noir'
+                      }`}
+                    >
+                      {link.label}
+                      <ChevronDown
+                        size={12}
+                        strokeWidth={1.5}
+                        className={`transition-transform duration-300 ${megaOpen ? 'rotate-180' : ''}`}
+                      />
+                      {/* Active indicator */}
+                      {isActive(link.href) && (
+                        <motion.span
+                          layoutId="nav-active"
+                          className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-zari-gold"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+
+                    {/* Mega Menu Panel */}
+                    <AnimatePresence>
+                      {megaOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[680px]"
+                          onMouseEnter={openMega}
+                          onMouseLeave={closeMegaDelayed}
+                        >
+                          <div className="bg-ivory/[0.98] backdrop-blur-xl border border-zari-gold/10 shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-8">
+                            <div className="grid grid-cols-3 gap-8">
+                              {link.categories?.map((cat) => (
+                                <div key={cat.title}>
+                                  <h4 className="font-cinzel text-[10px] tracking-[0.25em] uppercase text-zari-gold/80 mb-4 pb-2 border-b border-zari-gold/10">
+                                    {cat.title}
+                                  </h4>
+                                  <ul className="space-y-2.5">
+                                    {cat.items.map((item) => {
+                                      const Icon = 'icon' in item && item.icon ? item.icon : null;
+                                      return (
+                                        <li key={item.href + item.label}>
+                                          <Link
+                                            href={item.href}
+                                            className="flex items-center gap-2 font-dm-sans text-[12px] tracking-wide text-noir/60 hover:text-zari-gold hover:translate-x-1 transition-all duration-300"
+                                          >
+                                            {Icon && <Icon size={13} strokeWidth={1.5} className="text-zari-gold/50" />}
+                                            {item.label}
+                                          </Link>
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Mega Footer */}
+                            <div className="mt-6 pt-5 border-t border-zari-gold/10 flex items-center justify-between">
+                              <p className="font-cormorant text-sm italic text-noir/40">
+                                &ldquo;Every thread tells your story&rdquo;
+                              </p>
+                              <Link
+                                href="/collections"
+                                className="flex items-center gap-1.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase text-zari-gold hover:text-noir transition-colors duration-300"
+                              >
+                                View All Collections
+                                <ArrowRight size={12} strokeWidth={1.5} />
+                              </Link>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  /* Regular Nav Link */
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-4 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
+                      isActive(link.href) ? 'text-noir' : 'text-noir/50 hover:text-noir'
+                    }`}
+                  >
+                    {link.label}
+                    {isActive(link.href) && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-zari-gold"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                )
+              )}
+
+              {/* Separator */}
+              <div className="w-px h-4 bg-noir/10 mx-2" />
+
+              {/* Secondary Links */}
+              {secondaryLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="relative font-dm-sans text-[11px] tracking-[0.16em] uppercase text-noir/60 hover:text-noir transition-colors duration-300 py-1 group"
+                  className={`relative px-3 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
+                    isActive(link.href) ? 'text-noir' : 'text-noir/35 hover:text-noir/70'
+                  }`}
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-zari-gold group-hover:w-full transition-all duration-500" />
+                  {isActive(link.href) && (
+                    <motion.span
+                      layoutId="nav-active-secondary"
+                      className="absolute bottom-0 left-3 right-3 h-[1px] bg-zari-gold/60"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
                 </Link>
               ))}
             </nav>
 
-            {/* Right Actions — Desktop */}
-            <div className="hidden lg:flex items-center gap-5 shrink-0">
+            {/* ─ Right: Actions ─ */}
+            <div className="hidden lg:flex items-center gap-4 shrink-0">
               {/* Account */}
               <Link
                 href="/account"
-                className="flex items-center gap-1.5 font-dm-sans text-[11px] tracking-[0.15em] uppercase text-noir/50 hover:text-zari-gold transition-colors duration-300"
+                className={`p-2 transition-colors duration-300 ${
+                  isActive('/account') ? 'text-zari-gold' : 'text-noir/40 hover:text-zari-gold'
+                }`}
+                aria-label="My Account"
               >
-                <User size={15} strokeWidth={1.5} />
-                <span>Account</span>
+                <User size={17} strokeWidth={1.5} />
               </Link>
-
-              {/* Divider */}
-              <div className="w-px h-4 bg-noir/10" />
 
               {/* Book Appointment CTA */}
               <Link
                 href="/appointments"
-                className="inline-flex items-center gap-2 px-5 py-2 border border-zari-gold/60 text-zari-gold font-dm-sans text-[11px] tracking-[0.16em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-noir text-ivory font-dm-sans text-[10px] tracking-[0.2em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
               >
-                <Calendar size={13} strokeWidth={1.5} />
+                <Calendar size={12} strokeWidth={1.5} />
                 Book Appointment
               </Link>
             </div>
 
-            {/* Right Actions — Mobile/Tablet */}
-            <div className="flex items-center gap-3 lg:hidden shrink-0">
+            {/* ─ Mobile Actions ─ */}
+            <div className="flex items-center gap-2 lg:hidden shrink-0">
               {/* Account Icon */}
               <Link
                 href="/account"
-                className="p-2 text-noir/60 hover:text-zari-gold transition-colors duration-300"
+                className="p-2 text-noir/50 hover:text-zari-gold transition-colors duration-300"
                 aria-label="Account"
               >
                 <User size={18} strokeWidth={1.5} />
               </Link>
 
-              {/* Book CTA — tablet only */}
+              {/* Book CTA — tablet */}
               <Link
                 href="/appointments"
-                className="hidden sm:inline-flex items-center px-4 py-1.5 border border-zari-gold/60 text-zari-gold font-dm-sans text-[10px] tracking-[0.15em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
+                className="hidden sm:inline-flex items-center px-4 py-1.5 bg-noir text-ivory font-dm-sans text-[9px] tracking-[0.18em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
               >
                 Book
               </Link>
@@ -151,7 +364,7 @@ export default function Header() {
         </div>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* ── Mobile Menu Overlay ──────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <>
@@ -161,7 +374,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-noir/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-noir/70 backdrop-blur-sm lg:hidden"
               onClick={() => setMenuOpen(false)}
             />
 
@@ -171,11 +384,11 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-[300px] bg-noir flex flex-col lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-[320px] bg-noir flex flex-col lg:hidden"
             >
               {/* Panel Header */}
-              <div className="flex items-center justify-between px-6 h-16 border-b border-ivory/5">
-                <span className="font-cinzel text-sm tracking-[0.2em] text-zari-gold">SHRINGARIKA</span>
+              <div className="flex items-center justify-between px-7 h-16 border-b border-ivory/5">
+                <span className="font-cinzel text-sm tracking-[0.25em] text-zari-gold">SHRINGARIKA</span>
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="p-2 text-ivory/60 hover:text-ivory transition-colors"
@@ -185,42 +398,104 @@ export default function Header() {
                 </button>
               </div>
 
-              {/* Nav Links */}
-              <nav className="flex-1 flex flex-col py-6 px-6 overflow-y-auto">
-                {navLinks.map((link, i) => (
+              {/* Nav Links — Scrollable */}
+              <nav className="flex-1 flex flex-col overflow-y-auto py-4">
+                {/* Primary Links */}
+                <div className="px-7 pb-3">
+                  <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-ivory/25">Navigate</span>
+                </div>
+                {primaryLinks.map((link, i) => (
+                  <div key={link.href}>
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04, duration: 0.35 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setMenuOpen(false)}
+                        className={`flex items-center justify-between py-3 px-7 font-cormorant text-lg tracking-wide transition-all duration-300 border-b border-ivory/5 ${
+                          isActive(link.href)
+                            ? 'text-zari-gold bg-ivory/5'
+                            : 'text-ivory/70 hover:text-zari-gold hover:pl-9'
+                        }`}
+                      >
+                        {link.label}
+                        {isActive(link.href) && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-zari-gold" />
+                        )}
+                      </Link>
+                    </motion.div>
+
+                    {/* Mobile Sub-links for Collections */}
+                    {link.mega && (
+                      <div className="bg-ivory/[0.03]">
+                        {link.categories?.flatMap((cat) =>
+                          cat.items.map((item) => (
+                            <Link
+                              key={item.href + item.label}
+                              href={item.href}
+                              onClick={() => setMenuOpen(false)}
+                              className="flex items-center gap-2 py-2 px-12 font-dm-sans text-[11px] tracking-wider text-ivory/40 hover:text-zari-gold hover:pl-14 transition-all duration-300"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-ivory/20" />
+                              {item.label}
+                            </Link>
+                          ))
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {/* Separator */}
+                <div className="my-4 mx-7 h-px bg-ivory/5" />
+
+                {/* Secondary Links */}
+                <div className="px-7 pb-3">
+                  <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-ivory/25">More</span>
+                </div>
+                {secondaryLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05, duration: 0.4 }}
+                    transition={{ delay: (primaryLinks.length + i) * 0.04, duration: 0.35 }}
                   >
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center py-3.5 font-cormorant text-xl text-ivory/80 tracking-[0.1em] hover:text-zari-gold hover:pl-2 transition-all duration-300 border-b border-ivory/5"
+                      className={`flex items-center justify-between py-3 px-7 font-cormorant text-lg tracking-wide transition-all duration-300 border-b border-ivory/5 ${
+                        isActive(link.href)
+                          ? 'text-zari-gold bg-ivory/5'
+                          : 'text-ivory/50 hover:text-zari-gold hover:pl-9'
+                      }`}
                     >
                       {link.label}
+                      {isActive(link.href) && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-zari-gold" />
+                      )}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
               {/* Panel Footer */}
-              <div className="px-6 pb-8 space-y-4 border-t border-ivory/5 pt-6">
+              <div className="px-7 pb-8 space-y-4 border-t border-ivory/5 pt-5">
                 <Link
                   href="/account"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center gap-3 font-dm-sans text-sm text-ivory/60 hover:text-zari-gold transition-colors duration-300"
+                  className="flex items-center gap-3 font-dm-sans text-[11px] tracking-[0.15em] uppercase text-ivory/50 hover:text-zari-gold transition-colors duration-300"
                 >
-                  <User size={16} strokeWidth={1.5} />
+                  <User size={15} strokeWidth={1.5} />
                   My Account
                 </Link>
                 <Link
                   href="/appointments"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-3 border border-zari-gold text-zari-gold font-dm-sans text-[11px] tracking-[0.2em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-zari-gold text-noir font-dm-sans text-[10px] tracking-[0.2em] uppercase hover:bg-ivory transition-all duration-500"
                 >
-                  <Calendar size={14} strokeWidth={1.5} />
+                  <Calendar size={13} strokeWidth={1.5} />
                   Book Appointment
                 </Link>
               </div>
