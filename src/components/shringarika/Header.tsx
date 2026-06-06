@@ -280,7 +280,7 @@ export default function Header() {
         >
           {/* ── Curvy Glass Container ── */}
           <div
-            className="relative overflow-hidden rounded-[20px] lg:rounded-[24px]"
+            className="relative rounded-[20px] lg:rounded-[24px]"
             style={{
               background: scrolled
                 ? 'linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(20,20,20,0.9) 50%, rgba(26,26,26,0.85) 100%)'
@@ -296,7 +296,7 @@ export default function Header() {
 
             {/* Animated mirror shimmer sweep */}
             <span
-              className="absolute inset-0 pointer-events-none rounded-[inherit] opacity-30"
+              className="absolute inset-0 pointer-events-none rounded-[inherit] opacity-30 overflow-hidden"
               style={{
                 background: `linear-gradient(
                   105deg,
@@ -320,7 +320,7 @@ export default function Header() {
               }}
             />
 
-            <div className="max-w-[1380px] mx-auto px-5 lg:px-8">
+            <div className="max-w-[1380px] mx-auto px-5 lg:px-8 overflow-visible">
               <div className="flex items-center justify-between h-[68px] lg:h-[74px]">
 
                 {/* ─ Left: Logo with Mirror Glow ─ */}
@@ -349,7 +349,7 @@ export default function Header() {
                 </Link>
 
                 {/* ─ Center: Curvy Glass Navigation Links ─ */}
-                <nav className="hidden lg:flex items-center gap-0.5" style={{ perspective: '800px' }}>
+                <nav className="hidden lg:flex items-center gap-0.5 overflow-visible" style={{ perspective: '800px' }}>
                   {navLinks.map((link) =>
                     link.mega ? (
                       /* Collections with Curvy Mega Menu */
