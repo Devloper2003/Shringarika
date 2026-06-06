@@ -470,3 +470,50 @@
     padding-bottom: 10rem;
   }
 }
+
+/* ─── 3D Navigation Keyframe Animations ──────────────────── */
+
+/* Holographic shimmer sweep */
+@keyframes holo-shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* 3D edge glow pulse */
+@keyframes edge-glow {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* 3D Nav crystal float */
+@keyframes nav-crystal-float {
+  0%, 100% { transform: translateY(0) rotateX(0deg); }
+  50% { transform: translateY(-1px) rotateX(0.3deg); }
+}
+
+/* 3D depth shimmer on active pill */
+@keyframes active-pill-3d {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(184,152,64,0.35), inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 2px rgba(0,0,0,0.15);
+  }
+  50% {
+    box-shadow: 0 3px 12px rgba(184,152,64,0.45), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 2px rgba(0,0,0,0.15);
+  }
+}
+
+/* 3D Icon magnetic hover glow */
+@keyframes icon-3d-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(184,152,64,0.15), inset 0 0 8px rgba(184,152,64,0.08);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(184,152,64,0.25), inset 0 0 12px rgba(184,152,64,0.12);
+  }
+}
+
+/* 3D perspective tilt reset */
+.nav-3d-reset {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
