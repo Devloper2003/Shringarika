@@ -17,16 +17,14 @@ import {
   Sparkles,
   ArrowRight,
   ShoppingBag,
-  Instagram,
-  Facebook,
-  Twitter,
+  Phone,
 } from 'lucide-react';
 
 /* ─── Nav Config ──────────────────────────────────────────── */
 
-const primaryLinks = [
+const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Our Story', href: '/about' },
+  { label: 'About', href: '/about' },
   {
     label: 'Collections',
     href: '/collections',
@@ -73,18 +71,9 @@ const primaryLinks = [
   },
   { label: 'Bespoke', href: '/bespoke' },
   { label: 'Lookbook', href: '/lookbook' },
-];
-
-const secondaryLinks = [
   { label: 'Appointments', href: '/appointments' },
   { label: 'Journal', href: '/blog' },
   { label: 'Contact', href: '/contact' },
-];
-
-const socialLinks = [
-  { label: 'Instagram', href: 'https://instagram.com/shringarika', icon: Instagram },
-  { label: 'Facebook', href: 'https://facebook.com/shringarika', icon: Facebook },
-  { label: 'Twitter', href: 'https://twitter.com/shringarika', icon: Twitter },
 ];
 
 /* ─── Component ───────────────────────────────────────────── */
@@ -96,20 +85,18 @@ export default function Header() {
   const megaRef = useRef<HTMLDivElement>(null);
   const megaTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* ── Smooth scroll-driven blend ── */
+  /* ── Scroll-driven effects ── */
   const { scrollY } = useScroll();
+  const scrollProgress = useTransform(scrollY, [0, 100], [0, 1]);
 
-  const bgOpacity = useTransform(scrollY, [0, 80, 250], [0, 0.55, 0.97]);
-  const blurPx = useTransform(scrollY, [0, 80, 250], [0, 10, 24]);
-  const borderAlpha = useTransform(scrollY, [0, 150, 300], [0, 0.06, 0.12]);
-  const shadowAlpha = useTransform(scrollY, [0, 250], [0, 0.1]);
-  const announceHeight = useTransform(scrollY, [0, 60], [36, 0]);
-  const announceOpacity = useTransform(scrollY, [0, 40], [1, 0]);
+  // Navbar transforms on scroll: starts transparent, becomes solid dark
+  const bgOpacity = useTransform(scrollY, [0, 80, 200], [0.92, 0.96, 1]);
+  const borderAlpha = useTransform(scrollY, [0, 100], [0.15, 0.4]);
+  const shadowAlpha = useTransform(scrollY, [0, 200], [0, 0.3]);
 
-  const bgColor = useTransform(bgOpacity, (v) => `rgba(242,237,232,${v})`);
-  const backdropBlur = useTransform(blurPx, (v) => `blur(${v}px)`);
-  const borderStyle = useTransform(borderAlpha, (v) => `1px solid rgba(201,168,76,${v})`);
-  const shadowStyle = useTransform(shadowAlpha, (v) => `0 1px 40px rgba(181,148,82,${v})`);
+  const bgColor = useTransform(bgOpacity, (v) => `rgba(26,26,26,${v})`);
+  const borderStyle = useTransform(borderAlpha, (v) => `1px solid rgba(184,152,64,${v})`);
+  const shadowStyle = useTransform(shadowAlpha, (v) => `0 4px 30px rgba(0,0,0,${v})`);
 
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -168,39 +155,35 @@ export default function Header() {
     <>
       {/* ── Desktop Header ──────────────────────────────── */}
       <motion.header
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         style={{
           backgroundColor: bgColor,
-          backdropFilter: backdropBlur,
-          WebkitBackdropFilter: backdropBlur,
           borderBottom: borderStyle,
           boxShadow: shadowStyle,
         }}
         className="fixed top-0 left-0 right-0 z-50"
       >
-        {/* Top Announcement Bar */}
-        <motion.div
-          style={{ height: announceHeight, opacity: announceOpacity }}
-          className="overflow-hidden"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
-            <p className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-noir/40">
-              <Sparkles size={10} className="inline mr-1.5 text-zari-gold/60" />
-              Complimentary Bridal Consultation — Book Your Private Session
-              <ArrowRight size={10} className="inline ml-1.5 text-zari-gold/60" />
-            </p>
-          </div>
-        </motion.div>
+        {/* Main Nav Row — Logo | Center Nav | Right Actions */}
+        <div className="max-w-[1400px] mx-auto px-5 lg:px-8">
+          <div className="flex items-center justify-between h-[72px] lg:h-[76px]">
 
-        {/* Main Nav Row — Left | Center Logo | Right */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 lg:h-[84px]">
+            {/* ─ Left: Logo ─ */}
+            <Link href="/" className="flex items-center shrink-0 group z-10">
+              <Image
+                src="/images/logo.png"
+                alt="Shringarika"
+                width={180}
+                height={64}
+                className="h-12 lg:h-14 w-auto object-contain brightness-0 invert group-hover:opacity-80 transition-opacity duration-500"
+                priority
+              />
+            </Link>
 
-            {/* ─ Left: Navigation Links ─ */}
-            <nav className="hidden lg:flex items-center gap-0.5 flex-1">
-              {primaryLinks.map((link) =>
+            {/* ─ Center: Navigation Links ─ */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) =>
                 link.mega ? (
                   /* Collections with Mega Menu */
                   <div
@@ -212,38 +195,33 @@ export default function Header() {
                   >
                     <Link
                       href={link.href}
-                      className={`relative flex items-center gap-1 px-3.5 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
-                        isActive(link.href) ? 'text-noir' : 'text-noir/50 hover:text-noir'
+                      className={`relative flex items-center gap-1 px-4 py-2.5 font-dm-sans text-[11px] tracking-[0.18em] uppercase rounded-full transition-all duration-300 ${
+                        isActive(link.href)
+                          ? 'bg-zari-gold text-noir font-semibold'
+                          : 'text-ivory/70 hover:text-zari-gold hover:bg-ivory/[0.06]'
                       }`}
                     >
                       {link.label}
                       <ChevronDown
-                        size={12}
-                        strokeWidth={1.5}
+                        size={11}
+                        strokeWidth={2}
                         className={`transition-transform duration-300 ${megaOpen ? 'rotate-180' : ''}`}
                       />
-                      {isActive(link.href) && (
-                        <motion.span
-                          layoutId="nav-active"
-                          className="absolute bottom-0 left-3.5 right-3.5 h-[1.5px] bg-zari-gold"
-                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                        />
-                      )}
                     </Link>
 
                     {/* Mega Menu Panel */}
                     <AnimatePresence>
                       {megaOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          className="absolute top-full left-0 pt-3 w-[820px]"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[820px]"
                           onMouseEnter={openMega}
                           onMouseLeave={closeMegaDelayed}
                         >
-                          <div className="bg-ivory/[0.98] backdrop-blur-xl border border-zari-gold/10 shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-8">
+                          <div className="bg-noir/[0.98] backdrop-blur-2xl border border-zari-gold/15 shadow-[0_25px_60px_rgba(0,0,0,0.5)] rounded-2xl p-8">
                             <div className="grid grid-cols-4 gap-6">
                               {link.categories?.map((cat) => (
                                 <div key={cat.title}>
@@ -257,7 +235,7 @@ export default function Header() {
                                         <li key={item.href + item.label}>
                                           <Link
                                             href={item.href}
-                                            className="flex items-center gap-2 font-dm-sans text-[12px] tracking-wide text-noir/60 hover:text-zari-gold hover:translate-x-1 transition-all duration-300"
+                                            className="flex items-center gap-2 font-dm-sans text-[12px] tracking-wide text-ivory/50 hover:text-zari-gold hover:translate-x-1 transition-all duration-300"
                                           >
                                             {Icon && <Icon size={13} strokeWidth={1.5} className="text-zari-gold/50" />}
                                             {item.label}
@@ -269,15 +247,13 @@ export default function Header() {
                                 </div>
                               ))}
                             </div>
-
-                            {/* Mega Footer */}
                             <div className="mt-6 pt-5 border-t border-zari-gold/10 flex items-center justify-between">
-                              <p className="font-cormorant text-sm italic text-noir/40">
+                              <p className="font-cormorant text-sm italic text-ivory/30">
                                 &ldquo;Every thread tells your story&rdquo;
                               </p>
                               <Link
                                 href="/collections"
-                                className="flex items-center gap-1.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase text-zari-gold hover:text-noir transition-colors duration-300"
+                                className="flex items-center gap-1.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase text-zari-gold hover:text-ivory transition-colors duration-300"
                               >
                                 View All Collections
                                 <ArrowRight size={12} strokeWidth={1.5} />
@@ -289,114 +265,61 @@ export default function Header() {
                     </AnimatePresence>
                   </div>
                 ) : (
-                  /* Regular Nav Link */
+                  /* Regular Nav Link — pill button style */
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-3.5 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
-                      isActive(link.href) ? 'text-noir' : 'text-noir/50 hover:text-noir'
+                    className={`relative px-4 py-2.5 font-dm-sans text-[11px] tracking-[0.18em] uppercase rounded-full transition-all duration-300 ${
+                      isActive(link.href)
+                        ? 'bg-zari-gold text-noir font-semibold'
+                        : 'text-ivory/70 hover:text-zari-gold hover:bg-ivory/[0.06]'
                     }`}
                   >
                     {link.label}
-                    {isActive(link.href) && (
-                      <motion.span
-                        layoutId="nav-active"
-                        className="absolute bottom-0 left-3.5 right-3.5 h-[1.5px] bg-zari-gold"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
                   </Link>
                 )
               )}
-
-              {/* Separator between primary and secondary */}
-              <div className="w-px h-4 bg-noir/10 mx-2" />
-
-              {/* Secondary Links */}
-              {secondaryLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-3 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
-                    isActive(link.href) ? 'text-noir' : 'text-noir/35 hover:text-noir/70'
-                  }`}
-                >
-                  {link.label}
-                  {isActive(link.href) && (
-                    <motion.span
-                      layoutId="nav-active-secondary"
-                      className="absolute bottom-0 left-3 right-3 h-[1px] bg-zari-gold/60"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              ))}
             </nav>
 
-            {/* ─ Center: Logo (absolute center) ─ */}
-            <Link href="/" className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 z-10 group">
-              <Image
-                src="/images/logo.png"
-                alt="Shringarika — Official Logo"
-                width={200}
-                height={70}
-                className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
-                priority
-              />
-            </Link>
-
-            {/* ─ Right: Social Icons + Actions + CTA ─ */}
-            <div className="hidden lg:flex items-center gap-3 flex-1 justify-end">
-              {/* Social Icons */}
-              <div className="flex items-center gap-1 mr-2">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 text-noir/35 hover:text-zari-gold transition-colors duration-300"
-                      aria-label={social.label}
-                    >
-                      <Icon size={15} strokeWidth={1.5} />
-                    </a>
-                  );
-                })}
-              </div>
-
-              {/* Separator */}
-              <div className="w-px h-4 bg-noir/10" />
-
+            {/* ─ Right: Cart + Phone + Account ─ */}
+            <div className="hidden lg:flex items-center gap-2 shrink-0">
               {/* Shopping Bag */}
               <Link
                 href="/collections"
-                className={`p-2 transition-colors duration-300 ${
-                  isActive('/collections') ? 'text-zari-gold' : 'text-noir/40 hover:text-zari-gold'
+                className={`p-2.5 rounded-full transition-all duration-300 ${
+                  isActive('/collections') ? 'text-zari-gold bg-ivory/[0.08]' : 'text-ivory/60 hover:text-zari-gold hover:bg-ivory/[0.06]'
                 }`}
                 aria-label="Shop"
               >
-                <ShoppingBag size={17} strokeWidth={1.5} />
+                <ShoppingBag size={18} strokeWidth={1.5} />
               </Link>
+
+              {/* Phone */}
+              <a
+                href="tel:+919999999999"
+                className="p-2.5 rounded-full text-ivory/60 hover:text-zari-gold hover:bg-ivory/[0.06] transition-all duration-300"
+                aria-label="Call us"
+              >
+                <Phone size={17} strokeWidth={1.5} />
+              </a>
 
               {/* Account */}
               <Link
                 href="/account"
-                className={`p-2 transition-colors duration-300 ${
-                  isActive('/account') ? 'text-zari-gold' : 'text-noir/40 hover:text-zari-gold'
+                className={`p-2.5 rounded-full transition-all duration-300 ${
+                  isActive('/account') ? 'text-zari-gold bg-ivory/[0.08]' : 'text-ivory/60 hover:text-zari-gold hover:bg-ivory/[0.06]'
                 }`}
                 aria-label="My Account"
               >
                 <User size={17} strokeWidth={1.5} />
               </Link>
 
-              {/* Book Appointment CTA */}
+              {/* Book Appointment CTA — Golden button */}
               <Link
                 href="/appointments"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-noir text-ivory font-dm-sans text-[10px] tracking-[0.2em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
+                className="inline-flex items-center gap-2 ml-2 px-5 py-2.5 bg-zari-gold text-noir font-dm-sans text-[10px] tracking-[0.2em] uppercase font-semibold rounded-full hover:bg-zari-gold-light hover:shadow-[0_0_20px_rgba(184,152,64,0.3)] transition-all duration-500"
               >
-                <Calendar size={12} strokeWidth={1.5} />
+                <Calendar size={12} strokeWidth={2} />
                 Book Appointment
               </Link>
             </div>
@@ -408,48 +331,37 @@ export default function Header() {
                 <Image
                   src="/images/logo.png"
                   alt="Shringarika"
-                  width={160}
-                  height={56}
-                  className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
+                  width={150}
+                  height={52}
+                  className="h-11 w-auto object-contain brightness-0 invert group-hover:opacity-80 transition-opacity duration-500"
                   priority
                 />
               </Link>
 
               {/* Mobile Actions */}
-              <div className="flex items-center gap-1.5 shrink-0">
-                {/* Social Icons (mobile - show limited) */}
-                <a
-                  href="https://instagram.com/shringarika"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 text-noir/40 hover:text-zari-gold transition-colors duration-300"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={16} strokeWidth={1.5} />
-                </a>
-
+              <div className="flex items-center gap-1 shrink-0">
                 {/* Shopping Bag */}
                 <Link
                   href="/collections"
-                  className="p-2 text-noir/40 hover:text-zari-gold transition-colors duration-300"
+                  className="p-2 text-ivory/60 hover:text-zari-gold transition-colors duration-300"
                   aria-label="Shop"
                 >
-                  <ShoppingBag size={16} strokeWidth={1.5} />
+                  <ShoppingBag size={18} strokeWidth={1.5} />
                 </Link>
 
-                {/* Account Icon */}
-                <Link
-                  href="/account"
-                  className="p-2 text-noir/40 hover:text-zari-gold transition-colors duration-300"
-                  aria-label="Account"
+                {/* Phone */}
+                <a
+                  href="tel:+919999999999"
+                  className="p-2 text-ivory/60 hover:text-zari-gold transition-colors duration-300"
+                  aria-label="Call"
                 >
-                  <User size={16} strokeWidth={1.5} />
-                </Link>
+                  <Phone size={17} strokeWidth={1.5} />
+                </a>
 
                 {/* Mobile Menu Toggle */}
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
-                  className="p-2 text-noir transition-colors"
+                  className="p-2 text-ivory/80 hover:text-zari-gold transition-colors"
                   aria-label="Toggle menu"
                 >
                   <AnimatePresence mode="wait">
@@ -480,6 +392,9 @@ export default function Header() {
             </div>
           </div>
         </div>
+
+        {/* Golden bottom accent line */}
+        <div className="h-[1px] bg-gradient-to-r from-transparent via-zari-gold/30 to-transparent" />
       </motion.header>
 
       {/* ── Mobile Menu Overlay ──────────────────────────── */}
@@ -492,7 +407,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-noir/70 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-noir/80 backdrop-blur-md lg:hidden"
               onClick={() => setMenuOpen(false)}
             />
 
@@ -505,17 +420,17 @@ export default function Header() {
               className="fixed top-0 right-0 bottom-0 z-50 w-[320px] bg-noir flex flex-col lg:hidden"
             >
               {/* Panel Header */}
-              <div className="flex items-center justify-between px-7 h-16 border-b border-ivory/5">
+              <div className="flex items-center justify-between px-7 h-16 border-b border-zari-gold/10">
                 <Image
                   src="/images/logo.png"
                   alt="Shringarika"
-                  width={140}
-                  height={56}
-                  className="h-11 w-auto object-contain"
+                  width={130}
+                  height={52}
+                  className="h-10 w-auto object-contain brightness-0 invert"
                 />
                 <button
                   onClick={() => setMenuOpen(false)}
-                  className="p-2 text-ivory/60 hover:text-ivory transition-colors"
+                  className="p-2 text-ivory/60 hover:text-zari-gold transition-colors"
                   aria-label="Close menu"
                 >
                   <X size={20} strokeWidth={1.5} />
@@ -524,11 +439,10 @@ export default function Header() {
 
               {/* Nav Links — Scrollable */}
               <nav className="flex-1 flex flex-col overflow-y-auto min-h-0 py-4">
-                {/* Primary Links */}
                 <div className="px-7 pb-3">
                   <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-ivory/25">Navigate</span>
                 </div>
-                {primaryLinks.map((link, i) => (
+                {navLinks.map((link, i) => (
                   <div key={link.href}>
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
@@ -538,10 +452,10 @@ export default function Header() {
                       <Link
                         href={link.href}
                         onClick={() => setMenuOpen(false)}
-                        className={`flex items-center justify-between py-3 px-7 font-cormorant text-lg tracking-wide transition-all duration-300 border-b border-ivory/5 ${
+                        className={`flex items-center justify-between py-3.5 px-7 font-dm-sans text-[13px] tracking-[0.12em] uppercase transition-all duration-300 border-b border-ivory/[0.04] ${
                           isActive(link.href)
-                            ? 'text-zari-gold bg-ivory/5'
-                            : 'text-ivory/70 hover:text-zari-gold hover:pl-9'
+                            ? 'text-zari-gold bg-zari-gold/[0.08]'
+                            : 'text-ivory/60 hover:text-zari-gold hover:pl-9'
                         }`}
                       >
                         {link.label}
@@ -553,16 +467,16 @@ export default function Header() {
 
                     {/* Mobile Sub-links for Collections */}
                     {link.mega && (
-                      <div className="bg-ivory/[0.03]">
+                      <div className="bg-ivory/[0.02]">
                         {link.categories?.flatMap((cat) =>
                           cat.items.map((item) => (
                             <Link
                               key={item.href + item.label}
                               href={item.href}
                               onClick={() => setMenuOpen(false)}
-                              className="flex items-center gap-2 py-2 px-12 font-dm-sans text-[11px] tracking-wider text-ivory/40 hover:text-zari-gold hover:pl-14 transition-all duration-300"
+                              className="flex items-center gap-2 py-2.5 px-12 font-dm-sans text-[11px] tracking-wider text-ivory/35 hover:text-zari-gold hover:pl-14 transition-all duration-300"
                             >
-                              <span className="w-1 h-1 rounded-full bg-ivory/20" />
+                              <span className="w-1 h-1 rounded-full bg-zari-gold/30" />
                               {item.label}
                             </Link>
                           ))
@@ -571,60 +485,10 @@ export default function Header() {
                     )}
                   </div>
                 ))}
-
-                {/* Separator */}
-                <div className="my-4 mx-7 h-px bg-ivory/5" />
-
-                {/* Secondary Links */}
-                <div className="px-7 pb-3">
-                  <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-ivory/25">More</span>
-                </div>
-                {secondaryLinks.map((link, i) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (primaryLinks.length + i) * 0.04, duration: 0.35 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      className={`flex items-center justify-between py-3 px-7 font-cormorant text-lg tracking-wide transition-all duration-300 border-b border-ivory/5 ${
-                        isActive(link.href)
-                          ? 'text-zari-gold bg-ivory/5'
-                          : 'text-ivory/50 hover:text-zari-gold hover:pl-9'
-                      }`}
-                    >
-                      {link.label}
-                      {isActive(link.href) && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-zari-gold" />
-                      )}
-                    </Link>
-                  </motion.div>
-                ))}
               </nav>
 
               {/* Panel Footer */}
-              <div className="px-7 pb-8 space-y-4 border-t border-ivory/5 pt-5">
-                {/* Social Icons Row */}
-                <div className="flex items-center gap-4">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-ivory/40 hover:text-zari-gold transition-colors duration-300"
-                        aria-label={social.label}
-                      >
-                        <Icon size={16} strokeWidth={1.5} />
-                      </a>
-                    );
-                  })}
-                </div>
-
+              <div className="px-7 pb-8 space-y-4 border-t border-zari-gold/10 pt-5">
                 <Link
                   href="/account"
                   onClick={() => setMenuOpen(false)}
@@ -636,9 +500,9 @@ export default function Header() {
                 <Link
                   href="/appointments"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-zari-gold text-noir font-dm-sans text-[10px] tracking-[0.2em] uppercase hover:bg-ivory transition-all duration-500"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-zari-gold text-noir font-dm-sans text-[10px] tracking-[0.2em] uppercase font-semibold rounded-full hover:bg-zari-gold-light transition-all duration-500"
                 >
-                  <Calendar size={13} strokeWidth={1.5} />
+                  <Calendar size={13} strokeWidth={2} />
                   Book Appointment
                 </Link>
               </div>
