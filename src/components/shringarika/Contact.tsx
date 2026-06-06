@@ -8,9 +8,11 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="contact" className="relative bg-noir section-luxury overflow-hidden">
+    <section id="contact" className="relative overflow-hidden section-luxury" style={{ background: 'linear-gradient(180deg, #0a0a12 0%, #0d1220 40%, #1a2b4a 70%, #0a0a12 100%)' }}>
       {/* Decorative glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-gold/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#D4AF37]/[0.04] rounded-full blur-[120px]" />
+      {/* Bottom glow */}
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-[#6b1a2a]/[0.06] rounded-full blur-[100px]" />
 
       <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -20,7 +22,7 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-4"
         >
-          <span className="font-dm-sans text-zari-gold/80 text-[10px] tracking-[0.4em] uppercase">
+          <span className="font-dm-sans text-[#D4AF37]/80 text-[10px] tracking-[0.4em] uppercase">
             Contact
           </span>
         </motion.div>
@@ -44,6 +46,14 @@ export default function Contact() {
           Reach out, and let us help you write yours.
         </motion.p>
 
+        {/* Animated gold accent line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 1.2, delay: 0.5 }}
+          className="w-full max-w-xs mx-auto h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mb-16"
+        />
+
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Contact Form */}
           <motion.div
@@ -51,46 +61,46 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-5 p-8 border border-[#D4AF37]/15 bg-[#0a0a12]/50 backdrop-blur-sm" onSubmit={(e) => e.preventDefault()}>
               <div>
-                <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/50 block mb-2">
+                <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37]/60 block mb-2">
                   Your Name
                 </label>
                 <input
                   type="text"
                   placeholder="Full name"
-                  className="w-full bg-transparent border-b border-ivory/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                  className="w-full bg-transparent border-b border-[#D4AF37]/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-[#D4AF37] focus:shadow-[0_2px_10px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/50 block mb-2">
+                  <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37]/60 block mb-2">
                     Phone
                   </label>
                   <input
                     type="tel"
                     placeholder="+91 98XXX XXXXX"
-                    className="w-full bg-transparent border-b border-ivory/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent border-b border-[#D4AF37]/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-[#D4AF37] focus:shadow-[0_2px_10px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                   />
                 </div>
                 <div>
-                  <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/50 block mb-2">
+                  <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37]/60 block mb-2">
                     Email
                   </label>
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className="w-full bg-transparent border-b border-ivory/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent border-b border-[#D4AF37]/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-[#D4AF37] focus:shadow-[0_2px_10px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/50 block mb-2">
+                <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37]/60 block mb-2">
                   Occasion
                 </label>
-                <select className="w-full bg-transparent border-b border-ivory/20 px-0 py-3 font-dm-sans text-sm text-ivory/50 focus:border-zari-gold focus:outline-none transition-colors duration-300">
+                <select className="w-full bg-[#0d1220] border-b border-[#D4AF37]/20 px-0 py-3 font-dm-sans text-sm text-ivory/50 focus:border-[#D4AF37] focus:shadow-[0_2px_10px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300">
                   <option value="">Select occasion</option>
                   <option value="bridal">Bridal</option>
                   <option value="wedding">Wedding Guest</option>
@@ -102,19 +112,19 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-ivory/50 block mb-2">
+                <label className="font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37]/60 block mb-2">
                   Your Message
                 </label>
                 <textarea
                   rows={4}
                   placeholder="Tell us about your style dreams, questions, or how we can help..."
-                  className="w-full bg-transparent border-b border-ivory/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:outline-none transition-colors duration-300 resize-none"
+                  className="w-full bg-transparent border-b border-[#D4AF37]/20 px-0 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-[#D4AF37] focus:shadow-[0_2px_10px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="px-10 py-3.5 bg-zari-gold text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_30px_rgba(201,168,76,0.4)] transition-all duration-500"
+                className="px-10 py-3.5 bg-[#D4AF37] text-[#0a0a12] font-dm-sans text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500"
               >
                 Send Message
               </button>
@@ -166,9 +176,10 @@ export default function Contact() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 p-4 border border-ivory/5 hover:border-zari-gold/20 transition-colors duration-500 group"
+                  className="flex items-center gap-4 p-4 border border-[#D4AF37]/10 hover:border-[#D4AF37]/30 bg-[#0a0a12]/30 hover:shadow-[0_0_15px_rgba(212,175,55,0.08)] transition-all duration-500 group"
+                  style={{ perspective: '600px' }}
                 >
-                  <div className="text-zari-gold/60 group-hover:text-zari-gold transition-colors duration-300">
+                  <div className="text-[#D4AF37]/60 group-hover:text-[#D4AF37] group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] transition-all duration-300">
                     {item.icon}
                   </div>
                   <div>
@@ -183,12 +194,12 @@ export default function Contact() {
             </div>
 
             {/* Closing Brand Statement */}
-            <div className="pt-6 border-t border-ivory/5">
+            <div className="pt-6 border-t border-[#D4AF37]/10">
               <p className="font-cormorant text-lg text-ivory/40 italic text-center leading-relaxed">
                 &ldquo;Not just a fashion brand — but a deeply personal, cinematic couture experience 
                 where every woman walks into her most beautiful story.&rdquo;
               </p>
-              <p className="font-cinzel text-xs text-zari-gold/40 tracking-[0.3em] uppercase text-center mt-4">
+              <p className="font-cinzel text-xs text-[#D4AF37]/40 tracking-[0.3em] uppercase text-center mt-4">
                 House of Shringarika
               </p>
             </div>

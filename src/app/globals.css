@@ -44,7 +44,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Shringarika Luxury Colors — Rose Gold & Gold */
+  /* ─── Shringarika Cinematic Theme — Deep Navy + Burgundy + Gold ─── */
   --color-ivory: #F2EDE8;
   --color-ivory-dark: #E8E1D9;
   --color-rose-gold: #B76E79;
@@ -54,8 +54,8 @@
   --color-rose-blue-light: #D4A0A7;
   --color-rose-blue-dark: #9B5A64;
   --color-champagne: #E8D9C0;
-  --color-noir: #1A1A1A;
-  --color-noir-soft: #2D2D2D;
+  --color-noir: #0a0a12;
+  --color-noir-soft: #14141e;
   --color-mauve: #8E7D8D;
   --color-mauve-dusty: #A8989E;
   --color-blush: #F5E1E0;
@@ -66,39 +66,52 @@
   --color-emerald: #03550A;
   --color-silver: #A8A8A8;
   --color-sandalwood: #D4C2A5;
+
+  /* ─── NEW: Deep Navy + Burgundy palette ─── */
+  --color-navy-deep: #0d1220;
+  --color-navy: #1a2b4a;
+  --color-navy-light: #253a5e;
+  --color-navy-mid: #1e3050;
+  --color-burgundy: #8b1a38;
+  --color-burgundy-deep: #6b1a2a;
+  --color-burgundy-light: #a82848;
+  --color-burgundy-wine: #5c1525;
+  --color-gold-accent: #D4AF37;
+  --color-gold-bright: #FFD700;
+  --color-gold-warm: #B89840;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: #0a0a0a;
-  --foreground: #e0e0e0;
-  --card: #111111;
-  --card-foreground: #e0e0e0;
-  --popover: #111111;
-  --popover-foreground: #e0e0e0;
+  --background: #0a0a12;
+  --foreground: #e8e0d8;
+  --card: #0f1320;
+  --card-foreground: #e8e0d8;
+  --popover: #0f1320;
+  --popover-foreground: #e8e0d8;
   --primary: #D4AF37;
-  --primary-foreground: #0a0a0a;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #e0e0e0;
-  --muted: #1a1a1a;
-  --muted-foreground: #888888;
-  --accent: #FFD700;
-  --accent-foreground: #0a0a0a;
+  --primary-foreground: #0a0a12;
+  --secondary: #1a2b4a;
+  --secondary-foreground: #e8e0d8;
+  --muted: #14141e;
+  --muted-foreground: #887a70;
+  --accent: #8b1a38;
+  --accent-foreground: #e8e0d8;
   --destructive: #ff3333;
-  --border: #D4AF3730;
-  --input: #1a1a1a;
+  --border: #D4AF3725;
+  --input: #14141e;
   --ring: #D4AF37;
-  --chart-1: #FFD700;
-  --chart-2: #D4AF37;
-  --chart-3: #B89730;
-  --chart-4: #333333;
-  --chart-5: #555555;
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #e0e0e0;
+  --chart-1: #D4AF37;
+  --chart-2: #8b1a38;
+  --chart-3: #1a2b4a;
+  --chart-4: #B89840;
+  --chart-5: #6b1a2a;
+  --sidebar: #0a0a12;
+  --sidebar-foreground: #e8e0d8;
   --sidebar-primary: #D4AF37;
-  --sidebar-primary-foreground: #0a0a0a;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #e0e0e0;
+  --sidebar-primary-foreground: #0a0a12;
+  --sidebar-accent: #1a2b4a;
+  --sidebar-accent-foreground: #e8e0d8;
   --sidebar-border: #D4AF3720;
   --sidebar-ring: #D4AF37;
 }
@@ -115,19 +128,19 @@
   }
 }
 
-/* Custom scrollbar — Gaming Dark */
+/* ─── Custom scrollbar — Cinematic Dark ─── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0a0a12;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4AF37;
+  background: linear-gradient(180deg, #D4AF37, #8b1a38);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFD700;
+  background: linear-gradient(180deg, #FFD700, #a82848);
 }
 
 /* Admin sidebar dark scrollbar */
@@ -144,7 +157,6 @@
 .admin-sidebar-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(184, 152, 64, 0.6);
 }
-/* Firefox scrollbar for admin sidebar */
 .admin-sidebar-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(184, 152, 64, 0.3) transparent;
@@ -161,16 +173,30 @@
   z-index: 1;
 }
 
-/* Cinematic text gradient — warmer, more muted */
+/* ─── Cinematic Gradients ─── */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #B89840 0%, #D4B86A 50%, #B89840 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 40%, #D4AF37 70%, #B89840 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-rose {
-  background: linear-gradient(135deg, #B76E79 0%, #D4A0A7 50%, #B76E79 100%);
+  background: linear-gradient(135deg, #8b1a38 0%, #D4A0A7 50%, #8b1a38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-burgundy {
+  background: linear-gradient(135deg, #8b1a38 0%, #a82848 40%, #D4A0A7 70%, #8b1a38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-navy {
+  background: linear-gradient(135deg, #1a2b4a 0%, #253a5e 50%, #1a2b4a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -180,14 +206,14 @@
 .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(26, 26, 26, 0.1) 0%,
-    rgba(26, 26, 26, 0.3) 40%,
-    rgba(26, 26, 26, 0.6) 70%,
-    rgba(26, 26, 26, 0.85) 100%
+    rgba(13, 18, 32, 0.1) 0%,
+    rgba(13, 18, 32, 0.3) 40%,
+    rgba(13, 18, 32, 0.6) 70%,
+    rgba(13, 18, 32, 0.9) 100%
   );
 }
 
-/* Flowing silk keyframes */
+/* ─── Flowing Silk Keyframes ─── */
 @keyframes silk-flow-1 {
   0%, 100% { d: path('M0,300 C200,250 400,350 600,280 C800,210 1000,320 1200,290 C1400,260 1600,340 1920,300 L1920,1080 L0,1080 Z'); }
   50% { d: path('M0,320 C200,280 400,310 600,340 C800,280 1000,260 1200,310 C1400,340 1600,280 1920,320 L1920,1080 L0,1080 Z'); }
@@ -240,9 +266,9 @@
 .hero-overlay-warm {
   background: linear-gradient(
     180deg,
-    rgba(250, 248, 245, 0) 0%,
-    rgba(250, 248, 245, 0.3) 50%,
-    rgba(250, 248, 245, 1) 100%
+    rgba(13, 18, 32, 0) 0%,
+    rgba(13, 18, 32, 0.4) 50%,
+    rgba(13, 18, 32, 1) 100%
   );
 }
 
@@ -323,8 +349,8 @@
 .embroidery-border {
   border-image: repeating-linear-gradient(
     90deg,
-    #B89840 0px,
-    #B89840 8px,
+    #D4AF37 0px,
+    #D4AF37 8px,
     transparent 8px,
     transparent 16px
   ) 1;
@@ -358,12 +384,12 @@
 
 /* Vignette overlay */
 .vignette {
-  box-shadow: inset 0 0 150px rgba(26, 26, 26, 0.35);
+  box-shadow: inset 0 0 150px rgba(10, 10, 18, 0.4);
 }
 
 /* Warm candlelight glow */
 .candlelight {
-  box-shadow: 0 0 60px rgba(184, 152, 64, 0.12), 0 0 120px rgba(183, 110, 121, 0.06);
+  box-shadow: 0 0 60px rgba(184, 152, 64, 0.1), 0 0 120px rgba(139, 26, 56, 0.06);
 }
 
 /* Zari shimmer hover */
@@ -388,13 +414,15 @@
   transform: translateY(0);
 }
 
-/* Collection card cinematic hover */
+/* ─── Collection Card — 3D Cinematic ─── */
 .collection-card {
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
 }
 
 .collection-card:hover {
-  transform: scale(1.02);
+  transform: perspective(800px) scale(1.02) rotateY(2deg);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(212,175,55,0.08);
 }
 
 .collection-card:hover .collection-overlay {
@@ -440,19 +468,19 @@
   animation: logo-reveal 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* Cursor gold trail (decorative) */
+/* Cursor gold trail */
 .cursor-gold {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3' fill='%23C9A84C' opacity='0.5'/%3E%3C/svg%3E") 12 12, auto;
 }
 
-/* Luxury divider — Gaming Neon */
+/* ─── Luxury Divider — Cinematic Neon ─── */
 .luxury-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #D4AF37, #FFD700, #D4AF37, transparent);
+  background: linear-gradient(90deg, transparent, #D4AF37, #8b1a38, #D4AF37, transparent);
   box-shadow: 0 0 8px #D4AF3730;
 }
 
-/* Section padding for luxury spacing */
+/* Section padding for cinematic spacing */
 .section-luxury {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -472,28 +500,24 @@
   }
 }
 
-/* ─── 3D Navigation Keyframe Animations ──────────────────── */
+/* ─── 3D Navigation Keyframe Animations ─── */
 
-/* Holographic shimmer sweep */
 @keyframes holo-shimmer {
   0% { background-position: 200% center; }
   100% { background-position: -200% center; }
 }
 
-/* 3D edge glow pulse */
 @keyframes edge-glow {
   0% { opacity: 0.5; }
   50% { opacity: 1; }
   100% { opacity: 0.7; }
 }
 
-/* 3D Nav crystal float */
 @keyframes nav-crystal-float {
   0%, 100% { transform: translateY(0) rotateX(0deg); }
   50% { transform: translateY(-1px) rotateX(0.3deg); }
 }
 
-/* 3D depth shimmer on active pill */
 @keyframes active-pill-3d {
   0%, 100% {
     box-shadow: 0 2px 8px rgba(184,152,64,0.35), inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 2px rgba(0,0,0,0.15);
@@ -503,7 +527,6 @@
   }
 }
 
-/* 3D Icon magnetic hover glow */
 @keyframes icon-3d-glow {
   0%, 100% {
     box-shadow: 0 0 15px rgba(184,152,64,0.15), inset 0 0 8px rgba(184,152,64,0.08);
@@ -513,28 +536,24 @@
   }
 }
 
-/* 3D perspective tilt reset */
 .nav-3d-reset {
   transform-style: preserve-3d;
   backface-visibility: hidden;
 }
 
-/* ─── Curvy Glass Mirror Navigation Animations ────────── */
+/* ─── Mirror Animations ─── */
 
-/* Mirror sweep light reflection */
 @keyframes mirror-sweep {
   0% { background-position: 200% center; }
   100% { background-position: -200% center; }
 }
 
-/* Glass ripple on hover */
 @keyframes glass-ripple {
   0% { transform: scale(0.8); opacity: 0.5; }
   50% { transform: scale(1.2); opacity: 0.2; }
   100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* Floating glass tilt */
 @keyframes glass-float {
   0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
   25% { transform: translateY(-1px) rotateX(0.2deg) rotateY(0.1deg); }
@@ -542,13 +561,11 @@
   75% { transform: translateY(-1.5px) rotateX(0.15deg) rotateY(-0.1deg); }
 }
 
-/* Mirror shine pulse */
 @keyframes mirror-pulse {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.6; }
 }
 
-/* Curvy glass border glow */
 @keyframes glass-border-glow {
   0%, 100% {
     border-color: rgba(255,255,255,0.06);
@@ -560,34 +577,29 @@
   }
 }
 
-/* ─── Gaming 3D Motion Animations ──────────────────────── */
+/* ─── Gaming 3D Motion Animations ─── */
 
-/* Neon pulse glow */
 @keyframes neon-pulse {
   0%, 100% { opacity: 0.6; text-shadow: 0 0 5px currentColor; }
   50% { opacity: 1; text-shadow: 0 0 10px currentColor, 0 0 20px currentColor; }
 }
 
-/* 3D card flip entrance */
 @keyframes card-flip-in {
   0% { opacity: 0; transform: perspective(800px) rotateY(-25deg) translateX(-30px); }
   100% { opacity: 1; transform: perspective(800px) rotateY(0) translateX(0); }
 }
 
-/* 3D scale bounce entrance */
 @keyframes scale-bounce-3d {
   0% { opacity: 0; transform: perspective(600px) scale(0.7) rotateX(10deg); }
   60% { transform: perspective(600px) scale(1.05) rotateX(-2deg); }
   100% { opacity: 1; transform: perspective(600px) scale(1) rotateX(0); }
 }
 
-/* 3D rotate entrance from bottom */
 @keyframes rotate-in-bottom {
   0% { opacity: 0; transform: perspective(800px) rotateX(-30deg) translateY(40px); }
   100% { opacity: 1; transform: perspective(800px) rotateX(0) translateY(0); }
 }
 
-/* Gaming glitch effect */
 @keyframes glitch {
   0%, 100% { transform: translate(0); }
   20% { transform: translate(-2px, 2px); }
@@ -596,21 +608,18 @@
   80% { transform: translate(2px, -2px); }
 }
 
-/* Neon border trace */
 @keyframes neon-trace {
   0% { box-shadow: 0 0 2px #D4AF37, inset 0 0 2px #D4AF37; }
   50% { box-shadow: 0 0 8px #FFD700, 0 0 16px #D4AF3750, inset 0 0 4px #D4AF3730; }
   100% { box-shadow: 0 0 2px #D4AF37, inset 0 0 2px #D4AF37; }
 }
 
-/* 3D hover lift */
 @keyframes hover-lift-3d {
   0% { transform: perspective(600px) rotateX(0) translateY(0); }
   50% { transform: perspective(600px) rotateX(2deg) translateY(-4px); }
   100% { transform: perspective(600px) rotateX(0) translateY(-2px); }
 }
 
-/* Scan line sweep */
 @keyframes scan-line {
   0% { top: -10%; }
   100% { top: 110%; }
@@ -624,30 +633,104 @@
   background-clip: text;
 }
 
-/* Gaming card style */
+/* ─── Cinematic Card — Deep Navy/Burgundy ─── */
 .gaming-card {
-  background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
-  border: 1px solid #D4AF3720;
-  transition: all 0.3s ease;
+  background: linear-gradient(180deg, #0f1320 0%, #0a0a12 100%);
+  border: 1px solid #D4AF3718;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gaming-card:hover {
-  border-color: #D4AF3750;
-  box-shadow: 0 0 20px #D4AF3715, 0 10px 30px rgba(0,0,0,0.4);
-  transform: translateY(-2px);
+  border-color: #D4AF3740;
+  box-shadow: 0 0 25px #D4AF3712, 0 15px 40px rgba(0,0,0,0.5), 0 0 50px rgba(139,26,56,0.06);
+  transform: translateY(-3px) perspective(600px) rotateX(1deg);
 }
 
 /* Gaming button */
 .gaming-btn {
   background: linear-gradient(135deg, #FFD700, #D4AF37, #B89730);
-  color: #0a0a0a;
+  color: #0a0a12;
   font-weight: 700;
-  border-radius: 2px;
+  border-radius: 24px;
   transition: all 0.3s ease;
   box-shadow: 0 0 10px #D4AF3730;
 }
 
 .gaming-btn:hover {
-  box-shadow: 0 0 20px #D4AF3750, 0 0 40px #D4AF3720;
+  box-shadow: 0 0 25px #D4AF3750, 0 0 50px #D4AF3720;
   transform: scale(1.03);
+}
+
+/* ─── NEW: Cinematic Section Backgrounds ─── */
+.bg-section-navy {
+  background: linear-gradient(180deg, #0d1220 0%, #1a2b4a 50%, #0d1220 100%);
+}
+
+.bg-section-burgundy {
+  background: linear-gradient(180deg, #0a0a12 0%, #1a1020 30%, #3a0a1a 60%, #1a1020 80%, #0a0a12 100%);
+}
+
+.bg-section-dark {
+  background: linear-gradient(180deg, #0a0a12 0%, #0f1320 50%, #0a0a12 100%);
+}
+
+/* ─── NEW: 3D Clip-path Reveal Animation ─── */
+@keyframes clip-reveal-up {
+  0% { clip-path: inset(100% 0 0 0); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes clip-reveal-left {
+  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes clip-reveal-right {
+  0% { clip-path: inset(0 0 0 100%); opacity: 0; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+/* ─── NEW: Cinematic Parallax Glow ─── */
+@keyframes parallax-glow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(212,175,55,0.05), 0 0 60px rgba(139,26,56,0.03);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(212,175,55,0.1), 0 0 100px rgba(139,26,56,0.06);
+  }
+}
+
+/* ─── NEW: Smooth 3D Card Tilt ─── */
+.card-3d-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+
+.card-3d-tilt:hover {
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.08);
+}
+
+/* ─── NEW: Animated border gradient ─── */
+@keyframes border-rotate {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+.animated-border {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(var(--angle, 0deg), #D4AF37, #8b1a38, #1a2b4a, #D4AF37);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-rotate 4s linear infinite;
 }

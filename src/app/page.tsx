@@ -14,11 +14,11 @@ import LoadingScreen from '@/components/shringarika/LoadingScreen';
 
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center py-4 bg-ivory">
+    <div className="flex items-center justify-center py-4 bg-[#0a0a12]">
       <div className="flex items-center gap-4">
-        <div className="w-12 h-[1px] bg-zari-gold/20" />
-        <span className="text-zari-gold/30 text-xs">✦</span>
-        <div className="w-12 h-[1px] bg-zari-gold/20" />
+        <div className="w-12 h-[1px] bg-[#D4AF37]/20" />
+        <span className="text-[#D4AF37]/30 text-xs">✦</span>
+        <div className="w-12 h-[1px] bg-[#D4AF37]/20" />
       </div>
     </div>
   );
@@ -31,12 +31,12 @@ export default function Home() {
       <HeroSection />
 
       {/* Brand Story Teaser Line */}
-      <div className="bg-ivory py-8 text-center">
-        <p className="font-cormorant text-lg sm:text-xl text-noir/60 italic max-w-2xl mx-auto px-4">
+      <div className="bg-[#0a0a12] py-8 text-center">
+        <p className="font-cormorant text-lg sm:text-xl text-ivory/60 italic max-w-2xl mx-auto px-4">
           Not just a fashion brand — but a deeply personal, cinematic couture experience 
           where every woman and man walks into their most beautiful story.
         </p>
-        <div className="w-12 h-[1px] bg-zari-gold/40 mx-auto mt-4" />
+        <div className="w-12 h-[1px] bg-[#D4AF37]/40 mx-auto mt-4" />
       </div>
 
       <SectionDivider />

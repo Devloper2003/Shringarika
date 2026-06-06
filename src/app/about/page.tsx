@@ -57,12 +57,14 @@ const differentiators = [
 export default function AboutPage() {
   return (
     <SiteLayout>
-      <main className="bg-ivory">
+      <main className="bg-[#0a0a12]">
 
       {/* Hero Banner */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-champagne/30 via-blush/30 to-sandalwood/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ivory" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-burgundy-deep/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a12]" />
+        {/* Radial glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-zari-gold/[0.04] rounded-full blur-[150px] pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -76,7 +78,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-noir leading-[1.1] mb-8"
+            className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ivory leading-[1.1] mb-8"
           >
             Every Thread Tells<br />a Story
           </motion.h1>
@@ -84,13 +86,13 @@ export default function AboutPage() {
             initial={{ width: 0 }}
             animate={{ width: 80 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="h-[1px] bg-zari-gold mx-auto mb-8"
+            className="h-[1px] bg-zari-gold mx-auto mb-8 shadow-[0_0_8px_rgba(212,175,55,0.3)]"
           />
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="font-cormorant text-xl md:text-2xl text-noir/60 italic max-w-2xl mx-auto"
+            className="font-cormorant text-xl md:text-2xl text-ivory/50 italic max-w-2xl mx-auto"
           >
             Born in the pink city of Jaipur, woven with the soul of Rajasthan
           </motion.p>
@@ -98,25 +100,25 @@ export default function AboutPage() {
       </section>
 
       {/* Origin Story Section */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInSection>
-              <div className="aspect-[4/5] rounded-sm overflow-hidden relative">
+              <div className="aspect-[4/5] rounded-sm overflow-hidden relative group card-3d-tilt">
                 <Image
                   src="/images/atelier-cutting.png"
                   alt="Designer cutting fabric at the atelier table"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-noir/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/60 to-transparent" />
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">The Beginning</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-8">Where It All Started</h2>
-              <div className="space-y-6 font-dm-sans text-sm text-noir/70 leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-8">Where It All Started</h2>
+              <div className="space-y-6 font-dm-sans text-sm text-ivory/60 leading-relaxed">
                 <p>
                   In the narrow, sun-dappled lanes of Jaipur&apos;s old city — where the air carries the scent of marigolds and
                   block-printing ink — a young girl watched her grandmother drape sarees with the precision of a sculptor.
@@ -147,13 +149,14 @@ export default function AboutPage() {
       </section>
 
       {/* Design Philosophy Section */}
-      <section className="section-luxury bg-blush/30">
+      <section className="section-luxury bg-[#0a0a12]">
+        <div className="absolute inset-0 bg-gradient-to-br from-burgundy-deep/5 via-transparent to-navy/5 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-16">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Our Philosophy</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-noir mb-6">Design Principles We Live By</h2>
-              <p className="font-dm-sans text-sm text-noir/60 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-ivory mb-6">Design Principles We Live By</h2>
+              <p className="font-dm-sans text-sm text-ivory/50 max-w-2xl mx-auto leading-relaxed">
                 These are not mere guidelines — they are the invisible architecture that holds every creation together,
                 the quiet promises we make to every woman who trusts us with her most important moments.
               </p>
@@ -162,14 +165,14 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {philosophies.map((philosophy, index) => (
               <FadeInSection key={philosophy.title} delay={index * 0.15}>
-                <div className="bg-ivory p-8 md:p-10 border border-zari-gold/10 hover:border-zari-gold/30 transition-all duration-500 group">
+                <div className="gaming-card p-8 md:p-10 hover:border-zari-gold/30 transition-all duration-500 group">
                   <div className="flex items-start gap-6">
-                    <span className="text-3xl text-zari-gold/60 group-hover:text-zari-gold transition-colors duration-500 mt-1">
+                    <span className="text-3xl text-zari-gold/60 group-hover:text-zari-gold transition-colors duration-500 mt-1 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
                       {philosophy.icon}
                     </span>
                     <div>
-                      <h3 className="font-playfair text-xl text-noir mb-4">{philosophy.title}</h3>
-                      <p className="font-dm-sans text-sm text-noir/60 leading-relaxed">{philosophy.description}</p>
+                      <h3 className="font-playfair text-xl text-ivory mb-4">{philosophy.title}</h3>
+                      <p className="font-dm-sans text-sm text-ivory/50 leading-relaxed">{philosophy.description}</p>
                     </div>
                   </div>
                 </div>
@@ -180,13 +183,13 @@ export default function AboutPage() {
       </section>
 
       {/* Meet the Designer */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInSection>
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">The Visionary</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-8">Meet the Designer</h2>
-              <div className="space-y-6 font-dm-sans text-sm text-noir/70 leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-8">Meet the Designer</h2>
+              <div className="space-y-6 font-dm-sans text-sm text-ivory/60 leading-relaxed">
                 <p>
                   Priya Sharma is not your typical fashion designer. With a degree in Textile Design from NID Ahmedabad
                   and a heart rooted firmly in Jaipur&apos;s artisan communities, she represents a new generation of Indian
@@ -207,21 +210,21 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="mt-8 flex items-center gap-3">
-                <span className="font-cinzel text-lg text-noir tracking-wider">Priya Sharma</span>
+                <span className="font-cinzel text-lg text-ivory tracking-wider">Priya Sharma</span>
                 <span className="w-12 h-[1px] bg-zari-gold/40" />
-                <span className="font-dm-sans text-xs text-noir/50">Founder & Creative Director</span>
+                <span className="font-dm-sans text-xs text-ivory/40">Founder & Creative Director</span>
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
-              <div className="aspect-[3/4] rounded-sm overflow-hidden relative">
+              <div className="aspect-[3/4] rounded-sm overflow-hidden relative group card-3d-tilt">
                 <Image
                   src="/images/designer-portrait.png"
                   alt="Priya Sharma — Founder & Creative Director"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-noir/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12]/60 to-transparent" />
               </div>
             </FadeInSection>
           </div>
@@ -233,12 +236,12 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInSection>
-              <div className="aspect-[4/3] rounded-sm overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-sm overflow-hidden relative group card-3d-tilt">
                 <Image
                   src="/images/atelier-studio.png"
                   alt="Inside the Shringarika atelier — where magic meets method"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-noir/40 to-transparent" />
@@ -274,13 +277,13 @@ export default function AboutPage() {
       </section>
 
       {/* Embroidery Close-Up — Cinematic Section */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeInSection>
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">The Hand</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-8">Where Patience Becomes Art</h2>
-              <div className="space-y-6 font-dm-sans text-sm text-noir/70 leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-8">Where Patience Becomes Art</h2>
+              <div className="space-y-6 font-dm-sans text-sm text-ivory/60 leading-relaxed">
                 <p>
                   In our embroidery workshop, time moves differently. There are no deadlines that compromise
                   quality, no shortcuts that sacrifice beauty. Each stitch is placed with the kind of focused
@@ -301,15 +304,15 @@ export default function AboutPage() {
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
-              <div className="aspect-[4/3] rounded-sm overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-sm overflow-hidden relative group card-3d-tilt">
                 <Image
                   src="/images/atelier-embroidery.png"
                   alt="Artisan doing intricate zardozi gold thread embroidery"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-l from-noir/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#0a0a12]/10 to-transparent" />
               </div>
             </FadeInSection>
           </div>
@@ -317,12 +320,13 @@ export default function AboutPage() {
       </section>
 
       {/* Craftsmanship Ethos */}
-      <section className="section-luxury bg-blush/30">
+      <section className="section-luxury bg-[#0a0a12]">
+        <div className="absolute inset-0 bg-gradient-to-br from-burgundy-deep/5 via-transparent to-navy/5 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeInSection>
             <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Our Ethos</p>
-            <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-noir mb-6">Craftsmanship Is Our Religion</h2>
-            <p className="font-dm-sans text-sm text-noir/60 max-w-3xl mx-auto leading-relaxed mb-16">
+            <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-ivory mb-6">Craftsmanship Is Our Religion</h2>
+            <p className="font-dm-sans text-sm text-ivory/50 max-w-3xl mx-auto leading-relaxed mb-16">
               In an age of mass production and overnight delivery, we choose the path of patience. Every House of
               Shringarika creation is a testament to the belief that true luxury cannot be hurried — it must be
               earned through skill, dedication, and an unwavering commitment to excellence.
@@ -347,10 +351,10 @@ export default function AboutPage() {
               },
             ].map((stat, index) => (
               <FadeInSection key={stat.label} delay={index * 0.15}>
-                <div className="p-8 border border-zari-gold/10">
-                  <span className="font-cormorant text-5xl text-zari-gold block mb-3">{stat.number}</span>
-                  <span className="font-dm-sans text-xs tracking-[0.2em] uppercase text-noir/80 block mb-4">{stat.label}</span>
-                  <p className="font-dm-sans text-sm text-noir/50 leading-relaxed">{stat.description}</p>
+                <div className="gaming-card p-8">
+                  <span className="font-cormorant text-5xl text-zari-gold block mb-3 drop-shadow-[0_0_10px_rgba(212,175,55,0.2)]">{stat.number}</span>
+                  <span className="font-dm-sans text-xs tracking-[0.2em] uppercase text-ivory/70 block mb-4">{stat.label}</span>
+                  <p className="font-dm-sans text-sm text-ivory/40 leading-relaxed">{stat.description}</p>
                 </div>
               </FadeInSection>
             ))}
@@ -359,13 +363,13 @@ export default function AboutPage() {
       </section>
 
       {/* Why Different Section */}
-      <section className="section-luxury bg-blush/30">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-16">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">What Sets Us Apart</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-noir mb-6">Why Shringarika Is Different</h2>
-              <p className="font-dm-sans text-sm text-noir/60 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-ivory mb-6">Why Shringarika Is Different</h2>
+              <p className="font-dm-sans text-sm text-ivory/50 max-w-2xl mx-auto leading-relaxed">
                 We don&apos;t just make clothes — we craft legacies. Here&apos;s what truly distinguishes the House of Shringarika
                 experience from everything else in the market.
               </p>
@@ -375,9 +379,9 @@ export default function AboutPage() {
             {differentiators.map((item, index) => (
               <FadeInSection key={index} delay={index * 0.1}>
                 <div className="flex items-start gap-6 group">
-                  <span className="font-cinzel text-zari-gold text-sm mt-1 shrink-0">0{index + 1}</span>
+                  <span className="font-cinzel text-zari-gold text-sm mt-1 shrink-0 drop-shadow-[0_0_6px_rgba(212,175,55,0.3)]">0{index + 1}</span>
                   <div className="flex-1 pb-6 border-b border-zari-gold/10 group-hover:border-zari-gold/30 transition-colors duration-500">
-                    <p className="font-dm-sans text-sm text-noir/70 leading-relaxed">{item}</p>
+                    <p className="font-dm-sans text-sm text-ivory/60 leading-relaxed">{item}</p>
                   </div>
                 </div>
               </FadeInSection>
@@ -402,7 +406,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/bespoke"
-                className="inline-flex items-center px-8 py-4 bg-zari-gold text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-zari-gold-light transition-all duration-500 btn-luxury-glow"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-zari-gold to-gold-bright text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-500 gaming-btn"
               >
                 Start Your Custom Journey
               </Link>
@@ -410,7 +414,7 @@ export default function AboutPage() {
                 href="https://wa.me/919999999999?text=Hi%20Shringarika!%20I%27d%20love%20to%20learn%20more%20about%20your%20bespoke%20process."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-ivory/20 text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:border-zari-gold hover:text-zari-gold transition-all duration-500"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-ivory/20 text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:border-zari-gold hover:text-zari-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all duration-500"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 WhatsApp Us

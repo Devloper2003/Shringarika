@@ -69,7 +69,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <WhatsAppButton />
 
       {/* Mobile Sticky CTA Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-ivory/[0.97] backdrop-blur-xl border-t border-zari-gold/15 px-4 py-3 safe-bottom">
+      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#0d1220]/[0.97] backdrop-blur-xl border-t border-[#D4AF37]/15 px-4 py-3 safe-bottom">
         <div className="flex items-center gap-3">
           <a
             href="https://wa.me/919999999999?text=Hi%20Shringarika!%20I%27d%20love%20to%20inquire%20about%20a%20bridal%20outfit."
@@ -82,7 +82,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           </a>
           <a
             href="/appointments"
-            className="flex-1 flex items-center justify-center py-2.5 bg-noir text-ivory font-dm-sans text-[11px] tracking-[0.12em] uppercase rounded-sm"
+            className="flex-1 flex items-center justify-center py-2.5 bg-[#D4AF37] text-[#0a0a12] font-dm-sans text-[11px] tracking-[0.12em] uppercase rounded-sm"
           >
             Book Now
           </a>

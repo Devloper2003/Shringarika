@@ -53,12 +53,12 @@ const steps = [
 ];
 
 const fabricOptions = [
-  { name: 'Silk', description: 'Pure Banarasi, Tussar, and Mulberry silk — the cornerstone of Indian luxury textiles. Our silks are sourced directly from weaving clusters in Varanasi and Bhagalpur.', gradient: 'from-champagne to-sandalwood', letter: 'S' },
-  { name: 'Velvet', description: 'Rich, tactile, and impossibly regal. Our velvet is custom-dyed to match your exact shade requirements, perfect for winter weddings and evening occasions.', gradient: 'from-noir-soft to-mauve-dusty', letter: 'V' },
-  { name: 'Organza', description: 'Light as air, luminous as moonlight. Our organzas create ethereal, architectural silhouettes that float rather than drape — ideal for contemporary bridal looks.', gradient: 'from-ivory-dark to-champagne', letter: 'O' },
-  { name: 'Zari', description: 'The golden thread that has defined Indian bridal wear for centuries. We use real zari (silver coated in gold) for our premium pieces, and tested zari for more accessible options.', gradient: 'from-zari-gold/30 to-champagne', letter: 'Z' },
-  { name: 'Resham', description: 'Silk thread embroidery that creates vivid, painterly designs on fabric. Our resham work ranges from delicate tonal patterns to bold, colourful motifs that bring any garment to life.', gradient: 'from-rose-gold-light/30 to-blush', letter: 'R' },
-  { name: 'Mirror Work', description: 'A hallmark of Rajasthani craft tradition, our mirror work (sheesha) is hand-applied by artisans from Kutch and Jaisalmer, creating dazzling interplays of light and texture.', gradient: 'from-blush to-champagne', letter: 'M' },
+  { name: 'Silk', description: 'Pure Banarasi, Tussar, and Mulberry silk — the cornerstone of Indian luxury textiles. Our silks are sourced directly from weaving clusters in Varanasi and Bhagalpur.', gradient: 'from-navy to-navy-light', letter: 'S' },
+  { name: 'Velvet', description: 'Rich, tactile, and impossibly regal. Our velvet is custom-dyed to match your exact shade requirements, perfect for winter weddings and evening occasions.', gradient: 'from-burgundy-deep to-burgundy', letter: 'V' },
+  { name: 'Organza', description: 'Light as air, luminous as moonlight. Our organzas create ethereal, architectural silhouettes that float rather than drape — ideal for contemporary bridal looks.', gradient: 'from-navy-light to-navy-mid', letter: 'O' },
+  { name: 'Zari', description: 'The golden thread that has defined Indian bridal wear for centuries. We use real zari (silver coated in gold) for our premium pieces, and tested zari for more accessible options.', gradient: 'from-zari-gold/20 to-navy', letter: 'Z' },
+  { name: 'Resham', description: 'Silk thread embroidery that creates vivid, painterly designs on fabric. Our resham work ranges from delicate tonal patterns to bold, colourful motifs that bring any garment to life.', gradient: 'from-burgundy to-burgundy-light', letter: 'R' },
+  { name: 'Mirror Work', description: 'A hallmark of Rajasthani craft tradition, our mirror work (sheesha) is hand-applied by artisans from Kutch and Jaisalmer, creating dazzling interplays of light and texture.', gradient: 'from-navy-mid to-burgundy-deep', letter: 'M' },
 ];
 
 export default function BespokePage() {
@@ -66,12 +66,13 @@ export default function BespokePage() {
 
   return (
     <SiteLayout>
-      <main className="bg-ivory">
+      <main className="bg-[#0a0a12]">
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-noir via-noir-soft to-mauve-dusty/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-noir" />
+        <div className="absolute inset-0 bg-gradient-to-br from-noir via-navy-deep to-burgundy-deep/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a12]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-zari-gold/[0.03] rounded-full blur-[130px] pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -93,7 +94,7 @@ export default function BespokePage() {
             initial={{ width: 0 }}
             animate={{ width: 80 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="h-[1px] bg-zari-gold mx-auto mb-8"
+            className="h-[1px] bg-zari-gold mx-auto mb-8 shadow-[0_0_8px_rgba(212,175,55,0.3)]"
           />
           <motion.p
             initial={{ opacity: 0 }}
@@ -107,13 +108,13 @@ export default function BespokePage() {
       </section>
 
       {/* 4-Step Process */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-16">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">The Journey</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-noir mb-6">Your Bespoke Journey in Four Steps</h2>
-              <p className="font-dm-sans text-sm text-noir/60 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-ivory mb-6">Your Bespoke Journey in Four Steps</h2>
+              <p className="font-dm-sans text-sm text-ivory/50 max-w-2xl mx-auto leading-relaxed">
                 From the first conversation to the final fitting, every stage of our bespoke process is designed
                 to ensure your creation is nothing short of extraordinary.
               </p>
@@ -128,8 +129,8 @@ export default function BespokePage() {
                 onClick={() => setActiveStep(index)}
                 className={`flex items-center gap-2 md:gap-3 px-4 md:px-6 py-3 transition-all duration-500 ${
                   activeStep === index
-                    ? 'bg-noir text-ivory'
-                    : 'bg-blush/30 text-noir/40 hover:bg-blush/50'
+                    ? 'bg-gradient-to-r from-zari-gold to-gold-bright text-noir shadow-[0_0_20px_rgba(212,175,55,0.3)]'
+                    : 'bg-[#0f1320] text-ivory/40 hover:bg-navy-deep hover:text-ivory/60'
                 }`}
               >
                 <span className="font-cinzel text-sm md:text-base">{step.number}</span>
@@ -141,10 +142,10 @@ export default function BespokePage() {
           {/* Active Step Content */}
           <FadeInSection key={activeStep}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="aspect-[4/3] bg-gradient-to-br from-champagne via-blush to-sandalwood rounded-sm overflow-hidden">
+              <div className="aspect-[4/3] bg-gradient-to-br from-navy-deep via-navy to-burgundy-deep/30 rounded-sm overflow-hidden gaming-card">
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
-                    <span className="font-cinzel text-noir/10 text-9xl block">{steps[activeStep].number}</span>
+                    <span className="font-cinzel text-zari-gold/10 text-9xl block">{steps[activeStep].number}</span>
                   </div>
                 </div>
               </div>
@@ -152,9 +153,9 @@ export default function BespokePage() {
                 <span className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-2 block">
                   Step {steps[activeStep].number}
                 </span>
-                <h3 className="font-cormorant text-3xl md:text-4xl text-noir mb-2">{steps[activeStep].title}</h3>
-                <p className="font-playfair text-lg text-noir/40 italic mb-6">{steps[activeStep].subtitle}</p>
-                <p className="font-dm-sans text-sm text-noir/60 leading-relaxed mb-4">{steps[activeStep].description}</p>
+                <h3 className="font-cormorant text-3xl md:text-4xl text-ivory mb-2">{steps[activeStep].title}</h3>
+                <p className="font-playfair text-lg text-ivory/30 italic mb-6">{steps[activeStep].subtitle}</p>
+                <p className="font-dm-sans text-sm text-ivory/50 leading-relaxed mb-4">{steps[activeStep].description}</p>
                 <p className="font-dm-sans text-xs text-zari-gold/80 tracking-wider uppercase">Duration: {steps[activeStep].duration}</p>
               </div>
             </div>
@@ -163,14 +164,14 @@ export default function BespokePage() {
       </section>
 
       {/* The Bespoke Experience */}
-      <section className="section-luxury bg-blush/30">
+      <section className="section-luxury bg-[#0a0a12]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-12">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Beyond Customisation</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-6">The Bespoke Experience</h2>
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-6">The Bespoke Experience</h2>
             </div>
-            <div className="space-y-8 font-dm-sans text-sm text-noir/60 leading-relaxed">
+            <div className="space-y-8 font-dm-sans text-sm text-ivory/50 leading-relaxed">
               <p>
                 Bespoke at House of Shringarika is not simply about choosing a different neckline or swapping one
                 embroidery pattern for another. It is a profoundly personal creative partnership — one where your
@@ -199,13 +200,13 @@ export default function BespokePage() {
       </section>
 
       {/* Fabric & Embroidery Options */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-16">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Materials & Craft</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-noir mb-6">Fabric & Embroidery Options</h2>
-              <p className="font-dm-sans text-sm text-noir/60 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-ivory mb-6">Fabric & Embroidery Options</h2>
+              <p className="font-dm-sans text-sm text-ivory/50 max-w-2xl mx-auto leading-relaxed">
                 Our materials are sourced from the finest weaving clusters across India, and every embroidery
                 technique is executed by master artisans with decades of generational expertise.
               </p>
@@ -214,14 +215,16 @@ export default function BespokePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {fabricOptions.map((option, index) => (
               <FadeInSection key={option.name} delay={index * 0.1}>
-                <div className="group cursor-pointer">
-                  <div className={`aspect-[4/3] bg-gradient-to-br ${option.gradient} rounded-sm overflow-hidden mb-4`}>
+                <div className="group cursor-pointer gaming-card overflow-hidden">
+                  <div className={`aspect-[4/3] bg-gradient-to-br ${option.gradient} overflow-hidden`}>
                     <div className="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                      <span className="font-cormorant text-noir/10 text-7xl italic">{option.letter}</span>
+                      <span className="font-cormorant text-zari-gold/10 text-7xl italic">{option.letter}</span>
                     </div>
                   </div>
-                  <h3 className="font-playfair text-lg text-noir mb-2 group-hover:text-zari-gold transition-colors duration-300">{option.name}</h3>
-                  <p className="font-dm-sans text-xs text-noir/50 leading-relaxed">{option.description}</p>
+                  <div className="p-4">
+                    <h3 className="font-playfair text-lg text-ivory mb-2 group-hover:text-zari-gold transition-colors duration-300">{option.name}</h3>
+                    <p className="font-dm-sans text-xs text-ivory/40 leading-relaxed">{option.description}</p>
+                  </div>
                 </div>
               </FadeInSection>
             ))}
@@ -241,9 +244,9 @@ export default function BespokePage() {
                 { type: 'Festive / Party Wear', timeline: '30–45 days', note: 'Simpler embroidery and ready fabric options allow for faster turnaround, especially for pre-wedding events.' },
                 { type: 'Light Bespoke / Alterations', timeline: '15–20 days', note: 'Custom styling of existing silhouettes with personalised embroidery or fabric changes.' },
               ].map((item, index) => (
-                <div key={item.type} className="p-6 border border-ivory/10">
+                <div key={item.type} className="gaming-card p-6">
                   <h3 className="font-playfair text-lg text-ivory mb-2">{item.type}</h3>
-                  <span className="font-cormorant text-3xl text-zari-gold block mb-3">{item.timeline}</span>
+                  <span className="font-cormorant text-3xl text-zari-gold block mb-3 drop-shadow-[0_0_8px_rgba(212,175,55,0.2)]">{item.timeline}</span>
                   <p className="font-dm-sans text-xs text-ivory/40 leading-relaxed">{item.note}</p>
                 </div>
               ))}
@@ -256,50 +259,50 @@ export default function BespokePage() {
       </section>
 
       {/* Inquiry Form */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-12">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Get Started</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-6">Begin Your Bespoke Inquiry</h2>
-              <p className="font-dm-sans text-sm text-noir/60 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-6">Begin Your Bespoke Inquiry</h2>
+              <p className="font-dm-sans text-sm text-ivory/50 max-w-2xl mx-auto leading-relaxed">
                 Tell us about your dream outfit and our design team will get back to you within 24 hours with
                 initial thoughts, fabric suggestions, and a detailed consultation plan.
               </p>
             </div>
           </FadeInSection>
           <FadeInSection delay={0.2}>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+            <form onSubmit={(e) => e.preventDefault()} className="gaming-card p-8 md:p-10 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Full Name *</label>
+                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Full Name *</label>
                   <input
                     type="text"
                     placeholder="Your full name"
-                    className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                    className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                   />
                 </div>
                 <div>
-                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Phone *</label>
+                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Phone *</label>
                   <input
                     type="tel"
                     placeholder="+91 99999 99999"
-                    className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                    className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                   />
                 </div>
               </div>
               <div>
-                <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Email Address *</label>
+                <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Email Address *</label>
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                  className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Occasion *</label>
-                  <select className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir/60 focus:border-zari-gold focus:outline-none transition-colors duration-300">
+                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Occasion *</label>
+                  <select className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory/50 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300">
                     <option value="">Select occasion</option>
                     <option value="wedding">Wedding / Bridal</option>
                     <option value="reception">Reception</option>
@@ -311,8 +314,8 @@ export default function BespokePage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Budget Range *</label>
-                  <select className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir/60 focus:border-zari-gold focus:outline-none transition-colors duration-300">
+                  <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Budget Range *</label>
+                  <select className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory/50 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300">
                     <option value="">Select budget</option>
                     <option value="50k-1l">₹50,000 – ₹1,00,000</option>
                     <option value="1l-2l">₹1,00,000 – ₹2,00,000</option>
@@ -323,13 +326,13 @@ export default function BespokePage() {
                 </div>
               </div>
               <div>
-                <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Fabric Preference</label>
+                <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Fabric Preference</label>
                 <div className="flex flex-wrap gap-2">
                   {['Silk', 'Velvet', 'Organza', 'Georgette', 'Chanderi', 'Net', 'No Preference'].map((fabric) => (
                     <button
                       key={fabric}
                       type="button"
-                      className="px-4 py-2 border border-zari-gold/20 font-dm-sans text-xs text-noir/50 hover:border-zari-gold hover:text-noir transition-all duration-300"
+                      className="px-4 py-2 border border-zari-gold/20 font-dm-sans text-xs text-ivory/50 hover:border-zari-gold hover:text-zari-gold hover:shadow-[0_0_10px_rgba(212,175,55,0.15)] transition-all duration-300"
                     >
                       {fabric}
                     </button>
@@ -337,26 +340,26 @@ export default function BespokePage() {
                 </div>
               </div>
               <div>
-                <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Describe Your Dream Outfit *</label>
+                <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Describe Your Dream Outfit *</label>
                 <textarea
                   rows={5}
                   placeholder="Tell us about your vision — the silhouette, colours, embroidery style, any reference images you have in mind, the occasion, and what makes this outfit special to you..."
-                  className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300 resize-none"
+                  className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300 resize-none"
                 />
               </div>
               <div>
-                <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Upload Reference Image</label>
+                <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Upload Reference Image</label>
                 <div className="border-2 border-dashed border-zari-gold/20 p-8 text-center hover:border-zari-gold/40 transition-colors duration-300 cursor-pointer">
-                  <svg className="w-8 h-8 text-noir/20 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                  <p className="font-dm-sans text-xs text-noir/30">Click to upload or drag and drop</p>
-                  <p className="font-dm-sans text-[10px] text-noir/20 mt-1">PNG, JPG up to 10MB</p>
+                  <svg className="w-8 h-8 text-ivory/20 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <p className="font-dm-sans text-xs text-ivory/30">Click to upload or drag and drop</p>
+                  <p className="font-dm-sans text-[10px] text-ivory/20 mt-1">PNG, JPG up to 10MB</p>
                   <input type="file" className="hidden" accept="image/*" />
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <button
                   type="submit"
-                  className="flex-1 py-4 bg-noir text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-noir-soft transition-all duration-500 btn-luxury-glow"
+                  className="flex-1 py-4 bg-gradient-to-r from-zari-gold to-gold-bright text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-500 gaming-btn"
                 >
                   Submit Inquiry
                 </button>
@@ -364,7 +367,7 @@ export default function BespokePage() {
                   href="https://wa.me/919999999999?text=Hi!%20I'm%20interested%20in%20a%20bespoke%20creation."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-4 border border-zari-gold/40 text-zari-gold font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
+                  className="flex-1 flex items-center justify-center gap-2 py-4 border border-zari-gold/40 text-zari-gold font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-zari-gold hover:text-noir hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-500"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                   WhatsApp Instead
@@ -376,12 +379,12 @@ export default function BespokePage() {
       </section>
 
       {/* Testimonial */}
-      <section className="section-luxury bg-blush/30">
+      <section className="section-luxury bg-[#0a0a12]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center">
               <span className="font-cormorant text-6xl text-zari-gold/30 block mb-4">&ldquo;</span>
-              <p className="font-cormorant text-2xl md:text-3xl text-noir leading-relaxed mb-8 italic">
+              <p className="font-cormorant text-2xl md:text-3xl text-ivory leading-relaxed mb-8 italic">
                 When I walked into Shringarika, I had a vague idea of what I wanted. When I walked out wearing my
                 bridal lehenga, I was wearing a piece of art that told my story. The team didn&apos;t just listen — they
                 understood. Every detail, from the peacock motifs my mother loved to the hidden mantra my grandmother
@@ -389,12 +392,12 @@ export default function BespokePage() {
                 it was a love letter to my family.
               </p>
               <div className="flex items-center justify-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-champagne to-blush flex items-center justify-center">
-                  <span className="font-cormorant text-noir/30 text-lg">A</span>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-zari-gold/20 to-burgundy flex items-center justify-center">
+                  <span className="font-cormorant text-zari-gold text-lg">A</span>
                 </div>
                 <div className="text-left">
-                  <p className="font-cinzel text-sm text-noir tracking-wider">Ananya Mehta</p>
-                  <p className="font-dm-sans text-xs text-noir/40">Bespoke Bridal Client, Mumbai</p>
+                  <p className="font-cinzel text-sm text-ivory tracking-wider">Ananya Mehta</p>
+                  <p className="font-dm-sans text-xs text-ivory/40">Bespoke Bridal Client, Mumbai</p>
                 </div>
               </div>
             </div>
@@ -415,7 +418,7 @@ export default function BespokePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/appointments"
-                className="inline-flex items-center px-8 py-3 bg-zari-gold text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-zari-gold-light transition-all duration-500 btn-luxury-glow"
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-zari-gold to-gold-bright text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-500 gaming-btn"
               >
                 Book Appointment
               </Link>
@@ -423,7 +426,7 @@ export default function BespokePage() {
                 href="https://wa.me/919999999999?text=Hi!%20I'd%20like%20to%20book%20a%20bespoke%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3 border border-ivory/20 text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:border-zari-gold hover:text-zari-gold transition-all duration-500"
+                className="inline-flex items-center gap-2 px-8 py-3 border border-ivory/20 text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:border-zari-gold hover:text-zari-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all duration-500"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 WhatsApp Us

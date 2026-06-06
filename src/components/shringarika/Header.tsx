@@ -255,18 +255,19 @@ export default function Header() {
               }}
             />
 
-            {/* Main curved container */}
+            {/* Main curved container — HIGH transparency */}
             <div
               className="relative rounded-[28px] overflow-visible"
               style={{
                 background: scrolled
-                  ? 'linear-gradient(180deg, rgba(10,10,10,0.97) 0%, rgba(17,17,17,0.97) 100%)'
-                  : 'linear-gradient(180deg, rgba(10,10,10,0.92) 0%, rgba(17,17,17,0.92) 100%)',
-                backdropFilter: scrolled ? 'saturate(1.5)' : 'saturate(1.2)',
-                border: '1px solid rgba(212,175,55,0.15)',
+                  ? 'linear-gradient(180deg, rgba(13,18,32,0.72) 0%, rgba(26,43,74,0.55) 50%, rgba(139,26,56,0.35) 100%)'
+                  : 'linear-gradient(180deg, rgba(13,18,32,0.45) 0%, rgba(26,43,74,0.30) 50%, rgba(139,26,56,0.18) 100%)',
+                backdropFilter: scrolled ? 'blur(8px) saturate(1.8)' : 'blur(4px) saturate(1.4)',
+                WebkitBackdropFilter: scrolled ? 'blur(8px) saturate(1.8)' : 'blur(4px) saturate(1.4)',
+                border: '1px solid rgba(212,175,55,0.12)',
                 boxShadow: scrolled
-                  ? '0 8px 32px rgba(0,0,0,0.6), 0 0 40px rgba(212,175,55,0.08), inset 0 1px 0 rgba(255,255,255,0.04)'
-                  : '0 4px 20px rgba(0,0,0,0.4), 0 0 20px rgba(212,175,55,0.04), inset 0 1px 0 rgba(255,255,255,0.04)',
+                  ? '0 8px 40px rgba(0,0,0,0.5), 0 0 50px rgba(139,26,56,0.12), 0 0 30px rgba(212,175,55,0.06), inset 0 1px 0 rgba(255,255,255,0.06)'
+                  : '0 4px 24px rgba(0,0,0,0.3), 0 0 30px rgba(139,26,56,0.06), 0 0 15px rgba(212,175,55,0.03), inset 0 1px 0 rgba(255,255,255,0.04)',
                 transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >

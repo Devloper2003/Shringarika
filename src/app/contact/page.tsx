@@ -96,12 +96,13 @@ export default function ContactPage() {
 
   return (
     <SiteLayout>
-      <main className="bg-ivory">
+      <main className="bg-[#0a0a12]">
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-champagne/50 via-blush/30 to-sandalwood/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ivory" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-burgundy-deep/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0a0a12]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-zari-gold/[0.03] rounded-full blur-[120px] pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -115,7 +116,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-noir leading-[1.1] mb-8"
+            className="font-cormorant text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ivory leading-[1.1] mb-8"
           >
             Begin Your Style Story Today
           </motion.h1>
@@ -123,13 +124,13 @@ export default function ContactPage() {
             initial={{ width: 0 }}
             animate={{ width: 80 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="h-[1px] bg-zari-gold mx-auto mb-8"
+            className="h-[1px] bg-zari-gold mx-auto mb-8 shadow-[0_0_8px_rgba(212,175,55,0.3)]"
           />
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="font-cormorant text-xl text-noir/60 italic max-w-2xl mx-auto"
+            className="font-cormorant text-xl text-ivory/50 italic max-w-2xl mx-auto"
           >
             Every beautiful creation begins with a simple conversation
           </motion.p>
@@ -137,44 +138,44 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form + Info */}
-      <section className="section-luxury bg-ivory pt-8">
+      <section className="section-luxury bg-[#0d1220] pt-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Form */}
             <FadeInSection>
-              <div className="bg-ivory p-8 md:p-10 border border-zari-gold/10">
+              <div className="gaming-card p-8 md:p-10">
                 <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-2">Send Us a Message</p>
-                <h2 className="font-cormorant text-2xl md:text-3xl text-noir mb-8">We&apos;d Love to Hear from You</h2>
+                <h2 className="font-cormorant text-2xl md:text-3xl text-ivory mb-8">We&apos;d Love to Hear from You</h2>
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                   <div>
-                    <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Full Name *</label>
+                    <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Full Name *</label>
                     <input
                       type="text"
                       placeholder="Your full name"
-                      className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                      className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Phone *</label>
+                      <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Phone *</label>
                       <input
                         type="tel"
                         placeholder="+91 99999 99999"
-                        className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                        className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                       />
                     </div>
                     <div>
-                      <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Email *</label>
+                      <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Email *</label>
                       <input
                         type="email"
                         placeholder="your@email.com"
-                        className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300"
+                        className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Occasion</label>
-                    <select className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir/60 focus:border-zari-gold focus:outline-none transition-colors duration-300">
+                    <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Occasion</label>
+                    <select className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory/50 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300">
                       <option value="">Select occasion</option>
                       <option value="wedding">Wedding / Bridal</option>
                       <option value="reception">Reception</option>
@@ -186,16 +187,16 @@ export default function ContactPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block font-dm-sans text-xs tracking-wider uppercase text-noir/40 mb-2">Message *</label>
+                    <label className="block font-dm-sans text-xs tracking-wider uppercase text-ivory/40 mb-2">Message *</label>
                     <textarea
                       rows={5}
                       placeholder="Tell us how we can help — whether it's about a specific outfit, a custom order, a consultation, or just a question about our process..."
-                      className="w-full bg-transparent border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-noir placeholder:text-noir/20 focus:border-zari-gold focus:outline-none transition-colors duration-300 resize-none"
+                      className="w-full bg-noir-soft/50 border border-zari-gold/20 px-4 py-3 font-dm-sans text-sm text-ivory placeholder:text-ivory/20 focus:border-zari-gold focus:shadow-[0_0_12px_rgba(212,175,55,0.15)] focus:outline-none transition-all duration-300 resize-none"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-4 bg-noir text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:bg-noir-soft transition-all duration-500 btn-luxury-glow"
+                    className="w-full py-4 bg-gradient-to-r from-zari-gold to-gold-bright text-noir font-dm-sans text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-500 gaming-btn"
                   >
                     Send Message
                   </button>
@@ -207,20 +208,20 @@ export default function ContactPage() {
             <FadeInSection delay={0.2}>
               <div className="space-y-4">
                 {contactCards.map((card) => (
-                  <div key={card.title} className="p-6 border border-zari-gold/10 hover:border-zari-gold/20 transition-all duration-300 flex items-start gap-5">
-                    <div className="w-12 h-12 bg-blush/30 flex items-center justify-center text-zari-gold shrink-0">
+                  <div key={card.title} className="p-6 gaming-card hover:border-zari-gold/20 transition-all duration-300 flex items-start gap-5">
+                    <div className="w-12 h-12 bg-burgundy-deep/30 flex items-center justify-center text-zari-gold shrink-0">
                       {card.icon}
                     </div>
                     <div>
-                      <p className="font-dm-sans text-xs tracking-wider uppercase text-noir/30 mb-1">{card.title}</p>
-                      <p className="font-dm-sans text-sm text-noir mb-0.5">{card.value}</p>
-                      <p className="font-dm-sans text-xs text-noir/40">{card.subtext}</p>
+                      <p className="font-dm-sans text-xs tracking-wider uppercase text-ivory/30 mb-1">{card.title}</p>
+                      <p className="font-dm-sans text-sm text-ivory mb-0.5">{card.value}</p>
+                      <p className="font-dm-sans text-xs text-ivory/40">{card.subtext}</p>
                     </div>
                   </div>
                 ))}
 
                 {/* Map Placeholder */}
-                <div className="aspect-[16/9] bg-gradient-to-br from-noir-soft via-mauve-dusty/10 to-noir rounded-sm overflow-hidden">
+                <div className="aspect-[16/9] bg-gradient-to-br from-noir-soft via-burgundy-deep/10 to-noir rounded-sm overflow-hidden gaming-card">
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="text-center">
                       <svg className="w-10 h-10 text-ivory/10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
@@ -236,13 +237,13 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-luxury bg-blush/30">
+      <section className="section-luxury bg-[#0a0a12]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeInSection>
             <div className="text-center mb-12">
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">Common Questions</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-6">Frequently Asked Questions</h2>
-              <p className="font-dm-sans text-sm text-noir/60 max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-6">Frequently Asked Questions</h2>
+              <p className="font-dm-sans text-sm text-ivory/50 max-w-2xl mx-auto leading-relaxed">
                 Everything you need to know about ordering, custom work, appointments, shipping, and more.
                 Can&apos;t find your answer? Reach out directly — we&apos;re always happy to help.
               </p>
@@ -256,7 +257,7 @@ export default function ContactPage() {
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full text-left py-6 flex items-start justify-between gap-4 group"
                   >
-                    <h3 className="font-playfair text-base md:text-lg text-noir group-hover:text-zari-gold transition-colors duration-300">{faq.question}</h3>
+                    <h3 className="font-playfair text-base md:text-lg text-ivory group-hover:text-zari-gold transition-colors duration-300">{faq.question}</h3>
                     <span className={`text-zari-gold shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-45' : ''}`}>+</span>
                   </button>
                   {openFaq === index && (
@@ -267,7 +268,7 @@ export default function ContactPage() {
                       transition={{ duration: 0.3 }}
                       className="pb-6"
                     >
-                      <p className="font-dm-sans text-sm text-noir/50 leading-relaxed">{faq.answer}</p>
+                      <p className="font-dm-sans text-sm text-ivory/40 leading-relaxed">{faq.answer}</p>
                     </motion.div>
                   )}
                 </div>
@@ -278,13 +279,13 @@ export default function ContactPage() {
       </section>
 
       {/* Visit Our Atelier */}
-      <section className="section-luxury bg-ivory">
+      <section className="section-luxury bg-[#0d1220]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeInSection>
               <p className="font-dm-sans text-xs tracking-[0.3em] uppercase text-zari-gold mb-4">In Person</p>
-              <h2 className="font-cormorant text-3xl md:text-4xl text-noir mb-8">Visit Our Atelier</h2>
-              <div className="space-y-6 font-dm-sans text-sm text-noir/60 leading-relaxed">
+              <h2 className="font-cormorant text-3xl md:text-4xl text-ivory mb-8">Visit Our Atelier</h2>
+              <div className="space-y-6 font-dm-sans text-sm text-ivory/50 leading-relaxed">
                 <p>
                   There is nothing quite like experiencing a Shringarika creation in person — feeling the weight
                   of hand-embroidered silk, watching the light play across zardozi thread, and seeing how a
@@ -293,23 +294,23 @@ export default function ContactPage() {
                 </p>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-dm-sans text-xs tracking-wider uppercase text-noir/30 mb-1">Address</p>
-                    <p>42, Civil Lines, C-Scheme, Jaipur, Rajasthan 302006</p>
+                    <p className="font-dm-sans text-xs tracking-wider uppercase text-ivory/30 mb-1">Address</p>
+                    <p className="text-ivory/60">42, Civil Lines, C-Scheme, Jaipur, Rajasthan 302006</p>
                   </div>
                   <div>
-                    <p className="font-dm-sans text-xs tracking-wider uppercase text-noir/30 mb-1">Hours</p>
-                    <p>Monday – Saturday: 10:00 AM – 7:00 PM</p>
-                    <p>Sunday: By appointment only</p>
+                    <p className="font-dm-sans text-xs tracking-wider uppercase text-ivory/30 mb-1">Hours</p>
+                    <p className="text-ivory/60">Monday – Saturday: 10:00 AM – 7:00 PM</p>
+                    <p className="text-ivory/60">Sunday: By appointment only</p>
                   </div>
                   <div>
-                    <p className="font-dm-sans text-xs tracking-wider uppercase text-noir/30 mb-1">Getting Here</p>
-                    <p>15 minutes from Jaipur International Airport, 10 minutes from Jaipur Junction Railway Station. Complimentary parking available.</p>
+                    <p className="font-dm-sans text-xs tracking-wider uppercase text-ivory/30 mb-1">Getting Here</p>
+                    <p className="text-ivory/60">15 minutes from Jaipur International Airport, 10 minutes from Jaipur Junction Railway Station. Complimentary parking available.</p>
                   </div>
                 </div>
                 <div className="pt-4">
                   <Link
                     href="/appointments"
-                    className="inline-flex items-center px-6 py-3 border border-zari-gold/40 text-zari-gold font-dm-sans text-xs tracking-wider uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
+                    className="inline-flex items-center px-6 py-3 border border-zari-gold/40 text-zari-gold font-dm-sans text-xs tracking-wider uppercase hover:bg-zari-gold hover:text-noir hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-500"
                   >
                     Book a Visit
                   </Link>
@@ -317,11 +318,11 @@ export default function ContactPage() {
               </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
-              <div className="aspect-[4/3] bg-gradient-to-br from-champagne/30 via-blush/30 to-sandalwood/30 rounded-sm overflow-hidden">
+              <div className="aspect-[4/3] bg-gradient-to-br from-navy-deep via-burgundy-deep/20 to-navy rounded-sm overflow-hidden gaming-card">
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
-                    <span className="font-cormorant text-noir/10 text-9xl italic block">A</span>
-                    <span className="font-dm-sans text-noir/15 text-xs tracking-[0.3em] uppercase">Our Jaipur Atelier</span>
+                    <span className="font-cormorant text-zari-gold/10 text-9xl italic block">A</span>
+                    <span className="font-dm-sans text-ivory/15 text-xs tracking-[0.3em] uppercase">Our Jaipur Atelier</span>
                   </div>
                 </div>
               </div>
@@ -355,7 +356,7 @@ export default function ContactPage() {
               </a>
               <Link
                 href="/appointments"
-                className="inline-flex items-center px-8 py-3 border border-ivory/20 text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:border-zari-gold hover:text-zari-gold transition-all duration-500"
+                className="inline-flex items-center px-8 py-3 border border-ivory/20 text-ivory font-dm-sans text-xs tracking-[0.2em] uppercase hover:border-zari-gold hover:text-zari-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all duration-500"
               >
                 Book Appointment
               </Link>
