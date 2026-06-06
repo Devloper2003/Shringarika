@@ -107,7 +107,7 @@ function Sidebar({
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 mt-4">
+      <nav className="flex-1 px-3 mt-4 overflow-y-auto min-h-0 admin-sidebar-scroll">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);

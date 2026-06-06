@@ -130,6 +130,26 @@
   background: #B76E79;
 }
 
+/* Admin sidebar dark scrollbar */
+.admin-sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.admin-sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(184, 152, 64, 0.3);
+  border-radius: 2px;
+}
+.admin-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 152, 64, 0.6);
+}
+/* Firefox scrollbar for admin sidebar */
+.admin-sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(184, 152, 64, 0.3) transparent;
+}
+
 /* Gold particle canvas */
 .gold-particles {
   position: fixed;
