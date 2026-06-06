@@ -5,7 +5,22 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { User, Calendar, X, Menu, ChevronDown, BookOpen, Scissors, Heart, Sparkles, ArrowRight } from 'lucide-react';
+import {
+  User,
+  Calendar,
+  X,
+  Menu,
+  ChevronDown,
+  BookOpen,
+  Scissors,
+  Heart,
+  Sparkles,
+  ArrowRight,
+  ShoppingBag,
+  Instagram,
+  Facebook,
+  Twitter,
+} from 'lucide-react';
 
 /* ─── Nav Config ──────────────────────────────────────────── */
 
@@ -34,7 +49,7 @@ const primaryLinks = [
           { label: 'Bandhgalas', href: '/collections?cat=bandhgalas' },
           { label: 'Kurta Sets', href: '/collections?cat=men-kurta' },
           { label: 'Achkan & Jodhpuri', href: '/collections?cat=achkan' },
-          { label: 'Men\'s Accessories', href: '/collections?cat=men-accessories' },
+          { label: "Men's Accessories", href: '/collections?cat=men-accessories' },
         ],
       },
       {
@@ -66,6 +81,12 @@ const secondaryLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+const socialLinks = [
+  { label: 'Instagram', href: 'https://instagram.com/shringarika', icon: Instagram },
+  { label: 'Facebook', href: 'https://facebook.com/shringarika', icon: Facebook },
+  { label: 'Twitter', href: 'https://twitter.com/shringarika', icon: Twitter },
+];
+
 /* ─── Component ───────────────────────────────────────────── */
 
 export default function Header() {
@@ -78,22 +99,18 @@ export default function Header() {
   /* ── Smooth scroll-driven blend ── */
   const { scrollY } = useScroll();
 
-  // Raw numeric motion values (0 → 1 range for blend progress)
   const bgOpacity = useTransform(scrollY, [0, 80, 250], [0, 0.55, 0.97]);
   const blurPx = useTransform(scrollY, [0, 80, 250], [0, 10, 24]);
   const borderAlpha = useTransform(scrollY, [0, 150, 300], [0, 0.06, 0.12]);
   const shadowAlpha = useTransform(scrollY, [0, 250], [0, 0.1]);
   const announceHeight = useTransform(scrollY, [0, 60], [36, 0]);
   const announceOpacity = useTransform(scrollY, [0, 40], [1, 0]);
-  const logoScale = useTransform(scrollY, [0, 250], [1, 0.9]);
 
-  // Transform into full CSS string motion values (so framer-motion can animate them reactively)
   const bgColor = useTransform(bgOpacity, (v) => `rgba(242,237,232,${v})`);
   const backdropBlur = useTransform(blurPx, (v) => `blur(${v}px)`);
   const borderStyle = useTransform(borderAlpha, (v) => `1px solid rgba(201,168,76,${v})`);
   const shadowStyle = useTransform(shadowAlpha, (v) => `0 1px 40px rgba(181,148,82,${v})`);
 
-  // Derived boolean for conditional rendering (announcement bar, etc.)
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const unsub = scrollY.on('change', (v) => setScrolled(v > 60));
@@ -114,7 +131,6 @@ export default function Header() {
 
   /* Close mobile menu on route change */
   useEffect(() => {
-    // Using requestAnimationFrame to avoid synchronous setState in effect
     const raf = requestAnimationFrame(() => {
       setMenuOpen(false);
       setMegaOpen(false);
@@ -164,7 +180,7 @@ export default function Header() {
         }}
         className="fixed top-0 left-0 right-0 z-50"
       >
-        {/* Top Announcement Bar — collapses smoothly on scroll */}
+        {/* Top Announcement Bar */}
         <motion.div
           style={{ height: announceHeight, opacity: announceOpacity }}
           className="overflow-hidden"
@@ -178,26 +194,12 @@ export default function Header() {
           </div>
         </motion.div>
 
-        {/* Main Nav Row */}
+        {/* Main Nav Row — Left | Center Logo | Right */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 lg:h-[84px]">
 
-            {/* ─ Left: Logo (shrinks subtly on scroll) ─ */}
-            <Link href="/" className="flex items-center group shrink-0 z-10">
-              <motion.div style={{ scale: logoScale }} className="origin-left">
-                <Image
-                  src="/images/logo.png"
-                  alt="Shringarika — Official Logo"
-                  width={200}
-                  height={70}
-                  className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
-                  priority
-                />
-              </motion.div>
-            </Link>
-
-            {/* ─ Center: Primary Nav ─ */}
-            <nav className="hidden lg:flex items-center gap-1">
+            {/* ─ Left: Navigation Links ─ */}
+            <nav className="hidden lg:flex items-center gap-0.5 flex-1">
               {primaryLinks.map((link) =>
                 link.mega ? (
                   /* Collections with Mega Menu */
@@ -210,7 +212,7 @@ export default function Header() {
                   >
                     <Link
                       href={link.href}
-                      className={`relative flex items-center gap-1 px-4 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
+                      className={`relative flex items-center gap-1 px-3.5 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
                         isActive(link.href) ? 'text-noir' : 'text-noir/50 hover:text-noir'
                       }`}
                     >
@@ -220,11 +222,10 @@ export default function Header() {
                         strokeWidth={1.5}
                         className={`transition-transform duration-300 ${megaOpen ? 'rotate-180' : ''}`}
                       />
-                      {/* Active indicator */}
                       {isActive(link.href) && (
                         <motion.span
                           layoutId="nav-active"
-                          className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-zari-gold"
+                          className="absolute bottom-0 left-3.5 right-3.5 h-[1.5px] bg-zari-gold"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -238,7 +239,7 @@ export default function Header() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.98 }}
                           transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[820px]"
+                          className="absolute top-full left-0 pt-3 w-[820px]"
                           onMouseEnter={openMega}
                           onMouseLeave={closeMegaDelayed}
                         >
@@ -292,7 +293,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative px-4 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
+                    className={`relative px-3.5 py-2 font-dm-sans text-[11px] tracking-[0.16em] uppercase transition-colors duration-300 ${
                       isActive(link.href) ? 'text-noir' : 'text-noir/50 hover:text-noir'
                     }`}
                   >
@@ -300,7 +301,7 @@ export default function Header() {
                     {isActive(link.href) && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-zari-gold"
+                        className="absolute bottom-0 left-3.5 right-3.5 h-[1.5px] bg-zari-gold"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -308,7 +309,7 @@ export default function Header() {
                 )
               )}
 
-              {/* Separator */}
+              {/* Separator between primary and secondary */}
               <div className="w-px h-4 bg-noir/10 mx-2" />
 
               {/* Secondary Links */}
@@ -332,8 +333,53 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* ─ Right: Actions ─ */}
-            <div className="hidden lg:flex items-center gap-4 shrink-0">
+            {/* ─ Center: Logo (absolute center) ─ */}
+            <Link href="/" className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 z-10 group">
+              <Image
+                src="/images/logo.png"
+                alt="Shringarika — Official Logo"
+                width={200}
+                height={70}
+                className="h-14 lg:h-16 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
+                priority
+              />
+            </Link>
+
+            {/* ─ Right: Social Icons + Actions + CTA ─ */}
+            <div className="hidden lg:flex items-center gap-3 flex-1 justify-end">
+              {/* Social Icons */}
+              <div className="flex items-center gap-1 mr-2">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 text-noir/35 hover:text-zari-gold transition-colors duration-300"
+                      aria-label={social.label}
+                    >
+                      <Icon size={15} strokeWidth={1.5} />
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Separator */}
+              <div className="w-px h-4 bg-noir/10" />
+
+              {/* Shopping Bag */}
+              <Link
+                href="/collections"
+                className={`p-2 transition-colors duration-300 ${
+                  isActive('/collections') ? 'text-zari-gold' : 'text-noir/40 hover:text-zari-gold'
+                }`}
+                aria-label="Shop"
+              >
+                <ShoppingBag size={17} strokeWidth={1.5} />
+              </Link>
+
               {/* Account */}
               <Link
                 href="/account"
@@ -355,55 +401,82 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* ─ Mobile Actions ─ */}
-            <div className="flex items-center gap-2 lg:hidden shrink-0">
-              {/* Account Icon */}
-              <Link
-                href="/account"
-                className="p-2 text-noir/50 hover:text-zari-gold transition-colors duration-300"
-                aria-label="Account"
-              >
-                <User size={18} strokeWidth={1.5} />
+            {/* ─ Mobile: Logo left, actions right ─ */}
+            <div className="flex items-center justify-between w-full lg:hidden">
+              {/* Logo */}
+              <Link href="/" className="flex items-center group shrink-0">
+                <Image
+                  src="/images/logo.png"
+                  alt="Shringarika"
+                  width={160}
+                  height={56}
+                  className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity duration-500"
+                  priority
+                />
               </Link>
 
-              {/* Book CTA — tablet */}
-              <Link
-                href="/appointments"
-                className="hidden sm:inline-flex items-center px-4 py-1.5 bg-noir text-ivory font-dm-sans text-[9px] tracking-[0.18em] uppercase hover:bg-zari-gold hover:text-noir transition-all duration-500"
-              >
-                Book
-              </Link>
+              {/* Mobile Actions */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                {/* Social Icons (mobile - show limited) */}
+                <a
+                  href="https://instagram.com/shringarika"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-noir/40 hover:text-zari-gold transition-colors duration-300"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={16} strokeWidth={1.5} />
+                </a>
 
-              {/* Mobile Menu Toggle */}
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="p-2 text-noir transition-colors"
-                aria-label="Toggle menu"
-              >
-                <AnimatePresence mode="wait">
-                  {menuOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <X size={22} strokeWidth={1.5} />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Menu size={22} strokeWidth={1.5} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </button>
+                {/* Shopping Bag */}
+                <Link
+                  href="/collections"
+                  className="p-2 text-noir/40 hover:text-zari-gold transition-colors duration-300"
+                  aria-label="Shop"
+                >
+                  <ShoppingBag size={16} strokeWidth={1.5} />
+                </Link>
+
+                {/* Account Icon */}
+                <Link
+                  href="/account"
+                  className="p-2 text-noir/40 hover:text-zari-gold transition-colors duration-300"
+                  aria-label="Account"
+                >
+                  <User size={16} strokeWidth={1.5} />
+                </Link>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="p-2 text-noir transition-colors"
+                  aria-label="Toggle menu"
+                >
+                  <AnimatePresence mode="wait">
+                    {menuOpen ? (
+                      <motion.div
+                        key="close"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <X size={22} strokeWidth={1.5} />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="menu"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Menu size={22} strokeWidth={1.5} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -434,12 +507,12 @@ export default function Header() {
               {/* Panel Header */}
               <div className="flex items-center justify-between px-7 h-16 border-b border-ivory/5">
                 <Image
-                src="/images/logo.png"
-                alt="Shringarika"
-                width={140}
-                height={56}
-                className="h-11 w-auto object-contain"
-              />
+                  src="/images/logo.png"
+                  alt="Shringarika"
+                  width={140}
+                  height={56}
+                  className="h-11 w-auto object-contain"
+                />
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="p-2 text-ivory/60 hover:text-ivory transition-colors"
@@ -450,7 +523,7 @@ export default function Header() {
               </div>
 
               {/* Nav Links — Scrollable */}
-              <nav className="flex-1 flex flex-col overflow-y-auto py-4">
+              <nav className="flex-1 flex flex-col overflow-y-auto min-h-0 py-4">
                 {/* Primary Links */}
                 <div className="px-7 pb-3">
                   <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-ivory/25">Navigate</span>
@@ -533,6 +606,25 @@ export default function Header() {
 
               {/* Panel Footer */}
               <div className="px-7 pb-8 space-y-4 border-t border-ivory/5 pt-5">
+                {/* Social Icons Row */}
+                <div className="flex items-center gap-4">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+                    return (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-ivory/40 hover:text-zari-gold transition-colors duration-300"
+                        aria-label={social.label}
+                      >
+                        <Icon size={16} strokeWidth={1.5} />
+                      </a>
+                    );
+                  })}
+                </div>
+
                 <Link
                   href="/account"
                   onClick={() => setMenuOpen(false)}
