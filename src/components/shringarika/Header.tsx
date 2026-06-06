@@ -17,9 +17,8 @@ import {
   ArrowRight,
   ShoppingBag,
   Phone,
-  Diamond,
-  Crown,
-  Sparkles,
+  Zap,
+  Hexagon,
 } from 'lucide-react';
 
 /* ─── Static Nav Config ──────────────────────────────────── */
@@ -78,74 +77,57 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
-/* ─── Glass Reflection Effect ────────────────────────────── */
+/* ─── Hard Mirror Edge Component ─────────────────────────── */
 
-function GlassReflection() {
+function MirrorEdge() {
   return (
     <>
-      {/* Top mirror highlight */}
-      <span
-        className="absolute top-0 left-[5%] right-[5%] h-[1px] opacity-40"
+      {/* Hard top chrome line */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] z-20"
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
+          background: 'linear-gradient(90deg, transparent 0%, #D4AF37 15%, #FFD700 35%, #FFF8DC 50%, #FFD700 65%, #D4AF37 85%, transparent 100%)',
         }}
       />
-      {/* Curved mirror glare */}
-      <span
-        className="absolute top-0 left-0 right-0 h-[45%] pointer-events-none opacity-[0.07]"
+      {/* Hard bottom chrome line */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[2px] z-20"
         style={{
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.4), transparent)',
-          borderRadius: 'inherit',
+          background: 'linear-gradient(90deg, transparent 0%, #D4AF37 15%, #FFD700 35%, #FFF8DC 50%, #FFD700 65%, #D4AF37 85%, transparent 100%)',
         }}
       />
-      {/* Bottom glass reflection */}
-      <span
-        className="absolute bottom-0 left-[10%] right-[10%] h-[1px] opacity-20"
+      {/* Left chrome edge */}
+      <div
+        className="absolute top-0 left-0 bottom-0 w-[2px] z-20"
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent)',
+          background: 'linear-gradient(180deg, #D4AF37, #FFD700 50%, #D4AF37)',
+        }}
+      />
+      {/* Right chrome edge */}
+      <div
+        className="absolute top-0 right-0 bottom-0 w-[2px] z-20"
+        style={{
+          background: 'linear-gradient(180deg, #D4AF37, #FFD700 50%, #D4AF37)',
+        }}
+      />
+      {/* Hard mirror shine — top strip */}
+      <div
+        className="absolute top-[2px] left-[2px] right-[2px] h-[40%] z-10 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%, transparent 100%)',
         }}
       />
     </>
   );
 }
 
-/* ─── Holographic Shimmer for Hover ──────────────────────── */
+/* ─── 3D Tilt Nav Item — Gaming Style ────────────────────── */
 
-function HolographicShimmer() {
-  return (
-    <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-      <span
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-        style={{
-          background: `linear-gradient(
-            105deg,
-            transparent 20%,
-            rgba(212,175,55,0.04) 30%,
-            rgba(255,223,100,0.12) 40%,
-            rgba(255,240,160,0.1) 45%,
-            rgba(212,175,55,0.06) 55%,
-            transparent 65%
-          )`,
-          backgroundSize: '250% 100%',
-          animation: 'holo-shimmer 3s ease-in-out infinite',
-        }}
-      />
-    </span>
-  );
-}
-
-/* ─── 3D Tilt Nav Item with Mirror ───────────────────────── */
-
-function NavItem3D({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function NavItemGaming({ children }: { children: React.ReactNode }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { stiffness: 300, damping: 25 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 300, damping: 25 });
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 250, damping: 20 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 250, damping: 20 });
 
   const handleMouse = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -153,16 +135,13 @@ function NavItem3D({
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   }, [x, y]);
 
-  const handleLeave = useCallback(() => {
-    x.set(0);
-    y.set(0);
-  }, [x, y]);
+  const handleLeave = useCallback(() => { x.set(0); y.set(0); }, [x, y]);
 
   return (
     <motion.div
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 600 }}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 500 }}
       className="relative"
     >
       {children}
@@ -170,34 +149,11 @@ function NavItem3D({
   );
 }
 
-/* ─── Floating 3D Icon ──────────────────────────────────── */
+/* ─── Neon Glow Button ──────────────────────────────────── */
 
-function FloatingIcon3D({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 150, damping: 15 });
-  const springY = useSpring(mouseY, { stiffness: 150, damping: 15 });
-
-  const handleMouse = useCallback((e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set((e.clientX - rect.left - rect.width / 2) * 0.12);
-    mouseY.set((e.clientY - rect.top - rect.height / 2) * 0.12);
-  }, [mouseX, mouseY]);
-
-  const handleLeave = useCallback(() => {
-    mouseX.set(0);
-    mouseY.set(0);
-  }, [mouseX, mouseY]);
-
+function NeonGlow({ children, color = '#D4AF37' }: { children: React.ReactNode; color?: string }) {
   return (
-    <motion.div
-      onMouseMove={handleMouse}
-      onMouseLeave={handleLeave}
-      style={{ x: springX, y: springY }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <span className="absolute inset-0 rounded-full pointer-events-none" style={{ boxShadow: `0 0 8px ${color}40, 0 0 20px ${color}15, inset 0 0 8px ${color}10` }} />
   );
 }
 
@@ -210,10 +166,9 @@ export default function Header() {
   const megaRef = useRef<HTMLDivElement>(null);
   const megaTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* ── Scroll-driven effects ── */
+  /* Scroll effects */
   const { scrollY } = useScroll();
-  const navElevation = useTransform(scrollY, [0, 200], [0, 10]);
-  const navScale = useTransform(scrollY, [0, 200], [1, 0.985]);
+  const navScale = useTransform(scrollY, [0, 200], [1, 0.98]);
 
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -221,11 +176,9 @@ export default function Header() {
     return unsub;
   }, [scrollY]);
 
-  /* Close mobile menu on resize */
+  /* Close mobile on resize */
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) { setMenuOpen(false); setMegaOpen(false); }
-    };
+    const handleResize = () => { if (window.innerWidth >= 1024) { setMenuOpen(false); setMegaOpen(false); } };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -245,16 +198,9 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  /* Mega menu hover helpers */
-  const openMega = () => {
-    if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current);
-    setMegaOpen(true);
-  };
-  const closeMegaDelayed = () => {
-    megaTimeoutRef.current = setTimeout(() => setMegaOpen(false), 250);
-  };
+  const openMega = () => { if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current); setMegaOpen(true); };
+  const closeMegaDelayed = () => { megaTimeoutRef.current = setTimeout(() => setMegaOpen(false), 200); };
 
-  /* Active link check */
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href);
@@ -262,78 +208,55 @@ export default function Header() {
 
   return (
     <>
-      {/* ── Curvy Glass Navigation Bar ──────────────────── */}
+      {/* ── Hard Mirror Gaming Navbar ──────────────────── */}
       <motion.header
-        initial={{ opacity: 0, y: -30, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="fixed top-3 left-3 right-3 z-50 lg:top-4 lg:left-4 lg:right-4"
+        initial={{ opacity: 0, y: -40, rotateX: -10 }}
+        animate={{ opacity: 1, y: 0, rotateX: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50"
       >
-        <motion.div
-          style={{
-            scale: navScale,
-            boxShadow: useTransform(navElevation, (v) =>
-              `0 ${v}px ${v * 3}px rgba(0,0,0,0.3), 0 0 ${v * 2}px rgba(212,175,55,0.06)`
-            ),
-          }}
-          className="relative"
-        >
-          {/* ── Curvy Glass Container ── */}
+        <motion.div style={{ scale: navScale }}>
+          {/* Solid Dark Container — NO blur, NO transparency */}
           <div
-            className="relative rounded-[20px] lg:rounded-[24px]"
+            className="relative"
             style={{
               background: scrolled
-                ? 'linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(20,20,20,0.9) 50%, rgba(26,26,26,0.85) 100%)'
-                : 'linear-gradient(135deg, rgba(26,26,26,0.6) 0%, rgba(20,20,20,0.65) 50%, rgba(26,26,26,0.6) 100%)',
-              backdropFilter: 'blur(20px) saturate(1.8)',
-              WebkitBackdropFilter: 'blur(20px) saturate(1.8)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              transition: 'background 0.5s ease',
+                ? 'linear-gradient(180deg, #0a0a0a 0%, #111111 100%)'
+                : 'linear-gradient(180deg, #0d0d0d 0%, #141414 100%)',
+              transition: 'background 0.4s ease',
             }}
           >
-            {/* Glass Mirror Reflections */}
-            <GlassReflection />
+            {/* Hard Mirror Chrome Edges */}
+            <MirrorEdge />
 
-            {/* Animated mirror shimmer sweep */}
-            <span
-              className="absolute inset-0 pointer-events-none rounded-[inherit] opacity-30 overflow-hidden"
-              style={{
-                background: `linear-gradient(
-                  105deg,
-                  transparent 30%,
-                  rgba(255,255,255,0.03) 42%,
-                  rgba(255,255,255,0.06) 50%,
-                  rgba(255,255,255,0.03) 58%,
-                  transparent 70%
-                )`,
-                backgroundSize: '300% 100%',
-                animation: 'mirror-sweep 6s ease-in-out infinite',
-              }}
-            />
+            {/* Animated neon scan line */}
+            <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none overflow-hidden">
+              <motion.div
+                className="absolute left-0 right-0 h-[1px]"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, #D4AF37, #FFD700, #D4AF37, transparent)',
+                  boxShadow: '0 0 10px #D4AF3780, 0 0 20px #D4AF3730',
+                }}
+                animate={{ top: ['0%', '100%'] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+              />
+            </div>
 
-            {/* Golden curvy bottom glow */}
-            <div
-              className="absolute bottom-0 left-[8%] right-[8%] h-[1px] opacity-40"
-              style={{
-                background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.6), rgba(255,223,100,0.8), rgba(212,175,55,0.6), transparent)',
-                animation: 'edge-glow 4s ease-in-out infinite alternate',
-              }}
-            />
+            <div className="max-w-[1400px] mx-auto px-5 lg:px-8 overflow-visible">
+              <div className="flex items-center justify-between h-[72px] lg:h-[78px]">
 
-            <div className="max-w-[1380px] mx-auto px-5 lg:px-8 overflow-visible">
-              <div className="flex items-center justify-between h-[68px] lg:h-[74px]">
-
-                {/* ─ Left: Logo with Mirror Glow ─ */}
+                {/* ─ Left: Hard Mirror Logo ─ */}
                 <Link href="/" className="flex items-center shrink-0 group z-10 relative">
-                  {/* Mirror reflection glow behind logo */}
+                  {/* Neon glow behind logo */}
                   <div
-                    className="absolute -inset-5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl"
+                    className="absolute -inset-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      background: 'radial-gradient(ellipse, rgba(212,175,55,0.12) 0%, transparent 70%)',
+                      background: 'radial-gradient(ellipse, #D4AF3720 0%, transparent 70%)',
+                      boxShadow: '0 0 30px #D4AF3715',
                     }}
                   />
                   <motion.div
-                    whileHover={{ scale: 1.04, filter: 'brightness(1.2)' }}
+                    whileHover={{ scale: 1.06, rotateY: 5 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     style={{ transformStyle: 'preserve-3d', perspective: 800 }}
                   >
@@ -342,17 +265,17 @@ export default function Header() {
                       alt="Shringarika"
                       width={180}
                       height={64}
-                      className="h-12 lg:h-14 w-auto object-contain brightness-0 invert group-hover:opacity-90 transition-opacity duration-500"
+                      className="h-12 lg:h-14 w-auto object-contain brightness-0 invert group-hover:brightness-0 invert transition-all duration-300"
                       priority
                     />
                   </motion.div>
                 </Link>
 
-                {/* ─ Center: Curvy Glass Navigation Links ─ */}
-                <nav className="hidden lg:flex items-center gap-0.5 overflow-visible" style={{ perspective: '800px' }}>
+                {/* ─ Center: Gaming Nav Links ─ */}
+                <nav className="hidden lg:flex items-center gap-1 overflow-visible" style={{ perspective: '800px' }}>
                   {navLinks.map((link) =>
                     link.mega ? (
-                      /* Collections with Curvy Mega Menu */
+                      /* Collections Mega Menu Trigger */
                       <div
                         key={link.href}
                         ref={megaRef}
@@ -360,125 +283,112 @@ export default function Header() {
                         onMouseEnter={openMega}
                         onMouseLeave={closeMegaDelayed}
                       >
-                        <NavItem3D>
+                        <NavItemGaming>
                           <Link
                             href={link.href}
-                            className={`group relative flex items-center gap-1.5 px-5 py-2.5 font-dm-sans text-[11px] tracking-[0.2em] uppercase rounded-full transition-all duration-500 overflow-hidden ${
+                            className={`group relative flex items-center gap-1.5 px-5 py-2.5 font-dm-sans text-[11px] tracking-[0.2em] uppercase rounded-sm transition-all duration-300 ${
                               isActive(link.href)
-                                ? 'text-noir font-semibold'
-                                : 'text-white/70 hover:text-white'
+                                ? 'text-[#0a0a0a] font-bold'
+                                : 'text-[#e0e0e0] hover:text-[#FFD700]'
                             }`}
                           >
-                            {/* Active Pill — Curvy Gold with Mirror Depth */}
+                            {/* Active: Hard gold fill */}
                             {isActive(link.href) && (
                               <motion.span
-                                layoutId="nav-active-pill"
-                                className="absolute inset-0 rounded-full"
+                                layoutId="nav-active-gaming"
+                                className="absolute inset-0 rounded-sm"
                                 style={{
-                                  background: 'linear-gradient(135deg, #E8C84A 0%, #D4AF37 35%, #B89730 70%, #D4AF37 100%)',
-                                  boxShadow: '0 2px 12px rgba(212,175,55,0.4), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 2px rgba(0,0,0,0.15)',
+                                  background: 'linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B89730 100%)',
+                                  boxShadow: '0 0 12px #D4AF3750, inset 0 1px 0 rgba(255,255,255,0.3)',
                                 }}
-                                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                               />
                             )}
 
-                            {/* Hover glass ring */}
+                            {/* Hover: Hard border glow */}
                             {!isActive(link.href) && (
-                              <span className="absolute inset-0 rounded-full border border-white/0 group-hover:border-white/10 bg-white/0 group-hover:bg-white/[0.04] transition-all duration-500" />
+                              <span className="absolute inset-0 rounded-sm border border-transparent group-hover:border-[#D4AF37]/40 group-hover:bg-[#D4AF37]/[0.06] transition-all duration-300" />
                             )}
-
-                            <HolographicShimmer />
 
                             <span className="relative z-10 flex items-center gap-1.5">
                               {link.label}
-                              <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                                <ChevronDown size={11} strokeWidth={2} className="opacity-50" />
+                              <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                                <ChevronDown size={11} strokeWidth={2.5} />
                               </motion.span>
                             </span>
 
-                            {/* Crystal bottom facet */}
+                            {/* Bottom neon indicator */}
                             {isActive(link.href) && (
                               <span
-                                className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-1.5 rounded-full"
+                                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-[2px]"
                                 style={{
-                                  background: 'linear-gradient(to bottom, rgba(212,175,55,0.6), transparent)',
-                                  filter: 'blur(2px)',
+                                  background: '#FFD700',
+                                  boxShadow: '0 0 8px #FFD700, 0 0 16px #D4AF3750',
                                 }}
                               />
                             )}
                           </Link>
-                        </NavItem3D>
+                        </NavItemGaming>
 
-                        {/* ── Curvy Glass Mega Menu ── */}
+                        {/* ── Gaming Mega Menu ── */}
                         <AnimatePresence>
                           {megaOpen && (
                             <motion.div
-                              initial={{ opacity: 0, y: 15, rotateX: -5, scale: 0.96 }}
-                              animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: 10, rotateX: -3, scale: 0.97 }}
-                              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-                              style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
-                              className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[860px]"
+                              initial={{ opacity: 0, y: 10, scaleY: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scaleY: 1 }}
+                              exit={{ opacity: 0, y: 8, scaleY: 0.97 }}
+                              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                              style={{ transformOrigin: 'top' }}
+                              className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[880px] z-[60]"
                               onMouseEnter={openMega}
                               onMouseLeave={closeMegaDelayed}
                             >
                               <div
-                                className="relative overflow-hidden rounded-[20px] p-8"
+                                className="relative p-8"
                                 style={{
-                                  background: 'linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(18,18,18,0.95) 50%, rgba(26,26,26,0.9) 100%)',
-                                  backdropFilter: 'blur(24px) saturate(1.8)',
-                                  WebkitBackdropFilter: 'blur(24px) saturate(1.8)',
-                                  border: '1px solid rgba(255,255,255,0.08)',
-                                  boxShadow: '0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(212,175,55,0.04)',
+                                  background: 'linear-gradient(180deg, #0a0a0a 0%, #111 100%)',
+                                  border: '1px solid #D4AF3730',
+                                  boxShadow: '0 20px 60px rgba(0,0,0,0.8), 0 0 30px #D4AF3710',
                                 }}
                               >
-                                {/* Glass reflections on mega menu */}
-                                <GlassReflection />
-
-                                {/* Mirror sweep */}
-                                <span
-                                  className="absolute inset-0 pointer-events-none rounded-[inherit] opacity-20"
-                                  style={{
-                                    background: `linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 55%, transparent 70%)`,
-                                    backgroundSize: '300% 100%',
-                                    animation: 'mirror-sweep 8s ease-in-out infinite',
-                                  }}
-                                />
+                                {/* Chrome edges on mega */}
+                                <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, #D4AF37, #FFD700, #D4AF37, transparent)' }} />
+                                <div className="absolute bottom-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, #D4AF3740, #FFD70040, #D4AF3740, transparent)' }} />
 
                                 <div className="grid grid-cols-4 gap-6 relative z-10">
                                   {link.categories?.map((cat, ci) => (
                                     <motion.div
                                       key={cat.title}
-                                      initial={{ opacity: 0, y: 15 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      transition={{ delay: ci * 0.06, duration: 0.4 }}
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: ci * 0.05, duration: 0.3 }}
                                     >
                                       <h4
-                                        className="font-cinzel text-[10px] tracking-[0.25em] uppercase mb-4 pb-2.5 border-b border-white/[0.06] flex items-center gap-2"
+                                        className="font-cinzel text-[10px] tracking-[0.25em] uppercase mb-4 pb-2 border-b border-[#D4AF3720] flex items-center gap-2"
                                         style={{
-                                          background: 'linear-gradient(135deg, #E8C84A, #D4AF37)',
+                                          background: 'linear-gradient(135deg, #FFD700, #D4AF37)',
                                           WebkitBackgroundClip: 'text',
                                           WebkitTextFillColor: 'transparent',
                                         }}
                                       >
-                                        <Diamond size={9} className="text-[#D4AF37]" style={{ WebkitTextFillColor: 'unset' }} />
+                                        <Hexagon size={9} className="text-[#D4AF37]" style={{ WebkitTextFillColor: 'unset' }} strokeWidth={2} />
                                         {cat.title}
                                       </h4>
-                                      <ul className="space-y-1">
+                                      <ul className="space-y-0.5">
                                         {cat.items.map((item) => {
                                           const Icon = 'icon' in item && item.icon ? item.icon : null;
                                           return (
                                             <li key={item.href + item.label}>
                                               <Link
                                                 href={item.href}
-                                                className="group/item flex items-center gap-2.5 font-dm-sans text-[12px] tracking-wide text-white/35 hover:text-[#D4AF37] transition-all duration-300 py-1.5 px-2 -mx-2 rounded-lg hover:bg-white/[0.03]"
+                                                className="group/item flex items-center gap-2 font-dm-sans text-[12px] tracking-wide text-[#888] hover:text-[#FFD700] transition-all duration-200 py-1.5 px-2 -mx-2 hover:bg-[#D4AF3708]"
                                               >
                                                 {Icon ? (
-                                                  <Icon size={13} strokeWidth={1.5} className="text-[#D4AF37]/30 group-hover/item:text-[#D4AF37]/70 transition-colors duration-300" />
+                                                  <Icon size={12} strokeWidth={1.5} className="text-[#D4AF3750] group-hover/item:text-[#D4AF37] transition-colors duration-200" />
                                                 ) : (
-                                                  <span className="w-1 h-1 rounded-full bg-[#D4AF37]/20 group-hover/item:bg-[#D4AF37]/60 transition-all duration-300 group-hover/item:scale-150" />
+                                                  <span className="w-1 h-1 rounded-full bg-[#D4AF3730] group-hover/item:bg-[#FFD700] transition-all duration-200" />
                                                 )}
-                                                <span className="group-hover/item:translate-x-0.5 transition-transform duration-300">{item.label}</span>
+                                                {item.label}
                                               </Link>
                                             </li>
                                           );
@@ -488,17 +398,17 @@ export default function Header() {
                                   ))}
                                 </div>
 
-                                <div className="mt-7 pt-5 border-t border-white/[0.05] flex items-center justify-between relative z-10">
-                                  <p className="font-cormorant text-sm italic text-white/20 flex items-center gap-2">
-                                    <Crown size={12} className="text-[#D4AF37]/30" />
+                                <div className="mt-6 pt-4 border-t border-[#D4AF3715] flex items-center justify-between relative z-10">
+                                  <p className="font-cormorant text-sm italic text-[#555] flex items-center gap-2">
+                                    <Zap size={12} className="text-[#D4AF3740]" />
                                     Every thread tells your story
                                   </p>
                                   <Link
                                     href="/collections"
-                                    className="group/view flex items-center gap-1.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37]/50 hover:text-[#D4AF37] transition-all duration-300"
+                                    className="group/view flex items-center gap-1.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] hover:text-[#FFD700] transition-colors duration-200"
                                   >
                                     View All Collections
-                                    <ArrowRight size={12} strokeWidth={1.5} className="group-hover/view:translate-x-1 transition-transform duration-300" />
+                                    <ArrowRight size={12} strokeWidth={1.5} className="group-hover/view:translate-x-1 transition-transform duration-200" />
                                   </Link>
                                 </div>
                               </div>
@@ -507,185 +417,156 @@ export default function Header() {
                         </AnimatePresence>
                       </div>
                     ) : (
-                      /* Regular Curvy Glass Nav Link */
-                      <NavItem3D key={link.href}>
+                      /* Regular Gaming Nav Link */
+                      <NavItemGaming key={link.href}>
                         <Link
                           href={link.href}
-                          className={`group relative px-5 py-2.5 font-dm-sans text-[11px] tracking-[0.2em] uppercase rounded-full transition-all duration-500 overflow-hidden ${
+                          className={`group relative px-5 py-2.5 font-dm-sans text-[11px] tracking-[0.2em] uppercase rounded-sm transition-all duration-300 ${
                             isActive(link.href)
-                              ? 'text-noir font-semibold'
-                              : 'text-white/70 hover:text-white'
+                              ? 'text-[#0a0a0a] font-bold'
+                              : 'text-[#e0e0e0] hover:text-[#FFD700]'
                           }`}
                         >
-                          {/* Active Gold Pill with Mirror Depth */}
+                          {/* Active: Hard gold fill */}
                           {isActive(link.href) && (
                             <motion.span
-                              layoutId="nav-active-pill"
-                              className="absolute inset-0 rounded-full"
+                              layoutId="nav-active-gaming"
+                              className="absolute inset-0 rounded-sm"
                               style={{
-                                background: 'linear-gradient(135deg, #E8C84A 0%, #D4AF37 35%, #B89730 70%, #D4AF37 100%)',
-                                boxShadow: '0 2px 12px rgba(212,175,55,0.4), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 2px rgba(0,0,0,0.15)',
+                                background: 'linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B89730 100%)',
+                                boxShadow: '0 0 12px #D4AF3750, inset 0 1px 0 rgba(255,255,255,0.3)',
                               }}
-                              transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                             />
                           )}
 
-                          {/* Hover glass ring */}
+                          {/* Hover border */}
                           {!isActive(link.href) && (
-                            <span className="absolute inset-0 rounded-full border border-white/0 group-hover:border-white/10 bg-white/0 group-hover:bg-white/[0.04] transition-all duration-500" />
+                            <span className="absolute inset-0 rounded-sm border border-transparent group-hover:border-[#D4AF37]/40 group-hover:bg-[#D4AF37]/[0.06] transition-all duration-300" />
                           )}
-
-                          <HolographicShimmer />
 
                           <span className="relative z-10">{link.label}</span>
 
-                          {/* Crystal bottom facet */}
+                          {/* Bottom neon indicator */}
                           {isActive(link.href) && (
                             <span
-                              className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-1.5 rounded-full"
+                              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-[2px]"
                               style={{
-                                background: 'linear-gradient(to bottom, rgba(212,175,55,0.6), transparent)',
-                                filter: 'blur(2px)',
+                                background: '#FFD700',
+                                boxShadow: '0 0 8px #FFD700, 0 0 16px #D4AF3750',
                               }}
                             />
                           )}
                         </Link>
-                      </NavItem3D>
+                      </NavItemGaming>
                     )
                   )}
                 </nav>
 
-                {/* ─ Right: Mirror Icons + Curvy CTA ─ */}
-                <div className="hidden lg:flex items-center gap-1.5 shrink-0">
+                {/* ─ Right: Gaming Icons + CTA ─ */}
+                <div className="hidden lg:flex items-center gap-2 shrink-0">
                   {/* Shopping Bag */}
-                  <FloatingIcon3D>
+                  <motion.div whileHover={{ scale: 1.15 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
                     <Link
                       href="/collections"
-                      className={`group p-2.5 rounded-full transition-all duration-300 relative overflow-hidden ${
-                        isActive('/collections') ? 'text-[#D4AF37] bg-white/[0.06]' : 'text-white/50 hover:text-[#D4AF37]'
+                      className={`group p-2.5 rounded-sm transition-all duration-300 relative ${
+                        isActive('/collections') ? 'text-[#FFD700] bg-[#D4AF3710]' : 'text-[#888] hover:text-[#FFD700]'
                       }`}
                       aria-label="Shop"
                     >
-                      <motion.div whileHover={{ scale: 1.15, rotateY: 15 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
-                        <ShoppingBag size={18} strokeWidth={1.5} />
-                      </motion.div>
-                      <span
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ boxShadow: '0 0 15px rgba(212,175,55,0.15), inset 0 0 8px rgba(212,175,55,0.08)' }}
-                      />
+                      <ShoppingBag size={18} strokeWidth={1.5} />
+                      {isActive('/collections') && (
+                        <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-[2px]" style={{ background: '#FFD700', boxShadow: '0 0 6px #FFD700' }} />
+                      )}
                     </Link>
-                  </FloatingIcon3D>
+                  </motion.div>
 
                   {/* Phone */}
-                  <FloatingIcon3D>
+                  <motion.div whileHover={{ scale: 1.15 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
                     <a
                       href="tel:+919999999999"
-                      className="group p-2.5 rounded-full text-white/50 hover:text-[#D4AF37] transition-all duration-300 relative overflow-hidden"
+                      className="group p-2.5 rounded-sm text-[#888] hover:text-[#FFD700] transition-all duration-300"
                       aria-label="Call us"
                     >
-                      <motion.div whileHover={{ scale: 1.15, rotateY: -15 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
-                        <Phone size={17} strokeWidth={1.5} />
-                      </motion.div>
-                      <span
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ boxShadow: '0 0 15px rgba(212,175,55,0.15), inset 0 0 8px rgba(212,175,55,0.08)' }}
-                      />
+                      <Phone size={17} strokeWidth={1.5} />
                     </a>
-                  </FloatingIcon3D>
+                  </motion.div>
 
                   {/* Account */}
-                  <FloatingIcon3D>
+                  <motion.div whileHover={{ scale: 1.15 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
                     <Link
                       href="/account"
-                      className={`group p-2.5 rounded-full transition-all duration-300 relative overflow-hidden ${
-                        isActive('/account') ? 'text-[#D4AF37] bg-white/[0.06]' : 'text-white/50 hover:text-[#D4AF37]'
+                      className={`group p-2.5 rounded-sm transition-all duration-300 relative ${
+                        isActive('/account') ? 'text-[#FFD700] bg-[#D4AF3710]' : 'text-[#888] hover:text-[#FFD700]'
                       }`}
                       aria-label="My Account"
                     >
-                      <motion.div whileHover={{ scale: 1.15, rotateY: 15 }} transition={{ type: 'spring', stiffness: 400, damping: 15 }}>
-                        <User size={17} strokeWidth={1.5} />
-                      </motion.div>
-                      <span
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ boxShadow: '0 0 15px rgba(212,175,55,0.15), inset 0 0 8px rgba(212,175,55,0.08)' }}
-                      />
+                      <User size={17} strokeWidth={1.5} />
                     </Link>
-                  </FloatingIcon3D>
+                  </motion.div>
 
-                  {/* Book Appointment — Curvy Mirror CTA */}
+                  {/* Book Appointment — Neon CTA */}
                   <motion.div
-                    whileHover={{
-                      scale: 1.04,
-                      rotateY: -3,
-                      boxShadow: '0 8px 30px rgba(212,175,55,0.35), 0 2px 8px rgba(212,175,55,0.2)',
-                    }}
+                    whileHover={{ scale: 1.05, boxShadow: '0 0 25px #D4AF3750, 0 0 50px #D4AF3720' }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    style={{ transformStyle: 'preserve-3d', perspective: 600 }}
                   >
                     <Link
                       href="/appointments"
-                      className="group/btn relative inline-flex items-center gap-2 ml-2 px-6 py-2.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase font-semibold rounded-full overflow-hidden transition-all duration-500"
+                      className="group/btn relative inline-flex items-center gap-2 ml-2 px-6 py-2.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase font-bold rounded-sm overflow-hidden transition-all duration-300"
                       style={{
-                        background: 'linear-gradient(135deg, #E8C84A 0%, #D4AF37 35%, #B89730 70%, #D4AF37 100%)',
-                        boxShadow: '0 3px 12px rgba(212,175,55,0.3), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 3px rgba(0,0,0,0.2)',
-                        color: '#1A1A1A',
+                        background: 'linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B89730 100%)',
+                        color: '#0a0a0a',
+                        boxShadow: '0 0 15px #D4AF3740, inset 0 1px 0 rgba(255,255,255,0.3)',
                       }}
                     >
-                      {/* Holographic sweep on CTA */}
+                      {/* Animated neon sweep */}
                       <span
-                        className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"
+                        className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"
                         style={{
-                          background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 60%, transparent 80%)',
+                          background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.2) 50%, transparent 80%)',
                           backgroundSize: '250% 100%',
-                          animation: 'holo-shimmer 2.5s ease-in-out infinite',
+                          animation: 'holo-shimmer 2s ease-in-out infinite',
                         }}
                       />
-                      <span className="absolute top-0 left-0 right-0 h-[1px] bg-white/30 rounded-full" />
-                      <span className="absolute bottom-0 left-0 right-0 h-[1px] bg-black/20 rounded-full" />
-
-                      <Calendar size={12} strokeWidth={2} className="relative z-10" />
+                      <Calendar size={12} strokeWidth={2.5} className="relative z-10" />
                       <span className="relative z-10">Book Appointment</span>
                     </Link>
                   </motion.div>
                 </div>
 
-                {/* ─ Mobile: Logo left, actions right ─ */}
+                {/* ─ Mobile Layout ─ */}
                 <div className="flex items-center justify-between w-full lg:hidden">
                   <Link href="/" className="flex items-center group shrink-0 relative">
-                    <div
-                      className="absolute -inset-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"
-                      style={{ background: 'radial-gradient(ellipse, rgba(212,175,55,0.1) 0%, transparent 70%)' }}
-                    />
                     <Image
                       src="/images/logo.png"
                       alt="Shringarika"
                       width={150}
                       height={52}
-                      className="h-11 w-auto object-contain brightness-0 invert group-hover:opacity-80 transition-opacity duration-500"
+                      className="h-11 w-auto object-contain brightness-0 invert group-hover:opacity-80 transition-opacity duration-300"
                       priority
                     />
                   </Link>
 
                   <div className="flex items-center gap-1 shrink-0">
-                    <Link href="/collections" className="p-2 text-white/50 hover:text-[#D4AF37] transition-colors duration-300" aria-label="Shop">
+                    <Link href="/collections" className="p-2 text-[#888] hover:text-[#FFD700] transition-colors duration-200" aria-label="Shop">
                       <ShoppingBag size={18} strokeWidth={1.5} />
                     </Link>
-                    <a href="tel:+919999999999" className="p-2 text-white/50 hover:text-[#D4AF37] transition-colors duration-300" aria-label="Call">
+                    <a href="tel:+919999999999" className="p-2 text-[#888] hover:text-[#FFD700] transition-colors duration-200" aria-label="Call">
                       <Phone size={17} strokeWidth={1.5} />
                     </a>
                     <button
                       onClick={() => setMenuOpen(!menuOpen)}
-                      className="p-2 text-white/70 hover:text-[#D4AF37] transition-colors"
+                      className="p-2 text-[#e0e0e0] hover:text-[#FFD700] transition-colors"
                       aria-label="Toggle menu"
                     >
                       <AnimatePresence mode="wait">
                         {menuOpen ? (
-                          <motion.div key="close" initial={{ rotate: -90, opacity: 0, scale: 0.5 }} animate={{ rotate: 0, opacity: 1, scale: 1 }} exit={{ rotate: 90, opacity: 0, scale: 0.5 }} transition={{ duration: 0.25, type: 'spring' }}>
+                          <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
                             <X size={22} strokeWidth={1.5} />
                           </motion.div>
                         ) : (
-                          <motion.div key="menu" initial={{ rotate: 90, opacity: 0, scale: 0.5 }} animate={{ rotate: 0, opacity: 1, scale: 1 }} exit={{ rotate: -90, opacity: 0, scale: 0.5 }} transition={{ duration: 0.25, type: 'spring' }}>
+                          <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
                             <Menu size={22} strokeWidth={1.5} />
                           </motion.div>
                         )}
@@ -699,43 +580,39 @@ export default function Header() {
         </motion.div>
       </motion.header>
 
-      {/* ── Curvy Glass Mobile Menu ─────────────────────────── */}
+      {/* ── Gaming Mobile Menu ─────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-md lg:hidden"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/80 lg:hidden"
               onClick={() => setMenuOpen(false)}
             />
 
-            {/* Curvy Glass Panel */}
             <motion.div
-              initial={{ x: '100%', opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: '100%', opacity: 0 }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-3 right-3 bottom-3 z-50 w-[300px] lg:hidden"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-[300px] lg:hidden"
             >
               <div
-                className="h-full flex flex-col overflow-hidden rounded-[20px]"
+                className="h-full flex flex-col"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(18,18,18,0.95) 50%, rgba(26,26,26,0.9) 100%)',
-                  backdropFilter: 'blur(24px) saturate(1.8)',
-                  WebkitBackdropFilter: 'blur(24px) saturate(1.8)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  boxShadow: '-15px 0 50px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.04)',
+                  background: 'linear-gradient(180deg, #0a0a0a 0%, #111 100%)',
+                  borderLeft: '2px solid #D4AF3740',
+                  boxShadow: '-10px 0 40px rgba(0,0,0,0.6)',
                 }}
               >
-                {/* Glass reflections */}
-                <GlassReflection />
+                {/* Chrome top line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, #D4AF37, #FFD700, #D4AF37)' }} />
 
-                {/* Panel Header */}
-                <div className="flex items-center justify-between px-6 h-16 border-b border-white/[0.05]">
+                {/* Header */}
+                <div className="flex items-center justify-between px-6 h-16 border-b border-[#D4AF3720]">
                   <Image
                     src="/images/logo.png"
                     alt="Shringarika"
@@ -743,69 +620,54 @@ export default function Header() {
                     height={52}
                     className="h-10 w-auto object-contain brightness-0 invert"
                   />
-                  <button
-                    onClick={() => setMenuOpen(false)}
-                    className="p-2 text-white/40 hover:text-[#D4AF37] transition-colors"
-                    aria-label="Close menu"
-                  >
+                  <button onClick={() => setMenuOpen(false)} className="p-2 text-[#888] hover:text-[#FFD700] transition-colors" aria-label="Close">
                     <X size={20} strokeWidth={1.5} />
                   </button>
                 </div>
 
                 {/* Nav Links */}
-                <nav className="flex-1 flex flex-col overflow-y-auto min-h-0 py-4">
-                  <div className="px-6 pb-3">
-                    <span className="font-dm-sans text-[9px] tracking-[0.3em] uppercase text-white/15">Navigate</span>
-                  </div>
+                <nav className="flex-1 flex flex-col overflow-y-auto min-h-0 py-3">
                   {navLinks.map((link, i) => (
                     <div key={link.href}>
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.04, duration: 0.3 }}
+                        transition={{ delay: i * 0.03, duration: 0.25 }}
                       >
                         <Link
                           href={link.href}
                           onClick={() => setMenuOpen(false)}
-                          className={`flex items-center justify-between py-3 px-6 font-dm-sans text-[13px] tracking-[0.12em] uppercase transition-all duration-300 border-b border-white/[0.02] ${
+                          className={`flex items-center justify-between py-3 px-6 font-dm-sans text-[13px] tracking-[0.12em] uppercase transition-all duration-200 border-b border-[#ffffff06] ${
                             isActive(link.href)
-                              ? 'text-[#D4AF37] bg-[#D4AF37]/[0.06]'
-                              : 'text-white/45 hover:text-[#D4AF37] hover:pl-8'
+                              ? 'text-[#FFD700] bg-[#D4AF3708]'
+                              : 'text-[#888] hover:text-[#FFD700] hover:pl-8'
                           }`}
                         >
                           <span className="flex items-center gap-2">
                             {isActive(link.href) && (
-                              <span
-                                className="w-1.5 h-1.5 rounded-full"
-                                style={{
-                                  background: 'linear-gradient(135deg, #E8C84A, #D4AF37)',
-                                  boxShadow: '0 0 6px rgba(212,175,55,0.5)',
-                                }}
-                              />
+                              <span className="w-2 h-2 rounded-full" style={{ background: '#FFD700', boxShadow: '0 0 8px #FFD700' }} />
                             )}
                             {link.label}
                           </span>
-                          {isActive(link.href) && <Diamond size={10} className="text-[#D4AF37]/40" />}
                         </Link>
                       </motion.div>
 
-                      {/* Mobile Sub-links */}
                       {link.mega && (
-                        <div className="bg-white/[0.01]">
+                        <div className="bg-[#0a0a0a]">
                           {link.categories?.flatMap((cat) =>
                             cat.items.map((item, ii) => (
                               <motion.div
                                 key={item.href + item.label}
-                                initial={{ opacity: 0, x: 15 }}
+                                initial={{ opacity: 0, x: 10 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: (i * 0.04) + (ii * 0.02), duration: 0.25 }}
+                                transition={{ delay: (i * 0.03) + (ii * 0.02), duration: 0.2 }}
                               >
                                 <Link
                                   href={item.href}
                                   onClick={() => setMenuOpen(false)}
-                                  className="flex items-center gap-2.5 py-2 px-10 font-dm-sans text-[11px] tracking-wider text-white/25 hover:text-[#D4AF37] transition-all duration-300"
+                                  className="flex items-center gap-2 py-2 px-10 font-dm-sans text-[11px] tracking-wider text-[#555] hover:text-[#FFD700] transition-all duration-200"
                                 >
-                                  <span className="w-1 h-1 rounded-full bg-[#D4AF37]/15" />
+                                  <span className="w-1 h-1 rounded-full bg-[#D4AF3725]" />
                                   {item.label}
                                 </Link>
                               </motion.div>
@@ -817,12 +679,12 @@ export default function Header() {
                   ))}
                 </nav>
 
-                {/* Panel Footer */}
-                <div className="px-6 pb-6 space-y-4 border-t border-white/[0.04] pt-5">
+                {/* Footer */}
+                <div className="px-6 pb-6 space-y-4 border-t border-[#D4AF3715] pt-5">
                   <Link
                     href="/account"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 font-dm-sans text-[11px] tracking-[0.15em] uppercase text-white/30 hover:text-[#D4AF37] transition-colors duration-300"
+                    className="flex items-center gap-3 font-dm-sans text-[11px] tracking-[0.15em] uppercase text-[#555] hover:text-[#FFD700] transition-colors duration-200"
                   >
                     <User size={15} strokeWidth={1.5} />
                     My Account
@@ -831,14 +693,14 @@ export default function Header() {
                     <Link
                       href="/appointments"
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center justify-center gap-2 w-full py-3.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase font-semibold rounded-full overflow-hidden relative"
+                      className="flex items-center justify-center gap-2 w-full py-3.5 font-dm-sans text-[10px] tracking-[0.2em] uppercase font-bold rounded-sm relative"
                       style={{
-                        background: 'linear-gradient(135deg, #E8C84A 0%, #D4AF37 40%, #B89730 100%)',
-                        boxShadow: '0 3px 12px rgba(212,175,55,0.3), inset 0 1px 0 rgba(255,255,255,0.25)',
-                        color: '#1A1A1A',
+                        background: 'linear-gradient(135deg, #FFD700, #D4AF37, #B89730)',
+                        color: '#0a0a0a',
+                        boxShadow: '0 0 15px #D4AF3730',
                       }}
                     >
-                      <Calendar size={13} strokeWidth={2} />
+                      <Calendar size={13} strokeWidth={2.5} />
                       Book Appointment
                     </Link>
                   </motion.div>
